@@ -1,0 +1,287 @@
+
+<html lang="en">
+  <head>
+    <title>Visit www.pixelrocket.store to learn how to become a frontend web developer</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;display=swap" rel="stylesheet"/>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,300,500&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/tailwind/tailwind.min.css"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" defer="defer"></script>
+  </head>
+  <body class="antialiased bg-body text-body font-body">
+    <div>
+      <p class="py-4 bg-green-500 text-green-900 text-center">Want to learn how to build websites like this one? <a href="https://www.pixelrocket.store">Visit Pixel Rocket</a></p>
+      <section x-data="{ mobileNavOpen: false }">
+        <div class="container px-4 mx-auto">
+          <div class="flex items-center justify-between pt-5 pb-2.5 -m-2">
+            <div class="w-auto p-2">
+              <div class="flex flex-wrap items-center">
+                <div class="w-auto"><a class="relative z-10 inline-block" href="index.html"><img src="images/logo.svg" alt=""/></a></div>
+              </div>
+            </div>
+            <div class="w-auto p-2">
+              <div class="flex flex-wrap items-center">
+                <div class="w-auto hidden lg:block">
+                  <ul class="flex items-center mr-12">
+                    <li class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="about.html">About</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="pricing.html">Pricing</a></li>
+                    <li class="mr-12 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="blog.html">Blog</a></li>
+                    <li class="text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="contact.html">Contact</a></li>
+                  </ul>
+                </div>
+                <div class="w-auto hidden lg:block">
+                  <div class="inline-block"><a class="inline-block px-8 py-4 text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300" href="login.html">Login</a></div>
+                </div>
+                <div class="w-auto lg:hidden">
+                  <button class="relative z-10 inline-block" x-on:click="mobileNavOpen = !mobileNavOpen">
+                    <svg class="text-green-500" width="51" height="51" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="56" height="56" rx="28" fill="currentColor"></rect>
+                      <path d="M37 32H19M37 24H19" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50" :class="{'block': mobileNavOpen, 'hidden': !mobileNavOpen}">
+          <div class="fixed inset-0 bg-black opacity-60" x-on:click="mobileNavOpen = !mobileNavOpen"></div>
+          <nav class="relative z-10 px-9 pt-8 h-full bg-black overflow-y-auto">
+            <div class="flex flex-wrap justify-between h-full">
+              <div class="w-full">
+                <div class="flex items-center justify-between -m-2">
+                  <div class="w-auto p-2"><a class="inline-block" href="#"><img src="images/logo.svg" alt=""/></a></div>
+                  <div class="w-auto p-2">
+                    <button class="inline-block text-white" x-on:click="mobileNavOpen = !mobileNavOpen">
+                      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center py-16 w-full">
+                <ul>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="about.html">About</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="pricing.html">Pricing</a></li>
+                  <li class="mb-8 text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="blog.html">Blog</a></li>
+                  <li class="text-white font-medium hover:text-opacity-90 tracking-tighter"><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+              <div class="flex flex-col justify-end w-full pb-8"><a class="inline-block px-8 py-4 text-center text-white hover:text-black tracking-tighter hover:bg-green-400 border-2 border-white focus:border-green-400 focus:border-opacity-40 hover:border-green-400 focus:ring-4 focus:ring-green-400 focus:ring-opacity-40 rounded-full transition duration-300" href="login.html">Login</a></div>
+            </div>
+          </nav>
+        </div>
+      </section>
+      <section class="py-24 overflow-hidden" x-data="{ toggle: true }">
+        <div class="container px-4 mx-auto">
+          <div class="mb-20 md:max-w-2xl text-center mx-auto"><span class="inline-block mb-4 text-sm text-green-400 font-medium tracking-tighter">Pricing options</span>
+            <h2 class="font-heading mb-8 text-7xl lg:text-8xl text-white tracking-7xl lg:tracking-8xl">Compare our plans</h2>
+            <p class="mb-12 text-gray-300 max-w-sm mx-auto">Global Bank is a strategic branding agency focused on brand creation, rebrands, and brand</p>
+            <div class="relative p-1 max-w-max mx-auto bg-gradient-radial-dark-light rounded-full" x-on:click="toggle = !toggle">
+              <input class="opacity-0 absolute top-0 left-0 z-10 w-full h-full" type="checkbox"/>
+              <div class="flex flex-wrap items-center">
+                <div class="relative w-full sm:w-auto"><a class="block py-5 px-9 text-center text-black bg-white focus:ring-4 focus:ring-white focus:ring-opacity-40 font-medium rounded-full transition-all duration-200" :class="{'text-black bg-white': toggle, 'text-gray-300': !toggle}" href="#">Monthly billing</a></div>
+                <div class="relative flex-1"><a class="flex flex-wrap items-center justify-center py-3.5 px-9 text-center rounded-full transition-all duration-200" :class="{'bg-white': !toggle }" href="#">
+                    <p class="mr-2.5 text-gray-300 font-medium" :class="{'text-black': !toggle, 'text-gray-300': toggle}">Annual billing</p><span class="px-3 py-1.5 text-sm font-medium text-center text-green-400 uppercase border border-green-400 rounded-full">Save 20%</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap -m-4">
+            <div class="w-full md:w-1/2 lg:w-1/3 p-4">
+              <div class="relative px-8 pt-12 pb-12 h-full bg-gradient-radial-dark border-2 border-gray-900 border-opacity-30 overflow-hidden rounded-5xl">
+                <p class="mb-2 text-lg text-white font-light">Basic</p>
+                <p class="mb-6 text-gray-300">During this phase the design is developed to meet the required technical standards to</p>
+                <p class="mb-4 text-white font-medium text-5xl"><span :class="{ 'hidden': !toggle }">$10</span>                  <span class="text-base font-medium text-gray-300" :class="{ 'hidden': !toggle }">/ month</span>                  <span class="hidden" :class="{ 'hidden': toggle }">$20</span>                  <span class="hidden text-base font-medium text-gray-300" :class="{ 'hidden': toggle }">/ year</span></p>
+                <p class="mb-6 text-xs text-gray-300 font-light uppercase">What's includes</p>
+                <ul class="mb-10">
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Core engagement survey</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Custom topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Filterable heatmap & analytics</p>
+                  </li>
+                </ul><a class="relative z-10 block px-14 py-4 text-center font-medium tracking-2xl border-2 border-green-400 bg-green-400 hover:bg-green-500 text-black focus:ring-4 focus:ring-green-500 focus:ring-opacity-40 rounded-full transition duration-300" href="#">Start now</a><img class="absolute bottom-0 right-0" src="template-assets/images/pricing/shadow.svg" alt=""/>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-4">
+              <div class="relative px-8 pt-12 pb-12 h-full bg-gradient-radial-dark border-2 border-gray-900 border-opacity-30 overflow-hidden rounded-5xl">
+                <p class="mb-2 text-lg text-white font-light">Business plan</p>
+                <p class="mb-6 text-gray-300">During this phase the design is developed to meet the required technical standards to</p>
+                <p class="mb-4 text-white font-medium text-5xl"><span :class="{ 'hidden': !toggle }">$25</span>                  <span class="text-base font-medium text-gray-300" :class="{ 'hidden': !toggle }">/ month</span>                  <span class="hidden" :class="{ 'hidden': toggle }">$50</span>                  <span class="hidden text-base font-medium text-gray-300" :class="{ 'hidden': toggle }">/ year</span></p>
+                <p class="mb-6 text-xs text-gray-300 font-light uppercase">What's includes</p>
+                <ul class="mb-10">
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Core engagement survey</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Custom topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Filterable heatmap & analytics</p>
+                  </li>
+                </ul><a class="relative z-10 block px-14 py-4 text-center font-medium tracking-2xl border-2 border-green-400 bg-green-400 hover:bg-green-500 text-black focus:ring-4 focus:ring-green-500 focus:ring-opacity-40 rounded-full transition duration-300" href="#">Start now</a><img class="absolute bottom-0 right-0" src="template-assets/images/pricing/shadow.svg" alt=""/>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/3 p-4">
+              <div class="relative px-8 pt-12 pb-12 h-full bg-gradient-radial-dark border-2 border-gray-900 border-opacity-30 overflow-hidden rounded-5xl">
+                <p class="mb-2 text-lg text-white font-light">Premium</p>
+                <p class="mb-6 text-gray-300">During this phase the design is developed to meet the required technical standards to</p>
+                <p class="mb-4 text-white font-medium text-5xl"><span :class="{ 'hidden': !toggle }">$50</span>                  <span class="text-base font-medium text-gray-300" :class="{ 'hidden': !toggle }">/ month</span>                  <span class="hidden" :class="{ 'hidden': toggle }">$100</span>                  <span class="hidden text-base font-medium text-gray-300" :class="{ 'hidden': toggle }">/ year</span></p>
+                <p class="mb-6 text-xs text-gray-300 font-light uppercase">What's includes</p>
+                <ul class="mb-10">
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Core engagement survey</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center mb-4">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Custom topic-based assessments</p>
+                  </li>
+                  <li class="flex items-center">
+                    <div class="flex items-center justify-center w-5 h-5 mr-4 border border-green-400 rounded-full"><img src="template-assets/images/modals/check.svg" alt=""/></div>
+                    <p class="text-white">Filterable heatmap & analytics</p>
+                  </li>
+                </ul><a class="relative z-10 block px-14 py-4 text-center font-medium tracking-2xl border-2 border-green-400 bg-green-400 hover:bg-green-500 text-black focus:ring-4 focus:ring-green-500 focus:ring-opacity-40 rounded-full transition duration-300" href="#">Start now</a><img class="absolute bottom-0 right-0" src="template-assets/images/pricing/shadow.svg" alt=""/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-24 overflow-hidden">
+        <div class="container px-4 mx-auto">
+          <div class="mb-16 md:max-w-2xl text-center mx-auto"><span class="inline-block mb-4 text-sm text-green-400 font-medium tracking-tighter">Have a question?</span>
+            <h2 class="font-heading text-7xl lg:text-8xl text-white tracking-7xl lg:tracking-8xl">FAQ</h2>
+          </div>
+          <div class="flex flex-wrap -m-5">
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">What are the limits for money transfers from the United States?</h3>
+              <p class="text-white text-opacity-60">For most currencies, there are no limits to the transfer amount. Certain currencies might have limits set by our payments partners. You will always see the limit in the Revolut app before making the transfer.</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">Is it safe to send money with Revolut?</h3>
+              <p class="text-white text-opacity-60">Yes. Banking services are provided by Metropolitan Commercial Bank, Member FDIC.</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">How can I make an international transfer from the United States?</h3>
+              <p class="text-white text-opacity-60">Enter your recipient's details. You'll usually need the recipient’s full name and their bank account number and bank code. Some payment methods and destination countries may require additional information.</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">How long does it take to send money abroad from the United States?</h3>
+              <p class="text-white text-opacity-60">Different payment methods affect your transfer delivery time. Payments to other Revolut users and card payments are instant.</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">Where can I transfer money to from the United States?</h3>
+              <p class="text-white text-opacity-60">Transfers to the following countries are not supported: Afghanistan, Angola, Burkina Faso, Burundi, Cambodia, Central African Republic, Congo (Brazzaville), Congo (Kinshasa), Cuba, Eritrea, Ethiopia, Guinea, Guinea-Bissau, Guyana, Haiti, Iran...</p>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 p-5">
+              <h3 class="mb-4 text-2xl text-white tracking-2xl">How can I make an international transfer from the United States?</h3>
+              <p class="text-white text-opacity-60">Enter your recipient's details. You'll usually need the recipient’s full name and their bank account number and bank code.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-12">
+        <div class="container px-4 mx-auto">
+          <div class="relative pt-20 px-4 bg-gray-900 bg-opacity-20 overflow-hidden rounded-6xl">
+            <div class="text-center md:max-w-xl mx-auto removed pb-20"><span class="inline-block mb-4 text-sm text-green-400 font-medium tracking-tighter">Learn to code</span>
+              <h2 class="font-heading mb-6 text-7xl text-white tracking-8xl">Want to build templates like this one?</h2><a class="mb-8 text-gray-300 relative z-10" href="https://www.pixelrocket.store">Visit www.pixelrocket.store and learn to become a frontend web developer today</a><img class="absolute -bottom-24 right-0 z-0" src="template-assets/images/application-section/lines2.png" alt=""/>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-gray-50 overflow-hidden">
+        <div class="py-14 bg-black rounded-b-7xl"></div>
+        <div class="py-24">
+          <div class="container px-4 mx-auto">
+            <div class="flex flex-wrap justify-center -m-8 mb-28">
+              <div class="w-full md:w-1/2 lg:w-4/12 p-8">
+                <div class="md:max-w-xs"><img class="mb-7" src="images/logo-dark.svg" alt=""/>
+                  <p class="text-gray-400 font-medium">Global Bank is a strategic branding agency focused on brand creation, rebrands, and brand</p>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2 lg:w-2/12 p-8">
+                <h3 class="mb-6 text-lg text-black font-medium">About</h3>
+                <ul>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Contact</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Blog</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Our Story</a></li>
+                  <li><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Careers</a></li>
+                </ul>
+              </div>
+              <div class="w-full md:w-1/2 lg:w-2/12 p-8">
+                <h3 class="mb-6 text-lg text-black font-medium">Company</h3>
+                <ul>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Contact</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Blog</a></li>
+                  <li class="mb-2.5"><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Our Story</a></li>
+                  <li><a class="inline-block text-lg font-medium text-gray-400 hover:text-black transition duration-300" href="#">Careers</a></li>
+                </ul>
+              </div>
+              <div class="w-full md:w-1/2 lg:flex-1 p-8">
+                <div class="flex flex-wrap -m-2">
+                  <div class="w-full p-2"><a class="block py-5 px-8 bg-white rounded-full" href="#">
+                      <div class="flex flex-wrap items-center -m-2">
+                        <div class="w-auto p-2"><img src="template-assets/images/footers/twitter.svg" alt=""/></div>
+                        <div class="flex-1 p-2">
+                          <p class="text-black">Follow us on Twitter for updates</p>
+                        </div>
+                      </div></a></div>
+                  <div class="w-full p-2"><a class="block py-5 px-8 bg-white rounded-full" href="#">
+                      <div class="flex flex-wrap items-center -m-2">
+                        <div class="w-auto p-2"><img src="template-assets/images/footers/instagram.svg" alt=""/></div>
+                        <div class="flex-1 p-2">
+                          <p class="text-black">Follow us on Instagram for updates</p>
+                        </div>
+                      </div></a></div>
+                  <div class="w-full p-2"><a class="block py-5 px-8 bg-white rounded-full" href="#">
+                      <div class="flex flex-wrap items-center -m-2">
+                        <div class="w-auto p-2"><img src="template-assets/images/footers/tiktok.svg" alt=""/></div>
+                        <div class="flex-1 p-2">
+                          <p class="text-black">Follow us on TikTok for updates</p>
+                        </div>
+                      </div></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap justify-between -m-2">
+              <div class="w-auto p-2">
+                <p class="inline-block text-sm font-medium text-black text-opacity-60">© 2023 Global Bank</p>
+              </div>
+              <div class="w-auto p-2">
+                <div class="flex flex-wrap items-center -m-2 sm:-m-7">
+                  <div class="w-auto p-2 sm:p-7"><a class="inline-block text-sm text-black text-opacity-60 hover:text-opacity-100 font-medium transition duration-300" href="#">Terms of Use</a></div>
+                  <div class="w-auto p-2 sm:p-7"><a class="inline-block text-sm text-black text-opacity-60 hover:text-opacity-100 font-medium transition duration-300" href="#">Privacy Policy</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
