@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SaaSy Dark</title>
+        <title>Home</title>
         <meta name="description" content="" />
         <link
             rel="shortcut icon"
@@ -22,6 +22,7 @@
         <!-- <link rel="stylesheet" href="../../tailwind-css/tailwind-runtime.css" /> -->
         <link rel="stylesheet" href="./css/tailwind-build.css">
         <link rel="stylesheet" href="css/index.css" />
+        
 
         <link
             rel="stylesheet"
@@ -34,12 +35,32 @@
     <body
         class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
     >
-        <header
-            class="tw-max-w-lg:tw-px-4 tw-max-w-lg:tw-mr-auto tw-absolute tw-top-0 tw-z-20 tw-flex tw-h-[60px] tw-w-full tw-bg-opacity-0 tw-px-[5%] lg:tw-justify-around"
+
+    <div id="videoModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div style="position: relative; width: 80%; max-width: 800px; aspect-ratio: 16/9; background: #000;">
+            <button onclick="closeVideo()" style="position: absolute; top: -40px; right: 0; color: white; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+            
+            <iframe id="youtubePlayer" style="width: 100%; height: 100%;" src="https://www.youtube.com/embed/Sgxbx65IDeM?si=AtHlVwgxXyJJMxi5"  frameborder="0" allow="; fullscreen"></iframe>
+        </div>
+    </div>
+
+
+    <div id="loader" style="position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; background-color: #000000 !important; z-index: 999999 !important; display: flex !important; align-items: center !important; justify-content: center !important; opacity: 1; transition: opacity 0.5s ease;" class="tw-fixed tw-inset-0 tw-z-[10000] tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-black">
+
+        <div class="logo-reveal-container">
+            <img src="assets/logo/logobg.png" alt="Logo Loader" class="saiyan-logo-colorful">
+        </div>
+    </div>
+
+    <header 
+        id="main-header"
+        class="tw-fixed tw-top-0 tw-z-[100] tw-flex tw-h-[60px] tw-w-full tw-items-center tw-px-[5%] lg:tw-justify-around tw-transition-all tw-duration-300 tw-bg-transparent"
         >
-            <a class="tw-h-[50px] tw-w-[50px] tw-p-[4px]" href="">
+        
+
+            <a style=" height: 60px; width: 65px;" class="tw-h-[50px]  tw-w-[50px] tw-p-[4px]" href="index.html">
                 <img
-                    src="./assets/logo/logo.png"
+                    src="./assets/logo/logobg.png"
                     alt="logo"
                     class="tw-object tw-h-full tw-w-full"
                 />
@@ -49,13 +70,12 @@
                 id="collapsed-header-items"
             >
                 <div
-                    class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
+                    class="tw-flex pl-14 tw-h-full tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
                 >
-                    <a class="header-links" href=""> About us </a>
-                    <a class="header-links" href="#pricing"> Pricing </a>
-                    <a class="header-links" href=""> Solutions </a>
-                    <a class="header-links" href=""> Features </a>
-                    <a class="header-links" href=""> Company </a>
+                    <a class="header-links tw-underline" href="index.html"> Home</a>
+                    <a class="header-links" href="Pricing.html"> Pricing </a>
+                    <a class="header-links" href="Contact.html"> Contact</a>
+                    <a class="header-links" href="About.html"> About Us </a>
                 </div>
                 <div
                     class="tw-mx-4 tw-flex tw-place-items-center tw-gap-[20px] tw-text-base max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center"
@@ -76,12 +96,30 @@
                 aria-label="menu"
                 id="collapse-btn"
             ></button>
+
         </header>
 
+<div id="smooth-wrapper">
+    <div id="smooth-content">
+
         <section
-            class="hero-section tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-md:tw-mt-[50px]"
+            class="hero-section tw-relative tw-h-screen tw-w-full tw-overflow-hidden tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-md:tw-mt-[50px]"
             id="hero-section"
         >
+        <video 
+        autoplay loop muted playsinline 
+        class="tw-absolute tw-inset-0 tw-h-full tw-w-full tw-object-cover tw-z-0"
+        style="
+          filter: blur(1px); 
+          -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+          mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        "
+    >
+        <source src="./assets/video/bg.mp4" type="video/mp4">
+    </video>
+
+    
+    
             <div
                 class="tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
             >
@@ -91,9 +129,9 @@
                     <div
                         class="reveal-up gradient-text tw-text-center tw-text-6xl tw-font-semibold tw-uppercase tw-leading-[80px] max-lg:tw-text-4xl max-md:tw-leading-snug"
                     >
-                        <span class=""> Ship more </span>
+                        <span class="font-bold"> Ship more </span>
                         <br />
-                        <span class=""> with SaaS templates </span>
+                        <span class="font-bold"> with SaaS templates </span>
                     </div>
                     <div
                         class="reveal-up tw-mt-10 tw-max-w-[450px] tw-p-2 tw-text-center tw-text-gray-300 max-lg:tw-max-w-full"
@@ -112,12 +150,14 @@
                             Get started
                         </a>
                         <a
-                            class="btn tw-flex tw-gap-2 !tw-bg-black !tw-text-white tw-transition-colors tw-duration-[0.3s] hover:!tw-bg-white hover:!tw-text-black"
-                            href=""
-                        >
-                            <i class="bi bi-play-circle-fill"></i>
-                            <span>Learn more</span>
-                        </a>
+                        class="btn tw-flex tw-gap-2 !tw-bg-black !tw-text-white tw-transition-colors tw-duration-[0.3s] hover:!tw-bg-white hover:!tw-text-black"
+                        href="javascript:void(0)"
+                        onclick="openVideo()"
+                    >
+                        <i class="bi bi-play-circle-fill"></i>
+                        <span>Learn more</span>
+                    </a>
+
                     </div>
                 </div>
 
@@ -207,105 +247,6 @@
             </div>
         </section>
 
-        <section
-            class="tw-relative tw-flex tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
-        >
-            <div
-                class="tw-mt-8 tw-flex tw-flex-col tw-place-items-center tw-gap-5"
-            >
-                <div
-                    class="reveal-up tw-mt-5 tw-flex tw-flex-col tw-gap-3 tw-text-center"
-                >
-                    <h2
-                        class="tw-text-4xl tw-font-medium tw-text-gray-200 max-md:tw-text-3xl"
-                    >
-                        Key benifits
-                    </h2>
-                </div>
-                <div
-                    class="tw-mt-6 tw-flex tw-max-w-[80%] tw-flex-wrap tw-place-content-center tw-gap-8 max-lg:tw-flex-col"
-                >
-                    <div
-                        class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-                    >
-                        <div
-                            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-h-[150px]"
-                        >
-                            <div
-                                class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-                            >
-                                <i
-                                    class="bi bi-rocket-takeoff-fill tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-                            <h3
-                                class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-                            >
-                                Minimize hours spent
-                            </h3>
-                            <div class="tw-text-gray-300">
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit.
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-                    >
-                        <div
-                            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-text-[150px]"
-                        >
-                            <div
-                                class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-                            >
-                                <i
-                                    class="bi bi-layout-sidebar-inset tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-                            <h3
-                                class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-                            >
-                                Simple to use
-                            </h3>
-                            <div class="tw-text-gray-300">
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit.
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="reveal-up tw-flex tw-h-[400px] tw-w-[450px] tw-flex-col tw-gap-3 tw-text-center max-md:tw-w-[320px]"
-                    >
-                        <div
-                            class="border-gradient tw-h-[200px] tw-w-full tw-overflow-hidden max-md:tw-h-[150px]"
-                        >
-                            <div
-                                class="tw-flex tw-h-full tw-w-full tw-place-content-center tw-place-items-end tw-p-2"
-                            >
-                                <i
-                                    class="bi bi-lightning-charge-fill tw-text-7xl tw-text-gray-200 max-md:tw-text-5xl"
-                                ></i>
-                            </div>
-                        </div>
-                        <div class="tw-flex tw-flex-col tw-gap-4 tw-p-2">
-                            <h3
-                                class="tw-mt-8 tw-text-2xl tw-font-normal max-md:tw-text-xl"
-                            >
-                                Speed up your development
-                            </h3>
-                            <div class="tw-text-gray-300">
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section
             class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
@@ -499,55 +440,71 @@
         <section
             class="tw-relative tw-flex tw-min-h-[80vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-overflow-hidden tw-p-6"
         >
+        
             <div
                 class="reveal-up tw-flex tw-min-h-[60vh] tw-place-content-center tw-place-items-center tw-gap-[10%] max-lg:tw-flex-col max-lg:tw-gap-10"
             >
-                <div
-                    class="tw-mt-6 tw-flex tw-max-w-[450px] tw-flex-col tw-gap-4"
-                >
-                    <h3 class="tw-text-4xl tw-font-medium max-md:tw-text-2xl">
-                        Powerful Insights
-                    </h3>
 
-                    <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-                        <h4 class="tw-text-xl tw-font-medium">
-                            <i class="bi bi-check-all !tw-text-2xl"></i>
-                            Easy to use
-                        </h4>
-                        <span
-                            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Reiciendis commodi temporibus at? Aspernatur,
-                            a necessitatibus?
-                        </span>
-                    </div>
-                    <div class="tw-mt-4 tw-flex tw-flex-col tw-gap-3">
-                        <h4 class="tw-text-xl tw-font-medium">
-                            <i class="bi bi-check-all !tw-text-2xl"></i>
-                            All in one panel
-                        </h4>
-                        <span
-                            class="tw-text-lg tw-text-gray-300 max-md:tw-text-base"
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Reiciendis commodi temporibus at? Aspernatur,
-                            a necessitatibus?
-                        </span>
-                    </div>
+            <div class="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+                <div class="absolute inset-0 -z-10 overflow-hidden">
+                  <svg aria-hidden="true" class="absolute top-0 left-[max(50%,25rem)] h-256 w-512 -translate-x-1/2 mask-[radial-gradient(64rem_64rem_at_top,white,transparent)] stroke-gray-800">
+                    <defs>
+                      <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+                        <path d="M100 200V.5M.5 .5H200" fill="none" />
+                      </pattern>
+                    </defs>
+                    <svg x="50%" y="-1" class="overflow-visible fill-gray-800/50">
+                      <path d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z" stroke-width="0" />
+                    </svg>
+                    <rect width="100%" height="100%" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" stroke-width="0" />
+                  </svg>
                 </div>
-
-                <div class="tw-flex">
-                    <div
-                        class="tw-max-h-[650px] tw-max-w-[850px] tw-overflow-hidden tw-rounded-lg tw-shadow-lg tw-shadow-[rgba(170,49,233,0.44021358543417366)]"
-                    >
-                        <img
-                            src="./assets/images/home/insights.png"
-                            alt="coding"
-                            class="tw-h-full tw-w-full tw-object-cover"
-                        />
+                <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+                  <div class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                    <div class="lg:pr-4">
+                      <div class="lg:max-w-lg">
+                        <p class="text-base/7 font-semibold text-indigo-400">Deploy faster</p>
+                        <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">A better workflow</h1>
+                        <p class="mt-6 text-xl/8 text-gray-300">Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                    <img src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png" alt="" class="w-3xl max-w-none rounded-xl bg-gray-800 shadow-xl ring-1 ring-white/10 sm:w-228" />
+                  </div>
+                  <div class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                    <div class="lg:pr-4">
+                      <div class="max-w-xl text-base/7 text-gray-400 lg:max-w-lg">
+                        <p>Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.</p>
+                        <ul role="list" class="mt-8 space-y-8 text-gray-400">
+                          <li class="flex gap-x-3">
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="mt-1 size-5 flex-none text-indigo-400">
+                              <path d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Zm3.75-2.75a.75.75 0 0 0 1.5 0V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0l-3.25 3.5a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                            <span><strong class="font-semibold text-white">Push to deploy.</strong> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</span>
+                          </li>
+                          <li class="flex gap-x-3">
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="mt-1 size-5 flex-none text-indigo-400">
+                              <path d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                            <span><strong class="font-semibold text-white">SSL certificates.</strong> Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</span>
+                          </li>
+                          <li class="flex gap-x-3">
+                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="mt-1 size-5 flex-none text-indigo-400">
+                              <path d="M4.632 3.533A2 2 0 0 1 6.577 2h6.846a2 2 0 0 1 1.945 1.533l1.976 8.234A3.489 3.489 0 0 0 16 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234Z" />
+                              <path d="M4 13a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4H4Zm11.24 2a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V15Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.01Z" clip-rule="evenodd" fill-rule="evenodd" />
+                            </svg>
+                            <span><strong class="font-semibold text-white">Database backups.</strong> Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</span>
+                          </li>
+                        </ul>
+                        <p class="mt-8">Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie auctor fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate et ultrices hac adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel integer orci.</p>
+                        <h2 class="mt-16 text-2xl font-bold tracking-tight text-white">No server? No problem.</h2>
+                        <p class="mt-6">Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
         </section>
 
@@ -909,107 +866,6 @@
                 </a>
             </div>
         </section>
-
-        <section
-            class="tw-flex tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-gap-[10%] tw-p-[5%] tw-px-[10%]"
-        >
-            <h3
-                class="tw-text-4xl tw-font-medium tw-text-gray-300 max-md:tw-text-2xl"
-            >
-                Faq
-            </h3>
-            <div
-                class="tw-mt-5 tw-flex tw-min-h-[300px] tw-w-full tw-max-w-[850px] tw-flex-col tw-gap-4"
-            >
-                <div
-                    class="faq tw-w-full tw-rounded-md tw-border-[1px] tw-border-solid tw-border-[#1F2123] tw-bg-[#080808]"
-                >
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
-                    >
-                        <span>What license are the source code?</span>
-                        <i class="bi bi-plus tw-ml-auto tw-font-semibold"></i>
-                    </div>
-                    <div class="content">
-                        All the templates are under MIT license
-                    </div>
-                </div>
-
-                <div
-                    class="faq tw-w-full tw-rounded-md tw-border-[1px] tw-border-solid tw-border-[#1F2123] tw-bg-[#080808]"
-                >
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
-                    >
-                        <span>Can I request new templates?</span>
-                        <i class="bi bi-plus tw-ml-auto tw-font-semibold"></i>
-                    </div>
-                    <div class="content">
-                        you can request a generic template from
-                        <a
-                            href="https://github.com/PaulleDemon/landing-pages/issues/new/choose"
-                            class="tw-underline"
-                        >
-                            Github template request</a
-                        >. If you are looking for Custom design you should
-                        <a href="https://tally.so/r/woO0Kx" class="tw-underline"
-                            >contact here</a
-                        >
-                    </div>
-                </div>
-
-                <div
-                    class="faq tw-w-full tw-rounded-md tw-border-[1px] tw-border-solid tw-border-[#1F2123] tw-bg-[#080808]"
-                >
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
-                    >
-                        <span>I need a custom template?</span>
-                        <i class="bi bi-plus tw-ml-auto tw-font-semibold"></i>
-                    </div>
-                    <div class="content">
-                        If you are looking for Custom design you can
-                        <a href="https://tally.so/r/woO0Kx" class="tw-underline"
-                            >contact here</a
-                        >
-                    </div>
-                </div>
-
-                <div
-                    class="faq tw-w-full tw-rounded-md tw-border-[1px] tw-border-solid tw-border-[#1F2123] tw-bg-[#080808]"
-                >
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-xl max-md:tw-text-lg"
-                    >
-                        <span>Will you add new templates?</span>
-                        <i class="bi bi-plus tw-ml-auto tw-font-semibold"></i>
-                    </div>
-                    <div class="content">
-                        New templates are added every Friday. So star ⭐️
-                        <a
-                            href="https://github.com/PaulleDemon/awesome-landing-pages"
-                            class="tw-underline"
-                            >Github</a
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="tw-mt-20 tw-flex tw-flex-col tw-place-items-center tw-gap-4"
-            >
-                <div class="tw-text-3xl max-md:tw-text-2xl">
-                    Still have questions?
-                </div>
-                <a
-                    href="http://"
-                    class="btn !tw-rounded-full !tw-border-[1px] !tw-border-solid !tw-border-gray-300 !tw-bg-transparent tw-transition-colors tw-duration-[0.3s]"
-                >
-                    Contact
-                </a>
-            </div>
-        </section>
-
         <section
             class="tw-flex tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-gap-[10%] tw-p-[5%] tw-px-[10%] max-md:tw-px-2"
         >
@@ -1048,18 +904,16 @@
                 class="tw-flex tw-h-full tw-w-[250px] tw-flex-col tw-place-items-center tw-gap-6 max-md:tw-w-full"
             >
                 <img
-                    src="./assets/logo/logo.png"
+                    src="./assets/logo/logobg.png"
                     alt="logo"
                     srcset=""
                     class="tw-max-w-[120px]"
                 />
                 <div>
-                    2 Lord Edward St,
-                    <br />
-                    D02 P634,
-                    <br />
-                    United States
-                </div>
+                    Data Saiyains
+                      <br />
+                      Rodrigues Island
+                  </div>
                 <div class="tw-mt-3 tw-text-lg tw-font-semibold">Follow us</div>
                 <div class="tw-flex tw-gap-4 tw-text-2xl">
                     <a href="" aria-label="Facebook">
@@ -1103,7 +957,13 @@
                 </div>
             </div>
         </footer>
-    </body>
+    
+    </div>
+</div>
+
+
+
+</body>
 
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
@@ -1117,6 +977,13 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollSmoother.min.js"></script>
+
+    
 
     <script src="./index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </html>

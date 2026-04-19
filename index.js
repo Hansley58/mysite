@@ -56,7 +56,19 @@ window.addEventListener("resize", responsive)
  * Animations
  */
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+let smoother = ScrollSmoother.create({
+	wrapper: '#smooth-wrapper',
+	content: '#smooth-content',
+})
+
+ScrollSmoother.create({
+	smooth: 2, 
+	effects: true, 
+	smoothTouch: 0.1 
+});
+
 
 
 gsap.to(".reveal-up", {
@@ -140,3 +152,75 @@ sections.forEach((sec) => {
 
 
 })
+
+
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('main-header');
+    if (window.scrollY > 10) {
+      header.classList.add('header-scrolled');
+    } else {
+      header.classList.remove('header-scrolled');
+    }
+  });
+
+
+// Use a delay so you can actually SEE the loader works
+window.addEventListener('load', function() {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            // Wait 1.5 seconds so we can confirm it appears
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1500); 
+        }
+});
+
+function openVideo() {
+    console.log("Opening video..."); // Check your F12 console for this
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('youtubePlayer');
+    const videoId = "Sgxbx65IDeM"; // Replace with your ID
+
+    if (modal && player) {
+        player.src = "https://www.youtube.com/embed/" + "Sgxbx65IDeM" + "?autoplay=1";
+        modal.style.display = "flex";
+    } else {
+        alert("Error: Modal or Player not found in HTML!");
+    }
+}
+
+function closeVideo() {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('youtubePlayer');
+    modal.style.display = "none";
+    player.src = "";
+}
+
+function toggleFAQ(button) {
+    const item = button.parentElement;
+    const wrapper = item.querySelector('.faq-wrapper');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+  
+    // Check if it's currently open
+    const isOpen = wrapper.classList.contains('grid-rows-[1fr]');
+  
+    // Toggle the height (using CSS Grid rows)
+    wrapper.classList.toggle('grid-rows-[1fr]', !isOpen);
+    wrapper.classList.toggle('grid-rows-[0fr]', isOpen);
+  
+    // Toggle the opacity for a fade-in effect
+    answer.classList.toggle('opacity-100', !isOpen);
+    answer.classList.toggle('opacity-0', isOpen);
+  
+    // Smoothly rotate the plus sign instead of just changing text
+    if (!isOpen) {
+      icon.style.transform = 'rotate(45deg)';
+    } else {
+      icon.style.transform = 'rotate(0deg)';
+    }
+  }
+
