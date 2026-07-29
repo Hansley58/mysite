@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ZENITH</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/lop.jpg" rel="icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome & Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Bootstrap & Custom -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js">
+    </script>
+
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+    <!-- Pavior Embed -->
+    <script src="https://app.pavior.com/embed">
+    </script>
+    <script>
+        window.Pavior ||= function() { console.error('Pavior failed to load'); };
+        Pavior('init', {
+            'teamVanityId': 'zenith-2',
+            'doChat': true,
+            'doTimeTravel': false,
+            'quadClickForFeedback': false,
+        });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <!-- ============================================================
+    SPINNER
+    ============================================================ -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <a href="index.html">
+            <img class="om" src="img/zenlighr.png" width="60" height="60" alt="Logo Light" />
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto p-4 p-lg-0">
+                <a href="#heroVideo" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#service" class="nav-item nav-link">Services</a>
+                <a href="#team" class="nav-item nav-link">Our Team</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
+            </div>
+
+            <!-- WebCup Search -->
+            <div class="webcup-search-wrapper d-flex align-items-center mx-2 my-2 my-lg-0">
+                <div class="webcup-search-container">
+                    <i class="fas fa-search webcup-search-icon"></i>
+                    <input type="text" class="webcup-search-input" id="webcupSearchInput" placeholder="Search..." aria-label="Search website" autocomplete="off" spellcheck="false">
+                    <button class="webcup-search-btn" id="webcupSearchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="webcup-search-results" id="webcupSearchResults">
+                        <span class="webcup-search-count" id="webcupSearchCount">0</span>
+                        <button class="webcup-search-nav-btn" id="webcupSearchPrev" aria-label="Previous result">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <button class="webcup-search-nav-btn" id="webcupSearchNext" aria-label="Next result">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <button class="webcup-search-clear-btn" id="webcupSearchClear" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="lang-selector" id="langSelector">
+                <button class="lang-toggle" id="langToggle" aria-label="Select language" aria-expanded="false">
+                    <i class="fas fa-globe globe-icon"></i>
+                    <span class="current-lang-label" id="currentLangLabel">EN</span>
+                    <i class="fas fa-chevron-down chevron-icon"></i>
+                </button>
+                <div class="lang-dropdown" id="langDropdown" role="listbox">
+                    <button class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span class="lang-name">English</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="fr" role="option" aria-selected="false">
+                        <span class="lang-flag">🇫🇷</span>
+                        <span class="lang-name">Français</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="es" role="option" aria-selected="false">
+                        <span class="lang-flag">🇪🇸</span>
+                        <span class="lang-name">Español</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="de" role="option" aria-selected="false">
+                        <span class="lang-flag">🇩🇪</span>
+                        <span class="lang-name">Deutsch</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="zh-CN" role="option" aria-selected="false">
+                        <span class="lang-flag">🇨🇳</span>
+                        <span class="lang-name">普通话</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dark Mode Toggle -->
+            <button id="darkModeToggle" class="btn btn-outline-light rounded-circle me-3" aria-label="Toggle dark mode">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+
+            <div class="d-none d-lg-flex align-items-center">
+                <a href="#" class="btn btn-ticket rounded-pill" data-bs-toggle="modal" data-bs-target="#orderModal">
+                    <i class="fas fa-ticket-alt"></i> Buy Ticket
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    VIDEO HERO
+    ============================================================ -->
+    <section class="video-hero" id="heroVideo" role="banner" aria-label="Hero banner with video background">
+        <video class="hero-video" id="heroBgVideo" autoplay muted loop playsinline preload="metadata" poster="img/carousel-1.jpg" onerror="document.getElementById('heroFallback').classList.add('show')">
+            <source src="img/videoplayback.mp4" type="video/mp4">
+        </video>
+        <div class="hero-fallback" id="heroFallback"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                We Bake With <br><span class="highlight">Passion</span>
+            </h1>
+            <p class="hero-sub"></p>
+            <div class="hero-actions">
+                <a href="#about" class="btn-hero-primary">Let's Begin</a>
+            </div>
+        </div>
+      
+    </section>
+
+    <!-- ============================================================
+    ABOUT SECTION
+    ============================================================ -->
+    <div id="about" class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4 class="text-primary text-uppercase" style="letter-spacing:5px;">About Us</h4>
+                <h1 class="display-4">Serving Since 1975</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 py-0 py-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
+                    <h1 class="mb-3">Our Story</h1>
+                    <h5 class="mb-3">
+                        <i class="fas fa-quote-left text-primary mr-2"></i>
+                        From a small family kitchen to your table – every loaf tells a story.
+                    </h5>
+                    <p>
+                        For nearly five decades, we've been perfecting the art of baking with
+                        love, patience, and the finest ingredients. Our recipes are handed down
+                        through generations, and every bite carries the warmth of tradition.
+                        We believe that great bread and pastries are made not just with flour
+                        and butter, but with heart.
+                    </p>
+                </div>
+                <div class="col-lg-4 py-5 py-lg-0 about-img-wrap wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="position-relative h-100 w-100">
+                        <img class="position-absolute w-100 h-100 floating-img-about" src="img/background-remover-1784796999938.png" alt="About Bake & Co" style="object-fit:cover;" onerror="this.onerror=null; this.classList.add('img-placeholder'); this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23e9ecef%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2220%22%3Eabout%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                </div>
+                <div class="col-lg-4 py-0 py-lg-5 wow fadeInRight" data-wow-delay="0.6s">
+                    <h1 class="mb-3">Our Vision</h1>
+                    <p>
+                        To be the heart of every community – a place where the aroma of
+                        freshly baked bread welcomes you, and every pastry is crafted with
+                        care. We envision a world where wholesome, artisanal baking is not
+                        a luxury, but a daily joy.
+                    </p>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        100% natural ingredients
+                    </h5>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        Handcrafted with tradition
+                    </h5>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        Warm & welcoming community
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    ABOUT ORIGINAL
+    ============================================================ -->
+    <div id="about-original" class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="img/ride.jpg" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img class="img-fluid rounded" src="img/duty.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <p class="text-primary text-uppercase mb-2"></p>
+                        <h1 class="display-6 mb-4">We Bake Every Item From The Core Of Our Hearts</h1>
+                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <div class="row g-2 mb-4">
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Quality Products</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Custom Products</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Online Order</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Home Delivery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SERVICES BAKE
+    ============================================================ -->
+    <div id="services-bake" class="container-fluid pt-5 bg-light">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4 class="text-primary text-uppercase" style="letter-spacing:5px;">Our Services</h4>
+                <h1 class="display-4">Fresh & Organic Bakes</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="row align-items-center">
+                        <div class="col-sm-5">
+                            <img class="img-fluid mb-3 mb-sm-0" src="img/chill.png" alt="Fast Delivery" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3Edelivery%3C/text%3E%3C/svg%3E';" />
+                        </div>
+                        <div class="col-sm-7">
+                            <h4><i class="fas fa-truck service-icon"></i>Fastest Door Delivery</h4>
+                            <p class="m-0">Fresh from our oven to your doorstep – same-day delivery across the city. Enjoy warm croissants, artisan loaves, and sweet treats without leaving your home.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="row align-items-center">
+                        <div class="col-sm-5">
+                            <img class="img-fluid mb-3 mb-sm-0" src="img/letsgo.jpg" alt="Fresh Bakes" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3Efresh%20bakes%3C/text%3E%3C/svg%3E';" />
+                        </div>
+                        <div class="col-sm-7">
+                            <h4><i class="fas fa-bread-slice service-icon"></i>Artisan Breads & Pastries</h4>
+                            <p class="m-0">Sourdough, baguettes, brioche, and delicate viennoiserie – all baked fresh daily using organic flours and time-honored techniques. Taste the difference.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="row align-items-center">
+                        <div class="col-sm-5">
+                            <img class="img-fluid mb-3 mb-sm-0" src="img/noway home.jpg" alt="Best Quality" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3Equality%3C/text%3E%3C/svg%3E';" />
+                        </div>
+                        <div class="col-sm-7">
+                            <h4><i class="fas fa-award service-icon"></i>Best Quality Ingredients</h4>
+                            <p class="m-0">We source only the finest local and organic ingredients – stone-ground flours, farm-fresh eggs, and pure butter. Every bite is a testament to our commitment to quality.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row align-items-center">
+                        <div class="col-sm-5">
+                            <img class="img-fluid mb-3 mb-sm-0" src="img/war.jpg" alt="Table Booking" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3Ebooking%3C/text%3E%3C/svg%3E';" />
+                        </div>
+                        <div class="col-sm-7">
+                            <h4><i class="fas fa-table service-icon"></i>Reserve Your Table</h4>
+                            <p class="m-0">Join us at our cozy bakery-café for a relaxing morning or an afternoon treat. Book your table online and enjoy freshly brewed coffee paired with our signature pastries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    SERVICE
+    ============================================================ -->
+    <div id="service" class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="text-primary text-uppercase mb-2">// Our Services</p>
+                    <h1 class="display-6 mb-4">What Do We Offer For You?</h1>
+                    <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <div class="row gy-5 gx-4">
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-bread-slice text-white"></i>
+                                </div>
+                                <h5 class="mb-0">Quality Products</h5>
+                            </div>
+                            <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-birthday-cake text-white"></i>
+                                </div>
+                                <h5 class="mb-0">Custom Products</h5>
+                            </div>
+                            <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-cart-plus text-white"></i>
+                                </div>
+                                <h5 class="mb-0">Online Order</h5>
+                            </div>
+                            <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos</span>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-shrink-0 btn-square bg-primary rounded-circle me-3">
+                                    <i class="fa fa-truck text-white"></i>
+                                </div>
+                                <h5 class="mb-0">Home Delivery</h5>
+                            </div>
+                            <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="img/jjg" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img class="img-fluid rounded" src="img/jjg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PRODUCT
+    ============================================================ -->
+    <div id="product" class="container-xxl bg-light my-6 py-6 pt-0">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:500px;">
+                <p class="text-primary text-uppercase mb-2">// TICKETS</p>
+                <h1 class="display-6 mb-4">Explore The Categories Of Our Products</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill px-3 mb-3">FREE</div>
+                            <h3 class="mb-3">BASIC</h3>
+                            <span>Standing Room Only — Complimentary.</span>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/mic.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" data-bs-toggle="modal" data-bs-target="#orderModal">
+                                    <i class="fa fa-shopping-cart text-primary"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">Rs 500</div>
+                            <h3 class="mb-3">STANDARD</h3>
+                            <span>General Seating + Exhibition.</span>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/fuel.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" data-bs-toggle="modal" data-bs-target="#orderModal">
+                                    <i class="fa fa-shopping-cart text-primary"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
+                        <div class="text-center p-4">
+                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">Rs 1,500</div>
+                            <h4 class="mb-3">VIP</h4>
+                            <span>Front Row + Backstage — VIP Pass.</span>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="img/batman.jpg" alt="">
+                            <div class="product-overlay">
+                                <a class="btn btn-lg-square btn-outline-light rounded-circle" data-bs-toggle="modal" data-bs-target="#orderModal">
+                                    <i class="fa fa-shopping-cart text-primary"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TEAM
+    ============================================================ -->
+    <div id="team" class="container-xxl py-6 bg-light">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:500px;">
+                <p class="text-primary text-uppercase mb-2">// OUR TEAM</p>
+                <h1 class="display-6 mb-4">We're Super Professional At Our Skills</h1>
+            </div>
+            <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
+                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <img class="img-fluid" src="img/hi.jpg" alt="Felicté Marie Danaëlle">
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Felicité Marie Danaëlle</h5>
+                                <span>WEB DESIGNER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <img class="img-fluid" src="img/hi.jpg" alt="Gentil Jean Hansley">
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Gentil Jean Hansley</h5>
+                                <span>WEB DEVELOPER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <img class="img-fluid" src="img/chill.png" alt="Perrine Joseph Jonathan">
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Perrine Joseph Jonathan</h5>
+                                <span>WEB DEVELOPER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FACTS
+    ============================================================ -->
+    <div id="fact" class="container-xxl py-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Years Experience</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">5</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-users fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Skilled Professionals</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">5</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-user fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Clients</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">135</h1>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+                        <i class="fa fa-cart-plus fa-4x text-primary mb-4"></i>
+                        <p class="mb-2">Order Everyday</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up">9357</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TESTIMONIAL
+    ============================================================ -->
+    <div id="testimonial" class="container-xxl bg-light my-6 py-6 pb-0">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:500px;">
+                <p class="text-primary text-uppercase mb-2">// Client's Review</p>
+                <h1 class="display-6 mb-4">Our Customers Speak for Themselves</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Yan Elrick</h5>
+                            <span>Teacher</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"I'm thoroughly impressed with the quality and design of this website theme. It's clean, modern, and incredibly user‑friendly. Our customers love the seamless experience, and our conversion rates have noticeably improved. Highly recommend!"</p>
+                </div>
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Tony Wayne</h5>
+                            <span>Developer</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"The product exceeded our expectations! The attention to detail, fast loading times, and mobile responsiveness are top‑notch. It made our online presence stand out, and we've received countless compliments on the sleek layout."</p>
+                </div>
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Ronald Greraht</h5>
+                            <span>Examiner</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"Amazing support and a fantastic product! The theme is highly customizable, and the team behind it is responsive and helpful. We've seen a significant boost in engagement and sales since we launched. Couldn't be happier!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section id="contact" class="contact-section section-padding position-relative" style="background:linear-gradient(180deg,#FFFBF2 0%,#f8f0e8 100%);">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.15s">
+                        <h2 class="display-4 fw-bold" style="color:var(--secondary); line-height:1.1;">
+                            Interested? <br>
+                            <span style="color:var(--primary); position:relative;">
+                                Let's talk
+                                <span style="position:absolute; bottom:-2px; left:0; width:100%; height:4px; background:var(--primary); border-radius:4px; opacity:0.3;"></span>
+                            </span>
+                        </h2>
+                        <p class="text-muted mt-3" style="max-width:450px; margin:0.5rem auto 0; font-size:1.05rem;">
+                            Have a question, craving, or special request? We're here for you.
+                        </p>
+                    </div>
+                    <ul class="nav nav-pills justify-content-center gap-3 mb-4 wow fadeInUp" data-wow-delay="0.2s" id="contactTab" role="tablist" style="background:rgba(255,255,255,0.6); backdrop-filter:blur(10px); padding:0.5rem; border-radius:60px; box-shadow:0 2px 15px rgba(0,0,0,0.04);">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="form-tab" data-bs-toggle="pill" data-bs-target="#form-pane" type="button" role="tab">
+                                <i class="fas fa-envelope me-2"></i>Contact Form
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="map-tab" data-bs-toggle="pill" data-bs-target="#map-pane" type="button" role="tab">
+                                <i class="fas fa-map-marked-alt me-2"></i>Find Us
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content wow fadeInUp" data-wow-delay="0.3s" style="background:transparent; padding:0; box-shadow:none;">
+                        <div class="tab-pane fade show active" id="form-pane" role="tabpanel">
+                            <div class="contact-card p-4 p-md-5 rounded-4 shadow-lg position-relative overflow-hidden">
+                                <div class="position-absolute top-0 end-0" style="width:80px; height:80px; background:linear-gradient(135deg, transparent 50%, rgba(218,159,91,0.08) 50%); border-radius:0 20px 0 0;"></div>
+                                <form id="contactForm" class="custom-form contact-form" role="form">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" name="contact-name" id="name" class="form-control" placeholder="Full name" required>
+                                                <label for="name"><i class="fas fa-user text-primary me-2" style="opacity:0.6;"></i>Full name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="email" name="contact-email" id="emailid" class="form-control" placeholder="Email address" required>
+                                                <label for="emailid"><i class="fas fa-envelope text-primary me-2" style="opacity:0.6;"></i>Email address</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea name="contact-message" rows="5" class="form-control" id="msgContent" placeholder="Message" style="min-height:140px;" required></textarea>
+                                                <label for="msgContent"><i class="fas fa-comment text-primary me-2" style="opacity:0.6;"></i>Message</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn custom-btn rounded-pill py-3 px-5 position-relative overflow-hidden">
+                                                <span class="position-absolute top-0 start-0 w-100 h-100" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform:translateX(-100%); transition:transform 0.6s;"></span>
+                                                <i class="fas fa-paper-plane me-2"></i>Send message
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="map-pane" role="tabpanel">
+                            <div class="contact-card p-3 p-md-4 rounded-4 shadow-lg position-relative overflow-hidden">
+                                <div class="position-absolute top-0 end-0" style="width:80px; height:80px; background:linear-gradient(135deg, transparent 50%, rgba(218,159,91,0.08) 50%); border-radius:0 20px 0 0;"></div>
+                                <div class="google-map rounded-3 overflow-hidden">
+                                    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q=mont%20lubin%20college&amp;maptype=roadmap&amp;zoom=17" width="100%" height="420" style="border:0;" allowfullscreen="" loading="Fast" referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <span class="text-muted small" style="letter-spacing:0.5px;">
+                            <i class="fas fa-lock text-primary me-1"></i> Your information is safe with us
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-clock text-primary me-1"></i> Response within 24 hours
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer-section wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand">
+                        <h2 class="text-light mb-3">
+                            <span class="text-primary">ZEN</span>ITH
+                        </h2>
+                        <p class="text-muted small mb-3" style="max-width:300px;">
+                            Innovative designs, reliable construction, and sustainable solutions built to last. We bring trust and quality to every build.
+                        </p>
+                        <div class="footer-social d-flex gap-3">
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#service">Our Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-light mb-4">Support</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="LICENSE.txt">Terms &amp; Conditions</a></li>
+                        <li><a href="READ-ME.txt">Help / Support</a></li>
+                        <li><a href="LICENSE.txt">Privacy Policy</a></li>
+                        <li><a href="LICENSE.txt">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-light mb-4">Stay in Touch</h5>
+                    <div class="footer-contact mt-4">
+                        <p class="mb-1"><i class="fas fa-map-marker-alt text-primary me-2"></i>Mont Lubin College, Rodrigues</p>
+                        <p class="mb-1"><i class="fas fa-phone-alt text-primary me-2"></i>(+230) 832 5647</p>
+                        <p class="mb-0"><i class="fas fa-envelope text-primary me-2"></i>montlubincollege@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="small text-muted mb-0">
+                            &copy; 2026 <span class="text-light">ZENITH</span>. All rights reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="small text-muted mb-0">
+                            Crafted with <i class="fas fa-heart text-primary" style="font-size:0.8rem;"></i> by <span class="text-light">ZENITH</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    ORDER MODAL – with Payment Integration
+    ============================================================ -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="orderModalLabel">
+                        <i class="fas fa-ticket-alt text-primary me-2"></i>
+                        Buy Ticket
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm" action="#" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="orderName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="orderName" placeholder="Your full name" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="orderEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="orderEmail" placeholder="your@email.com" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="orderPassword" class="form-label">Password (for your account)</label>
+                                <input type="password" class="form-control" id="orderPassword" placeholder="Min 6 characters" required minlength="6" />
+                                <small class="text-muted">Use this to sign in later</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ticket Type</label>
+                                <div class="d-flex flex-wrap gap-3 mt-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="productType" id="ticketBasic" value="basic" checked />
+                                        <label class="form-check-label" for="ticketBasic">Basic</label>
+                                        <span class="ticket-price-tag">Free</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="productType" id="ticketStandard" value="standard" />
+                                        <label class="form-check-label" for="ticketStandard">Standard</label>
+                                        <span class="ticket-price-tag">Rs 500</span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="productType" id="ticketVIP" value="vip" />
+                                        <label class="form-check-label" for="ticketVIP">VIP</label>
+                                        <span class="ticket-price-tag">Rs 1,500</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill" id="orderSubmitBtn">
+                                <i class="fas fa-credit-card me-2"></i>Proceed to Payment
+                            </button>
+                        </div>
+                    </form>
+                    <div id="formFeedback" class="mt-3 text-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAYMENT OVERLAY – Scan to Pay
+    ============================================================ -->
+    <div class="payment-overlay" id="paymentOverlay">
+        <div class="payment-card">
+            <button class="payment-close" id="paymentClose" aria-label="Close payment">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="payment-brand">
+                <i class="fas fa-qrcode"></i>
+                <div>
+                    <h5>Scan to Pay</h5>
+                    <span>ZENITH · Ticket Purchase</span>
+                </div>
+            </div>
+
+            <div class="payment-amount" id="paymentAmountDisplay">Rs 0</div>
+
+            <div class="payment-scan-area">
+                <div class="payment-scan-image" id="paymentQrContainer">
+                    <!-- Placeholder – replace with your own QR image -->
+                
+                    <!-- Uncomment and add your own image -->
+                   <img src="img/qr-SBM.png" alt="Payment QR Code" /> 
+                </div>
+                <p class="payment-scan-instructions">Scan the QR code with your mobile payment app to complete the payment.</p>
+                <p class="payment-scan-note">After successful payment, click the button below.</p>
+            </div>
+
+            <div class="payment-error" id="paymentError"></div>
+
+            <button class="payment-btn" id="paymentConfirmBtn">
+                <i class="fas fa-check-circle me-2"></i> I have paid
+            </button>
+
+            <div class="payment-secure">
+                <i class="fas fa-shield-alt"></i> Secured by ZENITH · Your transaction is encrypted
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TICKET DISPLAY MODAL
+    ============================================================ -->
+    <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" style="max-width:440px;">
+            <div class="modal-content ticket-modal-content">
+                <div class="modal-header border-0 pb-0" style="padding:0.75rem 1.25rem 0 1.25rem;">
+                    <h6 class="modal-title" id="ticketModalLabel" style="font-size:1rem;">
+                        <i class="fas fa-check-circle text-success me-1"></i>
+                        Ticket Ready
+                    </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size:0.7rem;"></button>
+                </div>
+                <div class="modal-body" style="padding:0.5rem 1.25rem 1rem 1.25rem;">
+                    <div id="ticketContainer" class="ticket-wrapper-compact">
+                        <div class="ticket-card-compact">
+                            <div class="ticket-header-compact">
+                                <span class="ticket-brand-compact">
+                                    <span class="ticket-brand-icon-compact">✦</span>
+                                    <span class="ticket-brand-name-compact">ZENITH</span>
+                                </span>
+                                <span class="ticket-badge-compact" id="ticketBadgeDisplay">PASS</span>
+                            </div>
+                            <div class="ticket-body-compact">
+                                <div class="ticket-row-compact">
+                                    <span class="ticket-label-compact">Attendee</span>
+                                    <span class="ticket-value-compact" id="ticketAttendeeName">—</span>
+                                </div>
+                                <div class="ticket-row-compact">
+                                    <span class="ticket-label-compact">Type</span>
+                                    <span class="ticket-value-compact ticket-type-badge-compact" id="ticketTypeDisplay">—</span>
+                                </div>
+                                <div class="ticket-row-compact">
+                                    <span class="ticket-label-compact">ID</span>
+                                    <span class="ticket-value-compact ticket-id-compact" id="ticketIdDisplay">—</span>
+                                </div>
+                                <div class="ticket-row-compact" style="border-bottom:none;">
+                                    <span class="ticket-label-compact">Issued</span>
+                                    <span class="ticket-value-compact" id="ticketDateDisplay" style="font-size:0.65rem;">—</span>
+                                </div>
+                            </div>
+                            <div class="ticket-barcode-compact">
+                                <svg id="ticketBarcode" class="ticket-barcode-svg-compact"></svg>
+                            </div>
+                            <div class="ticket-footer-compact">
+                                <span>Complimentary · Non-transferable</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
+                        <button id="downloadTicketBtn" class="btn btn-success btn-sm px-4 py-1 rounded-pill" style="font-size:0.8rem;">
+                            <i class="fas fa-download me-1"></i>Download
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm px-3 py-1 rounded-pill" data-bs-dismiss="modal" style="font-size:0.8rem;">
+                            <i class="fas fa-times me-1"></i>Close
+                        </button>
+                    </div>
+                    <p class="text-muted text-center small mt-2" style="font-size:0.6rem; margin-bottom:0;">
+                        <i class="fas fa-info-circle me-1"></i> Saved to your account
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- ============================================================
+    HIDDEN GOOGLE TRANSLATE CONTAINER
+    ============================================================ -->
+    <div id="google_translate_element"></div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js">
+    </script>
+    <script src="js/searchbar.js"></script>
+    <script src="js/translator.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js">
+    </script>
+
+    <!-- ============================================================
+    MAIN APPLICATION
+    ============================================================ -->
+    <script>
+        // ─── CONFIG ──────────────────────────────────────────────
+        const firebaseConfig = {
+            apiKey: "AIzaSyCxltrXRZIYQxSthUvDAAxodPLHF2KRwXU",
+            authDomain: "contact-af26c.firebaseapp.com",
+            databaseURL: "https://contact-af26c-default-rtdb.firebaseio.com",
+            projectId: "contact-af26c",
+            storageBucket: "contact-af26c.firebasestorage.app",
+            messagingSenderId: "346273146574",
+            appId: "1:346273146574:web:b6af8f9614c759b768129f"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.database();
+
+        // ─── TICKET PRICES (Mauritius Rupees) ──────────────────
+        const TICKET_PRICES = {
+            basic: 0,
+            standard: 500,
+            vip: 1500
+        };
+        const TICKET_LABELS = {
+            basic: 'Basic',
+            standard: 'Standard',
+            vip: 'VIP'
+        };
+        const TICKET_BADGE_ICONS = {
+            basic: '🎫 Basic',
+            standard: '🎟️ Standard',
+            vip: '⭐ VIP'
+        };
+        const TICKET_BADGE_CLASSES = {
+            basic: 'ticket-type-basic-compact',
+            standard: 'ticket-type-standard-compact',
+            vip: 'ticket-type-vip-compact'
+        };
+
+        // ─── TOAST ──────────────────────────────────────────────
+        function showToast(message, type, duration) {
+            type = type || 'success';
+            duration = duration || 4000;
+            const old = document.querySelector('.custom-toast');
+            if (old) old.remove();
+
+            const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
+            const bgColors = { success: '#28a745', error: '#dc3545', warning: '#ffc107', info: '#17a2b8' };
+
+            const toast = document.createElement('div');
+            toast.className = 'custom-toast';
+            toast.style.cssText = `
+                    position: fixed; top: 20px; right: 20px;
+                    background: ${bgColors[type] || '#333'};
+                    color: ${type === 'warning' ? '#333' : '#fff'};
+                    padding: 14px 20px; border-radius: 10px;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+                    font-size: 1rem; font-weight: 500; z-index: 99999;
+                    display: flex; align-items: center; gap: 10px;
+                    transform: translateX(120%);
+                    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                    max-width: 380px; font-family: system-ui, sans-serif;
+                    border-left: 5px solid rgba(255,255,255,0.3);
+                `;
+            toast.innerHTML = `
+                    <span style="font-size:1.4rem;">${icons[type] || '📢'}</span>
+                    <span>${message}</span>
+                    <button style="background:none;border:none;color:inherit;font-size:1.2rem;cursor:pointer;opacity:0.7;margin-left:6px;" aria-label="Close">&times;</button>
+                `;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => { toast.style.transform = 'translateX(0)'; });
+            toast.querySelector('button').addEventListener('click', function() {
+                toast.style.transform = 'translateX(120%)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            });
+            setTimeout(() => {
+                toast.style.transform = 'translateX(120%)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            }, duration);
+        }
+
+        // ─── HELPERS ─────────────────────────────────────────────
+        function generateTicketId() {
+            const now = new Date();
+            const dateStr = now.getFullYear() +
+                String(now.getMonth() + 1).padStart(2, '0') +
+                String(now.getDate()).padStart(2, '0');
+            const random = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+            return `ZEN-${dateStr}-${random}`;
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function formatPrice(price) {
+            if (price === 0) return 'Free';
+            return 'Rs ' + price.toLocaleString();
+        }
+
+        // ─── SHOW TICKET ──────────────────────────────────────────
+        function showTicket(name, ticketType, ticketId, timestamp) {
+            const typeLabels = TICKET_LABELS;
+            const badgeIcons = TICKET_BADGE_ICONS;
+            const badgeClasses = TICKET_BADGE_CLASSES;
+
+            document.getElementById('ticketAttendeeName').textContent = name;
+            const typeDisplay = document.getElementById('ticketTypeDisplay');
+            typeDisplay.textContent = typeLabels[ticketType] || ticketType;
+            typeDisplay.className = 'ticket-value-compact ticket-type-badge-compact ' + (badgeClasses[ticketType] ||
+            '');
+            document.getElementById('ticketIdDisplay').textContent = ticketId;
+            document.getElementById('ticketDateDisplay').textContent = formatDate(new Date(timestamp));
+            document.getElementById('ticketBadgeDisplay').textContent = badgeIcons[ticketType] || 'PASS';
+
+            const ticketCard = document.querySelector('.ticket-card-compact');
+            ticketCard.classList.remove('ticket-basic', 'ticket-standard', 'ticket-vip');
+            ticketCard.classList.add(`ticket-${ticketType}`);
+
+            try {
+                JsBarcode('#ticketBarcode', ticketId, {
+                    format: 'CODE128',
+                    width: 1.4,
+                    height: 44,
+                    displayValue: true,
+                    fontSize: 13,
+                    font: 'monospace',
+                    textMargin: 4,
+                    background: '#ffffff',
+                    lineColor: '#1a1a2e',
+                    margin: 6,
+                    flat: false
+                });
+            } catch (e) {
+                console.warn('Barcode fallback:', e);
+                const svg = document.getElementById('ticketBarcode');
+                svg.innerHTML = `
+                        <text x="50%" y="50%" text-anchor="middle" font-family="monospace" font-size="16" fill="#1a1a2e" dominant-baseline="central">
+                            ${ticketId}
+                        </text>
+                    `;
+            }
+
+            const ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            ticketModal.show();
+        }
+
+        // ─── DOWNLOAD TICKET ─────────────────────────────────────
+        document.getElementById('downloadTicketBtn').addEventListener('click', function() {
+            const container = document.getElementById('ticketContainer');
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1" role="status"></span>`;
+
+            html2canvas(container, {
+                scale: 2.8,
+                useCORS: true,
+                backgroundColor: '#ffffff',
+                logging: false,
+                width: container.scrollWidth,
+                height: container.scrollHeight,
+                windowWidth: container.scrollWidth,
+                windowHeight: container.scrollHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download =
+                `ZENITH-Ticket-${document.getElementById('ticketIdDisplay').textContent}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                showToast('✅ Ticket downloaded!', 'success');
+            }).catch(err => {
+                console.error('Download error:', err);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                showToast('❌ Failed to download.', 'error');
+            });
+        });
+
+        // ─── PAYMENT OVERLAY LOGIC ──────────────────────────────
+        const paymentOverlay = document.getElementById('paymentOverlay');
+        const paymentClose = document.getElementById('paymentClose');
+        const paymentConfirmBtn = document.getElementById('paymentConfirmBtn');
+        const paymentError = document.getElementById('paymentError');
+        const paymentAmountDisplay = document.getElementById('paymentAmountDisplay');
+
+        let pendingOrderData = null;
+
+        function openPayment(amount, ticketType, name, email, password) {
+            pendingOrderData = { ticketType, name, email, password };
+            paymentAmountDisplay.textContent = formatPrice(amount);
+            paymentError.classList.remove('show');
+            paymentError.textContent = '';
+            paymentConfirmBtn.disabled = false;
+            paymentConfirmBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> I have paid`;
+            paymentOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePayment() {
+            paymentOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+            pendingOrderData = null;
+        }
+
+        paymentClose.addEventListener('click', closePayment);
+        paymentOverlay.addEventListener('click', function(e) {
+            if (e.target === this) closePayment();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && paymentOverlay.classList.contains('open')) closePayment();
+        });
+
+        // ─── CONFIRM PAYMENT & GENERATE TICKET ──────────────────
+        paymentConfirmBtn.addEventListener('click', function() {
+            if (!pendingOrderData) return;
+
+            const { name, email, password, ticketType } = pendingOrderData;
+            const amount = TICKET_PRICES[ticketType] || 0;
+
+            paymentConfirmBtn.disabled = true;
+            paymentConfirmBtn.innerHTML =
+                `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Processing...`;
+
+            const ticketId = generateTicketId();
+            const timestamp = new Date().toISOString();
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .catch((err) => {
+                    if (err.code === 'auth/email-already-in-use') {
+                        return auth.signInWithEmailAndPassword(email, password);
+                    }
+                    throw err;
+                })
+                .then((userCred) => {
+                    const user = userCred.user || userCred;
+                    const ticketRef = db.ref('tickets').push();
+                    return ticketRef.set({
+                        ticketId: ticketId,
+                        userId: user.uid,
+                        name: name,
+                        email: email,
+                        ticketType: ticketType,
+                        amount: amount,
+                        timestamp: timestamp,
+                        paymentStatus: 'paid',
+                        createdAt: firebase.database.ServerValue.TIMESTAMP
+                    }).then(() => ({ user, ticketId, timestamp }));
+                })
+                .then((data) => {
+                    showToast('🎉 Ticket booked! Payment confirmed.', 'success');
+                    closePayment();
+                    const orderModal = bootstrap.Modal.getInstance(document.getElementById('orderModal'));
+                    if (orderModal) orderModal.hide();
+                    document.getElementById('orderForm').reset();
+                    showTicket(name, ticketType, data.ticketId, data.timestamp);
+                    paymentConfirmBtn.disabled = false;
+                    paymentConfirmBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> I have paid`;
+                })
+                .catch((err) => {
+                    console.error('Ticket generation error:', err);
+                    let msg = err.message || 'Failed to generate ticket.';
+                    if (msg.includes('password')) {
+                        msg = 'Invalid password. Please try again.';
+                    }
+                    showToast('❌ ' + msg, 'error');
+                    paymentConfirmBtn.disabled = false;
+                    paymentConfirmBtn.innerHTML = `<i class="fas fa-check-circle me-2"></i> I have paid`;
+                    paymentError.textContent = msg;
+                    paymentError.classList.add('show');
+                });
+        });
+
+        // ─── ORDER FORM HANDLER ──────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderForm = document.getElementById('orderForm');
+            if (!orderForm) return;
+
+            // Update price display when ticket type changes
+            document.querySelectorAll('input[name="productType"]').forEach(el => {
+                el.addEventListener('change', function() {
+                    const type = this.value;
+                    const price = TICKET_PRICES[type] || 0;
+                    // Could update a summary, but not needed
+                });
+            });
+
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('orderName').value.trim();
+                const email = document.getElementById('orderEmail').value.trim();
+                const password = document.getElementById('orderPassword').value.trim();
+                const selected = document.querySelector('input[name="productType"]:checked');
+                const ticketType = selected ? selected.value : 'basic';
+
+                if (!name || !email || !password) {
+                    showToast('Please fill in all fields.', 'warning');
+                    return;
+                }
+                if (password.length < 6) {
+                    showToast('Password must be at least 6 characters.', 'warning');
+                    return;
+                }
+
+                const price = TICKET_PRICES[ticketType] || 0;
+
+                // If free, skip payment and create ticket directly
+                if (price === 0) {
+                    const btn = document.getElementById('orderSubmitBtn');
+                    const originalText = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML =
+                        `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Processing...`;
+
+                    const ticketId = generateTicketId();
+                    const timestamp = new Date().toISOString();
+
+                    auth.createUserWithEmailAndPassword(email, password)
+                        .catch((err) => {
+                            if (err.code === 'auth/email-already-in-use') {
+                                return auth.signInWithEmailAndPassword(email, password);
+                            }
+                            throw err;
+                        })
+                        .then((userCred) => {
+                            const user = userCred.user || userCred;
+                            const ticketRef = db.ref('tickets').push();
+                            return ticketRef.set({
+                                ticketId: ticketId,
+                                userId: user.uid,
+                                name: name,
+                                email: email,
+                                ticketType: ticketType,
+                                amount: 0,
+                                timestamp: timestamp,
+                                paymentStatus: 'free',
+                                createdAt: firebase.database.ServerValue.TIMESTAMP
+                            }).then(() => ({ user, ticketId, timestamp }));
+                        })
+                        .then((data) => {
+                            showToast('🎉 Free ticket booked!', 'success');
+                            const orderModal = bootstrap.Modal.getInstance(document.getElementById(
+                            'orderModal'));
+                            if (orderModal) orderModal.hide();
+                            orderForm.reset();
+                            showTicket(name, ticketType, data.ticketId, data.timestamp);
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        })
+                        .catch((err) => {
+                            console.error('Order error:', err);
+                            let msg = err.message || 'Something went wrong.';
+                            if (msg.includes('password')) {
+                                msg = 'Invalid password. Please try again.';
+                            }
+                            showToast('❌ ' + msg, 'error');
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        });
+                    return;
+                }
+
+                // ── Paid ticket: open payment overlay ──
+                openPayment(price, ticketType, name, email, password);
+            });
+
+            // ─── NAVBAR SCROLL ──────────────────────────────────
+            const navbar = document.getElementById('mainNav');
+
+            function handleNavbarScroll() {
+                if (!navbar) return;
+                if (window.scrollY > 30) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('load', function() {
+                handleNavbarScroll();
+                setTimeout(handleNavbarScroll, 100);
+            });
+            window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+            window.addEventListener('resize', handleNavbarScroll, { passive: true });
+
+            // ─── DARK MODE ──────────────────────────────────────
+            const toggle = document.getElementById('darkModeToggle');
+            const icon = document.getElementById('themeIcon');
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    if (document.body.classList.contains('dark-mode')) {
+                        icon.className = 'fas fa-sun';
+                        localStorage.setItem('darkMode', 'enabled');
+                    } else {
+                        icon.className = 'fas fa-moon';
+                        localStorage.setItem('darkMode', 'disabled');
+                    }
+                });
+                if (localStorage.getItem('darkMode') === 'enabled') {
+                    document.body.classList.add('dark-mode');
+                    icon.className = 'fas fa-sun';
+                }
+            }
+
+            // ─── WOW ─────────────────────────────────────────────
+            if (typeof WOW !== 'undefined') {
+                new WOW().init();
+            }
+
+            // ─── COUNTERUP ──────────────────────────────────────
+            if (typeof $ !== 'undefined' && $.fn.counterUp) {
+                $('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 1000 });
+            }
+
+            // ─── OWL CAROUSEL ───────────────────────────────────
+            if (typeof $ !== 'undefined' && $.fn.owlCarousel) {
+                $('.header-carousel').owlCarousel({
+                    items: 1,
+                    loop: true,
+                    nav: true,
+                    dots: false,
+                    autoplay: true,
+                    smartSpeed: 1500,
+                    navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>']
+                });
+                $('.testimonial-carousel').owlCarousel({
+                    center: true,
+                    items: 1,
+                    loop: true,
+                    nav: true,
+                    dots: false,
+                    autoplay: true,
+                    smartSpeed: 1000,
+                    navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
+                    responsive: { 768: { items: 2 }, 992: { items: 3 } }
+                });
+            }
+
+            // ─── BACK TO TOP ────────────────────────────────────
+            const backBtn = document.querySelector('.back-to-top');
+            if (backBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backBtn.classList.add('show');
+                    } else {
+                        backBtn.classList.remove('show');
+                    }
+                });
+            }
+
+            // ─── SPINNER ────────────────────────────────────────
+            const spinner = document.getElementById('spinner');
+            if (spinner) {
+                setTimeout(() => {
+                    spinner.classList.remove('show');
+                }, 500);
+            }
+
+            // ─── CONTACT FORM ───────────────────────────────────
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('emailid').value.trim();
+                    const msg = document.getElementById('msgContent').value.trim();
+                    if (!name || !email || !msg) {
+                        showToast('Please fill in all fields.', 'warning');
+                        return;
+                    }
+                    const btn = contactForm.querySelector('button[type="submit"]');
+                    btn.disabled = true;
+                    btn.innerHTML =
+                        `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Sending...`;
+                    const ref = db.ref('contactForm').push();
+                    ref.set({
+                        name,
+                        emailid: email,
+                        msgContent: msg,
+                        timestamp: new Date().toISOString()
+                    }).then(() => {
+                        showToast('✅ Message sent!', 'success');
+                        contactForm.reset();
+                    }).catch((err) => {
+                        console.error(err);
+                        showToast('❌ Failed to send.', 'error');
+                    }).finally(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = `<i class="fas fa-paper-plane me-2"></i>Send message`;
+                    });
+                });
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
