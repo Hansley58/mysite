@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobile Pay Authorization</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#121520] text-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="bg-[#1C2233] border border-white/10 rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl relative">
+    <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-3 text-indigo-400">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+    </div>
+
+    <h2 class="text-xl font-bold mb-1">Confirm Payment</h2>
+    <p class="text-xs text-gray-400 mb-6">Pixa Subscription Checkout</p>
+
+    <div class="bg-[#121520] p-4 rounded-xl border border-gray-800 text-left text-xs space-y-2 mb-6 font-mono">
+      <div class="flex justify-between text-gray-400"><span>Ref:</span> <span id="ref-id" class="text-white font-bold">#PX-89421</span></div>
+      <div class="flex justify-between text-gray-400"><span>Merchant:</span> <span class="text-white">Pixa Inc.</span></div>
+      <div class="flex justify-between text-gray-400"><span>Amount:</span> <span id="pay-amount" class="text-emerald-400 font-bold">$99.00</span></div>
+    </div>
+
+    <button id="approve-btn" onclick="approvePayment()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20">
+      Approve $99.00 Payment
+    </button>
+
+    <div id="done-msg" class="hidden mt-4 text-xs text-emerald-400 font-semibold flex items-center justify-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+      Payment Approved! Check your desktop screen.
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref') || 'PX-89421';
+    const amount = urlParams.get('amount') || '99.00';
+
+    document.getElementById('ref-id').textContent = `#${ref}`;
+    document.getElementById('pay-amount').textContent = `$${amount}`;
+    document.getElementById('approve-btn').textContent = `Approve $${amount} Payment`;
+
+    function approvePayment() {
+      // Send signal back to desktop tab using BroadcastChannel / LocalStorage
+      const channel = new BroadcastChannel('pixa_qr_payment');
+      channel.postMessage({ status: 'SUCCESS', ref: ref });
+
+      // Fallback for cross-device/browser simulation
+      localStorage.setItem('pixa_payment_status', JSON.stringify({ status: 'SUCCESS', ref: ref, timestamp: Date.now() }));
+
+      document.getElementById('approve-btn').classList.add('hidden');
+      document.getElementById('done-msg').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
