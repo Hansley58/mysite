@@ -152,70 +152,64 @@
   </header>
 <div id="smooth-content">
     
-
   <section
-
-  class="hero-section  tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden "
-
+  class="hero-section tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-items-center tw-justify-start tw-overflow-hidden before:tw-absolute before:tw-inset-0 before:tw-z-[1] before:tw-bg-black/60 before:tw-content-['']"
   id="hero-section"
-
+  style="padding-top: 160px !important; padding-bottom: 60px !important;"
 >
-
-  <!-- 1. ADD CANVAS ELEMENT HERE FOR 3D BACKGROUND -->
-
+  <!-- 1. 3D CANVAS BACKGROUND -->
   <canvas id="hero-3d-bg" class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-0 tw-pointer-events-none"></canvas>
 
-
-
-  <!-- 2. ADD tw-z-10 TO YOUR CONTENT WRAPPER SO IT SITS ABOVE THE CANVAS -->
-
-  <div
-
-      class=" tw-relative no-bg tw-z-10 tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
-
+  <!-- 2. CONTENT CONTAINER -->
+  <div 
+    class="tw-relative tw-z-10 tw-flex tw-w-full tw-max-w-6xl tw-flex-col tw-items-center tw-justify-start tw-text-center tw-mx-auto"
+    style="position: relative !important; top: 0 !important;"
   >
+    
+    <!-- PURPLE GLOW BACKGROUND -->
+    <div class="purple-bg-grad tw-absolute tw-left-1/2 tw--translate-x-1/2 tw--top-16 tw-h-[140px] tw-w-[140px] tw-pointer-events-none tw-z-0"></div>
 
-      <div class="purple-bg-grad animate-text reveal-up tw-absolute tw-left-1/2 tw--translate-1/2 tw-top-[10%] tw-h-[120px] tw-w-[120px]"></div>
-
-
-
-      <div class="tw-flex tw-mt-20 wrapper tw-flex-col tw-min-h-[60vh] tw-place-content-center tw-items-center">
-
-          <h2 class="reveal-up animate-me tw-text-center tw-text-7xl tw-font-semibold tw-uppercase tw-leading-[90px] max-lg:tw-text-4xl max-md:tw-leading-snug" style="font-size: 10vh;">
-
-             Welcome to 
-
-              <br />
-
-              <div class="tw-font-thin tw-font-serif text-purple-600">SPACEFEST</div>
-
-          </h2>
-
-          <div class="reveal-up tw-mt-8 tw-max-w-[450px] tw-text-lg max-lg:tw-text-base tw-p-2 tw-text-center tw-text-gray-800 dark:tw-text-white max-lg:tw-max-w-full">
-
-              Your all in one AI companion. generate Images, videos, codes, docs, debug your web apps all with Pixa's interface.
-
-          </div>
-
-
-
-          <div class="reveal-up tw-mt-10 max-md:tw-flex-col tw-flex tw-place-items-center tw-gap-4">
-
-              <a class="btn tw-group max-lg:!tw-w-[160px] tw-flex tw-gap-2 tw-shadow-lg !tw-w-[170px] !tw-rounded-xl !tw-py-4 max-lg:!tw-py-2 tw-transition-transform tw-duration-[0.3s] hover:tw-scale-x-[1.03]" href="#">
-
-                  Get started
-
-                  <i class="bi bi-arrow-down group-hover:tw-translate-x-1 tw-duration-300"></i>
-
-              </a>
-
-          </div>
-
+    <!-- MAIN HEADING (Large impact sizes for Desktop) -->
+    <div class="reveal-up animate-me tw-w-full tw-text-center tw-z-10" style="position: relative !important;">
+      <h2 
+        class="tw-m-0 tw-p-0 tw-text-center tw-font-bold tw-uppercase tw-text-white tw-drop-shadow-[0_5px_20px_rgba(0,0,0,0.9)]"
+        style="font-size: clamp(3rem, 7.5vw, 6.5rem) !important; line-height: 1.05 !important; margin: 0 !important;"
+      >
+        Welcome to
+      </h2>
+      <div 
+        class="tw-font-serif tw-font-thin tw-drop-shadow-[0_5px_30px_rgba(168,85,247,0.8)] tw-mt-2"
+        style="font-size: clamp(2.5rem, 6.5vw, 5.5rem) !important; color: #c084fc !important;"
+      >
+        SPACEFEST
       </div>
+    </div>
+
+    <!-- SUBTITLE / DESCRIPTION -->
+    <p 
+      class="reveal-up tw-mt-6 tw-max-w-2xl tw-text-center tw-text-base sm:tw-text-lg md:tw-text-xl lg:tw-text-2xl tw-text-gray-100 tw-drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] tw-px-4 tw-z-10"
+      style="position: relative !important; margin-top: 28px !important;"
+    >
+      Your all in one AI companion. Generate images, videos, codes, docs, debug your web apps all with Pixa's interface.
+    </p>
+
+    <!-- BUTTON CONTAINER -->
+    <div 
+      class="reveal-up tw-mt-8 tw-flex tw-w-full tw-items-center tw-justify-center tw-z-10"
+      style="position: relative !important; margin-top: 36px !important;"
+    >
+      <a 
+        class="btn tw-group tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-shadow-2xl tw-w-[180px] tw-rounded-xl tw-py-4 tw-bg-white tw-text-black tw-font-semibold tw-text-base tw-transition-transform tw-duration-300 hover:tw-scale-105" 
+        href="#"
+        style="float: none !important; margin: 0 auto !important;"
+      >
+        Get started
+        <i class="bi bi-arrow-down group-hover:tw-translate-y-1 tw-transition-transform tw-duration-300"></i>
+      </a>
+    </div>
 
   </div>
-
-</section> 
+</section>
 
 
 
@@ -1102,26 +1096,14 @@
 </div>
 </body>
     
+<!-- Load ONLY required GSAP scripts -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
-<!-- ScrollSmoother requires ScrollTrigger -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Draggable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/EaselPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/GSDevTools.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/InertiaPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathHelper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MorphSVGPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Flip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Physics2DPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PhysicsPropsPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PixiPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/TextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/GSDevTools.min.js"></script>
 
 <script src="index.js"></script>
 <script src="scripts/components.js"></script>
@@ -1129,161 +1111,169 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
-<script>// ==========================================
-  // 1. REGISTER GSAP PLUGINS & CONFIG (TOP PRIORITY)
+<script>
+  // ==========================================
+  // 1. REGISTER GSAP PLUGINS & CONFIG
   // ==========================================
   gsap.registerPlugin(GSDevTools, MorphSVGPlugin, ScrollTrigger, Flip, ScrollSmoother, SplitText);
-  
-  // Prevent mobile address-bar hide/show from triggering heavy layout recalculations
+
   ScrollTrigger.config({ 
     ignoreMobileResize: true,
     autoRefreshEvents: "DOMContentLoaded,load" 
   });
-  
-  // Smooth performance buffer when dragging/resizing
+
   ScrollTrigger.refreshDebounceDelay = 200;
-  
-  // Setup ScrollSmoother cleanly across both Desktop and Mobile
+
   let smoother;
   if (typeof ScrollSmoother !== "undefined") {
     smoother = ScrollSmoother.create({
       smooth: 1, 
       effects: true,
-      smoothTouch: 0.1, // Enabled for responsive touch scrolling
+      smoothTouch: 0.1,
     });
   }
-  
-  // ==========================================
-  // 2. THREE.JS 3D BACKGROUND LOGIC (MOBILE & DESKTOP)
+
+ // ==========================================
+  // 2. THREE.JS 3D BACKGROUND LOGIC (OPTIMIZED FOR SCROLL)
   // ==========================================
   const section = document.getElementById('hero-section');
-  const canvas = document.getElementById('hero-3d-bg');
-  
-  if (section && canvas) {
-    const clock = new THREE.Clock(); 
-  
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75, 
-      section.clientWidth / section.clientHeight, 
-      0.1, 
-      1000
-    );
-    camera.position.z = 5;
-  
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      alpha: true,
-      antialias: true
-    });
-  
-    renderer.setSize(section.clientWidth, section.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambientLight);
-  
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
-  
-    // Model & Animations
-    let model;
-    let mixer;
-  
-    const loader = new THREE.GLTFLoader();
-    loader.load(
-      'assets/model/me.glb', 
-      (gltf) => {
-        model = gltf.scene;
-        model.scale.set(3, 3, 3);
-        model.position.set(0, 0, 0);
-        scene.add(model);
-  
-        if (gltf.animations && gltf.animations.length > 0) {
-          mixer = new THREE.AnimationMixer(model);
-          gltf.animations.forEach((clip) => {
-            mixer.clipAction(clip).play();
-          });
+const canvas = document.getElementById('hero-3d-bg');
+
+if (section && canvas) {
+  const clock = new THREE.Clock(); 
+
+  const scene = new THREE.Scene();
+
+  // 1. ADD DARK SCENE FOG TO DIM THE 3D MODEL BEHIND TEXT
+  // Black fog (0x000000) starting at distance 3 and fading completely out by distance 12
+  scene.fog = new THREE.Fog(0x000000, 3, 12);
+
+  const camera = new THREE.PerspectiveCamera(
+    75, 
+    section.clientWidth / section.clientHeight, 
+    0.1, 
+    1000
+  );
+  camera.position.z = 5;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: false, // Turn off antialiasing for maximum scroll performance
+    powerPreference: "high-performance"
+  });
+
+  renderer.setSize(section.clientWidth, section.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Cap at 1.5x for smoother FPS on high-DPI displays
+
+  // 2. LOWERED LIGHT INTENSITIES (Prevents the bright white glare on the model)
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Reduced from 2 to 0.6
+  scene.add(ambientLight);
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); // Reduced from 2 to 0.8
+  directionalLight.position.set(1, 2, 2);
+  scene.add(directionalLight);
+
+  // Model & Animations
+  let model;
+  let mixer;
+
+  const loader = new THREE.GLTFLoader();
+  loader.load(
+    'assets/model/me.glb', 
+    (gltf) => {
+      model = gltf.scene;
+      model.scale.set(5, 5, 5);
+      model.position.set(0, -9, 0);
+
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.matrixAutoUpdate = false;
+          child.updateMatrix();
+          
+          // 3. DIM MATERIAL EMBASSY/BRIGHTNESS
+          if (child.material) {
+            child.material.roughness = 0.7; // Reduces specular highlights
+          }
         }
-      },
-      undefined,
-      (error) => console.error('Error loading 3D model:', error)
-    );
-  
-    // Mouse & Touch Interaction Targets
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-  
-    const handlePointerMove = (clientX, clientY) => {
-      mouseX = (clientX / window.innerWidth - 0.5) * 1;
-      mouseY = (clientY / window.innerHeight - 0.5) * 1;
-    };
-  
-    window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      });
+
+      scene.add(model);
+
+      if (gltf.animations && gltf.animations.length > 0) {
+        mixer = new THREE.AnimationMixer(model);
+        gltf.animations.forEach((clip) => {
+          mixer.clipAction(clip).play();
+        });
       }
-    }, { passive: true });
-  
-    // Debounced Resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        if (!section) return;
-        const width = section.clientWidth;
-        const height = section.clientHeight;
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-        renderer.setSize(width, height);
-      }, 150);
+    },
+    undefined,
+    (error) => console.error('Error loading 3D model:', error)
+  );
+
+  // Pause rendering when hero section is not visible on screen
+  let isHeroVisible = true;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isHeroVisible = entry.isIntersecting;
     });
-  
-    // Animation Loop
-    function animate() {
-      requestAnimationFrame(animate);
-      const delta = clock.getDelta();
-  
-      if (mixer) mixer.update(delta);
-  
-      if (model) {
-        model.rotation.y += 0.002;
-        targetX = mouseX * 0.5;
-        targetY = mouseY * 0.5;
-  
-        model.rotation.y += (targetX - model.rotation.y) * 0.05;
-        model.rotation.x += (targetY - model.rotation.x) * 0.05;
-      }
-  
-      renderer.render(scene, camera);
+  }, { threshold: 0.05 });
+
+  observer.observe(section);
+
+  // Debounced Resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      if (!section) return;
+      const width = section.clientWidth;
+      const height = section.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }, 150);
+  });
+
+  // Render loop only runs when section is visible
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    // Stop WebGL drawing if user scrolled past the hero section
+    if (!isHeroVisible) return;
+
+    const delta = clock.getDelta();
+
+    if (mixer) mixer.update(delta);
+
+    if (model) {
+      model.rotation.y += 0.003;
     }
-    animate();
+
+    renderer.render(scene, camera);
   }
-  
+  animate();
+}
+
   // ==========================================
   // 3. SUPABASE CONFIG
   // ==========================================
   const SUPABASE_URL = "https://hpvuengqcynrcdwjrwcu.supabase.co"; 
   const SUPABASE_ANON_KEY = "sb_publishable_qUkt1zYC_F1zb9LeNo9yWA_3VXgplcV";
   const supabaseClient = window.supabase ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-  
+
   // ==========================================
   // 4. MAIN APPLICATION INIT (DOM READY)
   // ==========================================
   document.addEventListener('DOMContentLoaded', () => {
-  
+
     // --- Auth & Header UI ---
     const guestBtn = document.getElementById('guestHeaderBtn');
     const userProfile = document.getElementById('userHeaderProfile');
     const profileMenuBtn = document.getElementById('profileMenuBtn');
     const profileDropdown = document.getElementById('profileDropdown');
     const logoutBtn = document.getElementById('logoutBtn');
-  
+
     function showLoggedInState(session) {
       if (session && session.user) {
         const firstLetter = session.user.email.charAt(0).toUpperCase();
@@ -1291,7 +1281,7 @@
         if (document.getElementById('userEmailText')) document.getElementById('userEmailText').textContent = session.user.email;
         if (document.getElementById('userAvatarHeader')) document.getElementById('userAvatarHeader').textContent = firstLetter;
         if (document.getElementById('userAvatarDropdown')) document.getElementById('userAvatarDropdown').textContent = firstLetter;
-  
+
         if (guestBtn) guestBtn.style.display = 'none';
         if (userProfile) userProfile.style.display = 'block';
       } else {
@@ -1300,29 +1290,29 @@
         if (profileDropdown) profileDropdown.classList.add('tw-hidden');
       }
     }
-  
+
     if (supabaseClient) {
       supabaseClient.auth.onAuthStateChange((event, session) => {
         showLoggedInState(session);
       });
     }
-  
+
     if (profileMenuBtn && profileDropdown) {
       profileMenuBtn.addEventListener('click', (event) => {
         event.stopPropagation();
         profileDropdown.classList.toggle('tw-hidden');
       });
-  
+
       window.addEventListener('click', () => {
         profileDropdown.classList.add('tw-hidden');
       });
     }
-  
+
     if (logoutBtn) {
       logoutBtn.addEventListener('click', async (event) => {
         event.preventDefault();
         showLoggedInState(null);
-  
+
         try {
           if (supabaseClient) await supabaseClient.auth.signOut();
           localStorage.clear();
@@ -1332,91 +1322,86 @@
         }
       });
     }
-  
-    // --- Footer Reveal Animation (Mobile & Desktop) ---
-if (document.querySelector("#main-footer") && document.querySelector("#footer-reveal-wrapper")) {
-  let mm = gsap.matchMedia();
 
-  mm.add({
-    isDesktop: "(min-width: 1024px)",
-    isMobile: "(max-width: 1023px)"
-  }, (context) => {
-    let { isMobile } = context.conditions;
+    // --- Footer Reveal Animation ---
+    if (document.querySelector("#main-footer") && document.querySelector("#footer-reveal-wrapper")) {
+      let mm = gsap.matchMedia();
 
-    // Reset initial state safely
-    gsap.set("#main-footer", { 
-      clipPath: "inset(100% 0% 0% 0%)",
-      willChange: "clip-path" 
-    });
+      mm.add({
+        isDesktop: "(min-width: 1024px)",
+        isMobile: "(max-width: 1023px)"
+      }, (context) => {
+        let { isMobile } = context.conditions;
 
-    gsap.to("#main-footer", {
-      clipPath: "inset(0% 0% 0% 0%)",
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#footer-reveal-wrapper",
-        start: isMobile ? "top bottom" : "top top", // Mobile triggers as soon as the wrapper enters the screen
-        end: isMobile ? "bottom bottom" : "+=100%", // Mobile completes as footer reaches bottom
-        pin: !isMobile, // Disable fixed pinning on mobile to avoid viewport height jitter
-        pinType: "transform",
-        scrub: 0.5, // 0.5 gives silky-smooth reveal tracking on mobile touch
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      }
-    });
+        gsap.set("#main-footer", { 
+          clipPath: "inset(100% 0% 0% 0%)",
+          willChange: "clip-path" 
+        });
 
-    return () => {
-      gsap.set("#main-footer", { clearProps: "all" });
-    };
-  });
-}
-  
-    // --- Responsive MatchMedia Setup ---
-let mm = gsap.matchMedia();
+        gsap.to("#main-footer", {
+          clipPath: "inset(0% 0% 0% 0%)",
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#footer-reveal-wrapper",
+            start: isMobile ? "top bottom" : "top top",
+            end: isMobile ? "bottom bottom" : "+=100%",
+            pin: !isMobile,
+            pinType: "transform",
+            scrub: 0.5,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          }
+        });
 
-// 1. ALL SCREENS (Mobile & Desktop)
-mm.add("(min-width: 0px)", () => {
-  // Horizontal Track Pinning
-  const track = document.querySelector(".horizontal-track");
-  const pinSection = document.querySelector(".pin-section");
-
-  if (track && pinSection) {
-    gsap.to(track, {
-      x: () => -(track.scrollWidth - window.innerWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: pinSection,
-        pin: true,
-        pinType: "transform",
-        scrub: 1,
-        start: "top top",
-        end: () => "+=" + track.scrollWidth,
-        invalidateOnRefresh: true,
-      }
-    });
-  }
-});
-
-// 2. DESKTOP ONLY (Disabled on Mobile/Tablet under 1024px)
-mm.add("(min-width: 1024px)", () => {
-  // Service Cards Sticky Pinning Animation
-  const sections = document.querySelectorAll(".service-section");
-  sections.forEach((s) => {
-    const card = s.querySelector(".card-content");
-    if (card) {
-      ScrollTrigger.create({
-        trigger: s,
-        pin: card,
-        pinType: "transform",
-        start: "top top+=80",
-        end: "bottom bottom",
-        pinSpacing: false,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+        return () => {
+          gsap.set("#main-footer", { clearProps: "all" });
+        };
       });
     }
-  });
-});
-  
+
+    // --- Responsive MatchMedia Setup ---
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 0px)", () => {
+      const track = document.querySelector(".horizontal-track");
+      const pinSection = document.querySelector(".pin-section");
+
+      if (track && pinSection) {
+        gsap.to(track, {
+          x: () => -(track.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: pinSection,
+            pin: true,
+            pinType: "transform",
+            scrub: 1,
+            start: "top top",
+            end: () => "+=" + track.scrollWidth,
+            invalidateOnRefresh: true,
+          }
+        });
+      }
+    });
+
+    mm.add("(min-width: 1024px)", () => {
+      const sections = document.querySelectorAll(".service-section");
+      sections.forEach((s) => {
+        const card = s.querySelector(".card-content");
+        if (card) {
+          ScrollTrigger.create({
+            trigger: s,
+            pin: card,
+            pinType: "transform",
+            start: "top top+=80",
+            end: "bottom bottom",
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          });
+        }
+      });
+    });
+
     // --- Bento Grid FLIP Animation ---
     const bentoContainer = document.querySelector(".bento-container");
     if (bentoContainer) {
@@ -1427,11 +1412,11 @@ mm.add("(min-width: 1024px)", () => {
       let activeColumn = 1,
           activeRow = 1,
           doFlip = false;
-  
+
       bentoItems.forEach((e) => {
         const colNumber = e.dataset.column;
         const rowNumber = e.dataset.row;
-  
+
         const triggerFlip = () => {
           const state = Flip.getState(bentoItems);
           if (colNumber !== activeColumn) {
@@ -1455,23 +1440,23 @@ mm.add("(min-width: 1024px)", () => {
             });
           }
         };
-  
+
         e.addEventListener("mouseenter", triggerFlip);
         e.addEventListener("touchstart", triggerFlip, { passive: true });
       });
-  
+
       bentoContainer.addEventListener("mouseleave", () => {
         doFlip = true;
         const state = Flip.getState(bentoItems);
-  
+
         bentoContainer.classList.remove(colClasses[activeColumn]);
         bentoContainer.classList.remove(rowClasses[activeRow]);
         bentoContainer.classList.add(colClasses[1]);
         bentoContainer.classList.add(rowClasses[1]);
-  
+
         activeColumn = 1;
         activeRow = 1;
-  
+
         Flip.from(state, {
           duration: 0.4,
           ease: "power2.out",
@@ -1480,72 +1465,72 @@ mm.add("(min-width: 1024px)", () => {
         });
       });
     }
-  
-   // --- Slide Section Animation (Manual Scroll Controlled) ---
-const slides = gsap.utils.toArray(".slide");
-if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
-  const outerWrappers = gsap.utils.toArray(".slide .outer");
-  const innerWrappers = gsap.utils.toArray(".slide .inner");
-  const images = gsap.utils.toArray(".slide .bg");
-  const headings = gsap.utils.toArray(".slide .section-heading");
 
-  const splitHeadings = headings.map(heading => {
-    return typeof SplitText !== "undefined"
-      ? new SplitText(heading, { type: "chars,words,lines", linesClass: "clip-text" })
-      : { chars: heading };
-  });
+    // --- Slide Section Animation ---
+    const slides = gsap.utils.toArray(".slide");
+    if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
+      const outerWrappers = gsap.utils.toArray(".slide .outer");
+      const innerWrappers = gsap.utils.toArray(".slide .inner");
+      const images = gsap.utils.toArray(".slide .bg");
+      const headings = gsap.utils.toArray(".slide .section-heading");
 
-  gsap.set(slides, { autoAlpha: 0 });
-  gsap.set(slides[0], { autoAlpha: 1 });
+      const splitHeadings = headings.map(heading => {
+        return typeof SplitText !== "undefined"
+          ? new SplitText(heading, { type: "chars,words,lines", linesClass: "clip-text" })
+          : { chars: heading };
+      });
 
-  const masterTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".slider-wrapper",
-      start: "top top",
-      end: () => `+=${slides.length * 100}%`,
-      pin: true,
-      pinType: "transform",
-      scrub: 1,
-      anticipatePin: 1
+      gsap.set(slides, { autoAlpha: 0 });
+      gsap.set(slides[0], { autoAlpha: 1 });
+
+      const masterTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".slider-wrapper",
+          start: "top top",
+          end: () => `+=${slides.length * 100}%`,
+          pin: true,
+          pinType: "transform",
+          scrub: 1,
+          anticipatePin: 1
+        }
+      });
+
+      slides.forEach((slide, i) => {
+        if (i === 0) return;
+
+        const prevImage = images[i - 1];
+        const currentOuter = outerWrappers[i];
+        const currentInner = innerWrappers[i];
+        const currentImage = images[i];
+        const currentChars = splitHeadings[i].chars;
+
+        masterTl
+          .to(prevImage, { yPercent: -15, ease: "none" }, `slide-${i}`)
+          .set(slide, { autoAlpha: 1 }, `slide-${i}`)
+          .fromTo([currentOuter, currentInner], 
+            { yPercent: j => j ? -100 : 100 }, 
+            { yPercent: 0, ease: "none" }, 
+            `slide-${i}`
+          )
+          .fromTo(currentImage, 
+            { yPercent: 15 }, 
+            { yPercent: 0, ease: "none" }, 
+            `slide-${i}`
+          )
+          .fromTo(currentChars, 
+            { autoAlpha: 0, yPercent: 150 }, 
+            { autoAlpha: 1, yPercent: 0, stagger: 0.02, ease: "power2.out" }, 
+            `slide-${i}+=0.2`
+          );
+      });
     }
-  });
 
-  slides.forEach((slide, i) => {
-    if (i === 0) return;
-
-    const prevImage = images[i - 1];
-    const currentOuter = outerWrappers[i];
-    const currentInner = innerWrappers[i];
-    const currentImage = images[i];
-    const currentChars = splitHeadings[i].chars;
-
-    masterTl
-      .to(prevImage, { yPercent: -15, ease: "none" }, `slide-${i}`)
-      .set(slide, { autoAlpha: 1 }, `slide-${i}`)
-      .fromTo([currentOuter, currentInner], 
-        { yPercent: j => j ? -100 : 100 }, 
-        { yPercent: 0, ease: "none" }, 
-        `slide-${i}`
-      )
-      .fromTo(currentImage, 
-        { yPercent: 15 }, 
-        { yPercent: 0, ease: "none" }, 
-        `slide-${i}`
-      )
-      .fromTo(currentChars, 
-        { autoAlpha: 0, yPercent: 150 }, 
-        { autoAlpha: 1, yPercent: 0, stagger: 0.02, ease: "power2.out" }, 
-        `slide-${i}+=0.2`
-      );
-  });
-}
-  
     // --- Text Reveal Animation ---
     document.fonts.ready.then(() => {
       if (document.querySelector(".animate-me")) {
         gsap.set(".animate-text", { opacity: 1 });
         let split = SplitText.create(".animate-me", { type: "words", aria: "hidden" });
-  
+
         gsap.from(split.words, {
           opacity: 0,
           duration: 2,
@@ -1554,7 +1539,7 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
         });
       }
     });
-  
+
     // --- FAQ Section Logic ---
     const searchInput = document.getElementById("faqSearchInput");
     const searchBtn = document.getElementById("faqSearchBtn");
@@ -1565,13 +1550,13 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
     const toggleFaqBtn = document.getElementById("toggleFaqBtn");
     const toggleText = document.getElementById("toggleText");
     const toggleIcon = document.getElementById("toggleIcon");
-  
+
     if (toggleFaqBtn && faqGrid) {
       let isExpanded = false;
-  
+
       function toggleFaqs() {
         isExpanded = !isExpanded;
-  
+
         if (isExpanded) {
           faqGrid.classList.remove("max-h-[480px]");
           faqGrid.classList.add("max-h-[2000px]");
@@ -1594,13 +1579,13 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
           
           if (toggleText) toggleText.innerText = "See all questions";
           if (toggleIcon) toggleIcon.classList.remove("rotate-180");
-  
+
           faqGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
-  
+
       toggleFaqBtn.addEventListener("click", toggleFaqs);
-  
+
       if (searchInput) {
         const cardData = Array.from(cards).map(card => ({
           element: card,
@@ -1609,21 +1594,21 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
           titleText: card.querySelector(".faq-title")?.innerText || "",
           descText: card.querySelector(".faq-desc")?.innerText || ""
         }));
-  
+
         function performSearch() {
           const query = searchInput.value.trim().toLowerCase();
           let matchesCount = 0;
-  
+
           if (query !== "" && !isExpanded) toggleFaqs();
-  
+
           cardData.forEach(item => {
             const titleMatch = item.titleText.toLowerCase().includes(query);
             const descMatch = item.descText.toLowerCase().includes(query);
-  
+
             if (titleMatch || descMatch) {
               item.element.classList.remove("hidden");
               matchesCount++;
-  
+
               if (query !== "") {
                 const regex = new RegExp(`(${query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')})`, 'gi');
                 if (item.titleEl) item.titleEl.innerHTML = item.titleText.replace(regex, `<mark class="bg-yellow-200 text-black rounded px-0.5">$1</mark>`);
@@ -1636,21 +1621,21 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
               item.element.classList.add("hidden");
             }
           });
-  
+
           if (noResults) {
             matchesCount === 0 ? noResults.classList.remove("hidden") : noResults.classList.add("hidden");
           }
         }
-  
+
         searchInput.addEventListener("input", performSearch);
         if (searchBtn) searchBtn.addEventListener("click", performSearch);
       }
     }
-  
+
     // --- Tech Stack Observer ---
     const techSection = document.querySelector("#tech-stack-section");
     const subtext = document.querySelector(".subtext-reveal");
-  
+
     if (techSection && subtext) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -1660,18 +1645,18 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
           }
         });
       }, { threshold: 0.3 });
-  
+
       observer.observe(techSection);
     }
   });
-  
+
   // ==========================================
   // 5. JQUERY EMOTION SVGS
   // ==========================================
   if (typeof $ !== "undefined") {
     let currentEmotion = null, animationTimeout = null;
     const emotionTl = gsap.timeline({ defaults: { duration: 0.5 } });
-  
+
     const emotions = [
       ["A:1", "love"], ["A:2", "love"], ["A:3", "sad"], ["A:4", "sad"], ["A:5", "sad"],
       ["B:1", "love"], ["B:2", "love"], ["B:3", "fear"], ["B:4", "fear"], ["B:5", "fear"],
@@ -1679,11 +1664,11 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
       ["D:1", "doubt"], ["D:2", "doubt"], ["D:3", "lookat"], ["D:4", "angry"], ["D:5", "angry"],
       ["E:1", "doubt"], ["E:2", "doubt"], ["E:3", "sad"], ["E:4", "happy"], ["E:5", "happy"]
     ];
-  
+
     function cellHover() {
       $(this).addClass("hover");
       currentEmotion = currentEmotion ? currentEmotion : "base";
-  
+
       const toEmotion = $(this).attr("data-emotion");
       const eyeBg = document.querySelector(".eye-bg-" + currentEmotion);
       const leftPupil = document.querySelector(".left-pupil-" + currentEmotion);
@@ -1691,7 +1676,7 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
       const toEyeBg = document.querySelector(".eye-bg-" + toEmotion);
       const toLeftPupil = document.querySelector(".left-pupil-" + toEmotion);
       const toRightPupil = document.querySelector(".right-pupil-" + toEmotion);
-  
+
       let dataIndex = -1;
       for (let i = 0; i < emotions.length; i++) {
         if (emotions[i][1] === toEmotion) {
@@ -1699,7 +1684,7 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
           break;
         }
       }
-  
+
       if (dataIndex !== -1 && eyeBg && toEyeBg) {
         if (animationTimeout) clearTimeout(animationTimeout);
         animationTimeout = setTimeout(function () {
@@ -1707,18 +1692,18 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
             .to(eyeBg, { morphSVG: toEyeBg }, 0)
             .to(leftPupil, { morphSVG: toLeftPupil }, 0)
             .to(rightPupil, { morphSVG: toRightPupil }, 0);
-  
+
           if (currentEmotion !== toEmotion) emotionTl.restart();
           currentEmotion = toEmotion;
         }, 250);
       }
     }
-  
+
     function cellLeave() {
       $(this).removeClass("hover");
       currentEmotion = null;
     }
-  
+
     $(document).ready(function () {
       const gridContainer = $(".grid-container");
       if (gridContainer.length > 0) {
@@ -1731,13 +1716,13 @@ if (slides.length > 0 && document.querySelector(".slider-wrapper")) {
       }
     });
   }
-  
+
   // ==========================================
   // 6. FINAL REFRESH ON FULL LOAD
   // ==========================================
   window.addEventListener("load", () => {
     ScrollTrigger.refresh();
   });
-  </script>
+</script>
 
 </html>
