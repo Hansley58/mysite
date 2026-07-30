@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en" class="tw-dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pricing</title>
+        <meta name="description" content="Get all your AI models and tools in one place" />
+        <link
+            rel="shortcut icon"
+            href="./assets/logo/logo.png"
+            type="image/x-icon"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:title" content="All your AI models in one place - Try Pixa Playground" />
+        <meta property="og:description" content="Get all your AI models and tools in one place" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://github.com/PaulleDemon" />
+        <meta property="og:image" content="" />
+
+        <!-- <link rel="stylesheet" href="css/tailwind-runtime.css" /> -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/tailwind-build.css">
+        <link rel="stylesheet" href="css/index.css" />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+            integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- Google tag (gtag.js) -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-');
+        </script>
+
+
+    </head>
+    <body
+        class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-[#fcfcfc] 
+            tw-text-black dark:tw-bg-black  dark:tw-text-white"
+    >
+    <div id="smooth-wrapper">
+
+      <header
+      style="width: calc(100% - 2rem) !important;"
+      class="tw-fixed tw-top-4 tw-left-1/2 tw--translate-x-1/2 tw-z-50 tw-flex tw-h-[60px] lg:!tw-w-full lg:tw-max-w-5xl tw-items-center tw-justify-between tw-px-4 lg:tw-px-8 tw-bg-white dark:tw-bg-[#17181b] tw-text-gray-700 dark:tw-text-gray-200 tw-rounded-xl tw-shadow-md dark:tw-shadow-gray-700 lg:tw-backdrop-blur-lg lg:tw-opacity-[0.99]"
+  >
+      <!-- Logo -->
+      <a class="tw-flex tw-items-center tw-gap-2 tw-z-50" href="#">
+          <div class="tw-h-[30px] tw-w-[30px] tw-flex tw-items-center">
+              <img
+                  src="./assets/logo/logo.png"
+                  alt="logo"
+                  class="tw-object-contain tw-h-full tw-w-full dark:tw-invert"
+              />
+          </div>
+          <span class="tw-uppercase tw-text-base tw-font-medium">Pixa</span>
+      </a>
+  
+      <!-- Nav Links Wrapper (Mobile Slide-down / Desktop Inline) -->
+      <div
+          class="collapsible-header animated-collapse max-lg:tw-absolute max-lg:tw-top-[60px] max-lg:tw-left-0 max-lg:tw-right-0 max-lg:tw-w-full max-lg:tw-bg-white dark:max-lg:tw-bg-[#17181b] max-lg:tw-shadow-xl lg:tw-static lg:tw-flex lg:tw-items-center lg:tw-gap-8 lg:tw-bg-transparent lg:tw-shadow-none"
+          id="collapsed-header-items"
+      >
+          <nav class="tw-flex max-lg:tw-flex-col lg:tw-flex-row tw-gap-2 lg:tw-gap-6 tw-items-center max-lg:tw-py-4">
+              <a class="header-links" href="index.html"> Home </a>
+              <a class="header-links" href="About.html"> About </a>
+              <a class="header-links" href="Services.html"> Services </a>
+              <a class="header-links" href="#hero-section"> Pricing </a>
+              <a class="header-links" href="Contact.html"> Contact </a>
+          </nav>
+      </div>
+  
+      <!-- Right Controls: Theme Toggle + Sign In / Profile + Hamburger Button -->
+      <div class="tw-flex tw-items-center tw-gap-3 tw-z-50">
+          <!-- Theme Toggle (Placed next to Sign in button) -->
+          <button 
+              type="button" 
+              onclick="toggleMode()" 
+              class="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-rounded-lg hover:tw-bg-gray-100 dark:hover:tw-bg-gray-800 tw-text-gray-600 dark:tw-text-gray-300 tw-transition-colors" 
+              title="toggle-theme" 
+              id="theme-toggle"
+          > 
+              <i class="bi bi-moon tw-text-lg" id="toggle-mode-icon"></i>
+          </button>
+  
+          <!-- Guest Sign In Button -->
+          <a 
+              href="login.html" 
+              id="guestHeaderBtn" 
+              class="btn tw-text-white tw-bg-blue-600 hover:tw-bg-blue-700 tw-font-medium tw-py-2 tw-px-4 tw-rounded-lg tw-transition-all tw-duration-150 tw-text-sm tw-shadow-md"
+          >
+              Sign in
+          </a>
+  
+          <!-- User Profile Dropdown -->
+          <div id="userHeaderProfile" class="tw-relative" style="display: none;">
+              <button 
+                  id="profileMenuBtn" 
+                  type="button"
+                  class="tw-flex tw-items-center tw-justify-center tw-w-[34px] tw-h-[34px] tw-rounded-full tw-bg-blue-600 tw-border-2 tw-border-blue-500 hover:tw-opacity-90 tw-transition-all focus:tw-outline-none"
+              >
+                  <span id="userAvatarHeader" class="tw-text-white tw-font-semibold tw-text-sm">
+                      U
+                  </span>
+              </button>
+  
+              <div 
+                  id="profileDropdown" 
+                  class="tw-hidden dark:tw-bg-[#17181b] tw-bg-white tw-shadow-lg dark:tw-shadow-gray-800 tw-absolute tw-right-0 tw-mt-3 tw-w-[190px] tw-border tw-border-gray-200 dark:tw-border-[#21262d] tw-rounded-md tw-py-1 tw-z-50"
+              >
+                  <div class="tw-flex tw-p-3 tw-flex-col">
+                      <div class="tw-flex tw-items-center tw-gap-2.5 tw-px-2 tw-py-1.5 tw-border-b tw-border-gray-200 dark:tw-border-[#21262d] tw-mb-1">
+                          <div class="tw-flex tw-flex-col tw-min-w-0">
+                              <span class="tw-text-[10px] tw-text-gray-400 tw-font-medium">Signed in as</span>
+                              <span id="userEmailText" class="tw-text-[12px] tw-text-gray-800 dark:tw-text-[#c9d1d9] tw-font-medium tw-truncate">
+                                  user@example.com
+                              </span>
+                          </div>
+                      </div>
+  
+                      <a href="#account" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-gray-700 dark:tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">Account settings</a>
+                      <a href="#support" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-gray-700 dark:tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">Support</a>
+                      <a href="#license" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">License</a>
+  
+                      <div class="tw-border-t tw-border-gray-200 dark:tw-border-[#21262d] tw-my-1"></div>
+  
+                      <button 
+                          id="logoutBtn" 
+                          type="button"
+                          class="tw-w-full tw-text-left tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-red-500 hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded"
+                      >
+                          Sign out
+                      </button>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Mobile Hamburger Button -->
+          <button
+              class="bi bi-list tw-text-2xl tw-text-gray-600 dark:tw-text-gray-300 lg:tw-hidden tw-z-50 tw-p-1"
+              onclick="toggleHeader()"
+              aria-label="menu"
+              id="collapse-btn"
+          ></button>
+      </div>
+  </header>
+<div id="smooth-content">
+    
+
+  <section
+
+  class="hero-section  tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-lg:tw-mt-[100px]"
+
+  id="hero-section"
+
+>
+
+  <!-- 1. ADD CANVAS ELEMENT HERE FOR 3D BACKGROUND -->
+
+  <canvas id="hero-3d-bg" class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-z-0 tw-pointer-events-none"></canvas>
+
+
+
+  <!-- 2. ADD tw-z-10 TO YOUR CONTENT WRAPPER SO IT SITS ABOVE THE CANVAS -->
+
+  <div
+
+      class=" tw-relative hero-bg-gradient tw-z-10 tw-flex tw-h-full tw-min-h-[100vh] tw-w-full tw-flex-col tw-place-content-center tw-gap-6 tw-p-[5%] max-xl:tw-place-items-center max-lg:tw-p-4"
+
+  >
+
+      <div class="purple-bg-grad animate-text reveal-up tw-absolute tw-left-1/2 tw--translate-1/2 tw-top-[10%] tw-h-[120px] tw-w-[120px]"></div>
+
+
+
+      <div class="tw-flex tw-mt-20 wrapper tw-flex-col tw-min-h-[60vh] tw-place-content-center tw-items-center">
+
+          <h2 class="reveal-up animate-me tw-text-center tw-text-7xl tw-font-semibold tw-uppercase tw-leading-[90px] max-lg:tw-text-4xl max-md:tw-leading-snug">
+
+             All your models
+
+              <br />
+
+              <div class="tw-font-thin tw-font-serif" style="font-weight: 1000;">in one place </div>
+
+          </h2>
+
+          <div class="reveal-up tw-mt-8 tw-max-w-[450px] tw-text-lg max-lg:tw-text-base tw-p-2 tw-text-center tw-text-gray-800 dark:tw-text-white max-lg:tw-max-w-full">
+
+              Your all in one AI companion. generate Images, videos, codes, docs, debug your web apps all with Pixa's interface.
+
+          </div>
+
+
+
+          <div class="reveal-up tw-mt-10 max-md:tw-flex-col tw-flex tw-place-items-center tw-gap-4">
+
+              <a class="btn tw-group max-lg:!tw-w-[160px] tw-flex tw-gap-2 tw-shadow-lg !tw-w-[170px] !tw-rounded-xl !tw-py-4 max-lg:!tw-py-2 tw-transition-transform tw-duration-[0.3s] hover:tw-scale-x-[1.03]" href="#">
+
+                  Get started
+
+                  <i class="bi bi-arrow-down group-hover:tw-translate-x-1 tw-duration-300"></i>
+
+              </a>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</section> 
+
+
+
+
+<section 
+    id="pricing" 
+    class="relative overflow-hidden w-full flex flex-col items-center justify-center py-20 px-4 bg-[#121520] text-white"
+  >
+    <!-- Background Glow Effect -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <!-- Header -->
+    <h2 class="relative z-10 text-3xl md:text-4xl font-medium text-center mb-8 text-white">
+      Join the professionals using Pixa
+    </h2>
+
+    <!-- Toggle Switch -->
+    <div class="relative z-10 flex flex-col items-center mb-16 gap-2">
+      <div class="inline-flex bg-[#1C2235] p-1 rounded-full border border-gray-700/30 relative">
+        <button 
+          id="btn-monthly" 
+          onclick="setBillingCycle('monthly')" 
+          class="bg-[#5C5AE8] text-white text-sm font-semibold px-6 py-1.5 rounded-full shadow-md transition-all duration-300"
+        >
+          Monthly
+        </button>
+        <button 
+          id="btn-annually" 
+          onclick="setBillingCycle('annually')" 
+          class="text-gray-300 hover:text-white text-sm font-semibold px-6 py-1.5 rounded-full transition-all duration-300 flex items-center gap-1.5"
+        >
+          Annually
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">Save 20%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pricing Cards Container -->
+    <div id="pricing-cards-container" class="relative z-10 flex flex-col md:flex-row items-center justify-center max-w-7xl w-full mx-auto min-h-[600px]">
+      
+      <!-- 1. Free Card -->
+      <div 
+        onclick="makeActive(this)"
+        data-plan="Free"
+        data-price-monthly="0"
+        data-price-annually="0"
+        class="pricing-card cursor-pointer w-full md:w-[300px] bg-[#1C2233] rounded-2xl p-8 relative shadow-xl border border-white/5 opacity-40 scale-90 hover:opacity-70 z-0 transition-opacity duration-300"
+      >
+        <h3 class="text-white font-semibold text-lg mb-4">Free</h3>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="price-val text-5xl font-bold text-white tracking-tight">$0</span>
+          <div class="flex flex-col justify-center">
+            <span class="text-xs font-semibold text-gray-200">USD</span>
+            <span class="billing-label text-xs text-gray-400">Forever free</span>
+          </div>
+        </div>
+        <button onclick="handleBuy(event, this)" class="plan-btn w-full bg-[#353B4F] hover:bg-[#3F465C] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6">
+          Buy this plan
+        </button>
+        <ul class="flex flex-col border-t border-gray-700/30">
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom domains</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Edge content delivery</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Basic analytics</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Community access</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Standard SSL</li>
+          <li class="flex items-center text-sm text-gray-200 pt-3"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Email support</li>
+        </ul>
+      </div>
+
+      <!-- 2. Starter Card -->
+      <div 
+        onclick="makeActive(this)"
+        data-plan="Starter"
+        data-price-monthly="19"
+        data-price-annually="15"
+        class="pricing-card cursor-pointer w-full md:w-[300px] bg-[#1C2233] rounded-2xl p-8 relative shadow-xl border border-white/5 opacity-40 scale-90 hover:opacity-70 z-0 transition-opacity duration-300"
+      >
+        <h3 class="text-white font-semibold text-lg mb-4">Starter</h3>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="price-val text-5xl font-bold text-white tracking-tight">$19</span>
+          <div class="flex flex-col justify-center">
+            <span class="text-xs font-semibold text-gray-200">USD</span>
+            <span class="billing-label text-xs text-gray-400">Billed monthly</span>
+          </div>
+        </div>
+        <button onclick="handleBuy(event, this)" class="plan-btn w-full bg-[#353B4F] hover:bg-[#3F465C] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6">
+          Buy this plan
+        </button>
+        <ul class="flex flex-col border-t border-gray-700/30">
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom domains</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Edge content delivery</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Advanced analytics</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Quarterly workshops</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Single sign-on (SSO)</li>
+          <li class="flex items-center text-sm text-gray-200 pt-3"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Priority phone support</li>
+        </ul>
+      </div>
+
+      <!-- 3. Scale Card -->
+      <div 
+        onclick="makeActive(this)"
+        data-plan="Scale"
+        data-price-monthly="99"
+        data-price-annually="79"
+        class="pricing-card active-card cursor-pointer w-full md:w-[360px] bg-[#22293C] rounded-2xl p-8 relative z-20 shadow-2xl md:py-12 border border-white/10 opacity-100 scale-100 transition-opacity duration-300"
+      >
+        <h3 class="text-white font-semibold text-lg mb-4">Scale</h3>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="price-val text-5xl font-bold text-white tracking-tight">$99</span>
+          <div class="flex flex-col justify-center">
+            <span class="text-xs font-semibold text-gray-200">USD</span>
+            <span class="billing-label text-xs text-gray-400">Billed monthly</span>
+          </div>
+        </div>
+        <button onclick="handleBuy(event, this)" class="plan-btn w-full bg-[#5C5AE8] hover:bg-[#4E4CD4] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6 shadow-lg shadow-indigo-500/25">
+          Buy this plan
+        </button>
+        <ul class="flex flex-col border-t border-gray-700/30">
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom domains</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Edge content delivery</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Advanced analytics</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Quarterly workshops</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Single sign-on (SSO)</li>
+          <li class="flex items-center text-sm text-gray-200 pt-3"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Priority phone support</li>
+        </ul>
+      </div>
+
+      <!-- 4. Growth Card -->
+      <div 
+        onclick="makeActive(this)"
+        data-plan="Growth"
+        data-price-monthly="49"
+        data-price-annually="39"
+        class="pricing-card cursor-pointer w-full md:w-[300px] bg-[#1C2233] rounded-2xl p-8 relative shadow-xl border border-white/5 opacity-40 scale-90 hover:opacity-70 z-0 transition-opacity duration-300"
+      >
+        <h3 class="text-white font-semibold text-lg mb-4">Growth</h3>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="price-val text-5xl font-bold text-white tracking-tight">$49</span>
+          <div class="flex flex-col justify-center">
+            <span class="text-xs font-semibold text-gray-200">USD</span>
+            <span class="billing-label text-xs text-gray-400">Billed monthly</span>
+          </div>
+        </div>
+        <button onclick="handleBuy(event, this)" class="plan-btn w-full bg-[#353B4F] hover:bg-[#3F465C] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6">
+          Buy this plan
+        </button>
+        <ul class="flex flex-col border-t border-gray-700/30">
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom domains</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Edge content delivery</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Advanced analytics</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Quarterly workshops</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Single sign-on (SSO)</li>
+          <li class="flex items-center text-sm text-gray-200 pt-3"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Priority phone support</li>
+        </ul>
+      </div>
+
+      <!-- 5. Enterprise Card -->
+      <div 
+        onclick="makeActive(this)"
+        data-plan="Enterprise"
+        data-price-monthly="299"
+        data-price-annually="239"
+        class="pricing-card cursor-pointer w-full md:w-[300px] bg-[#1C2233] rounded-2xl p-8 relative shadow-xl border border-white/5 opacity-40 scale-90 hover:opacity-70 z-0 transition-opacity duration-300"
+      >
+        <h3 class="text-white font-semibold text-lg mb-4">Enterprise</h3>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="price-val text-5xl font-bold text-white tracking-tight">$299</span>
+          <div class="flex flex-col justify-center">
+            <span class="text-xs font-semibold text-gray-200">USD</span>
+            <span class="billing-label text-xs text-gray-400">Billed monthly</span>
+          </div>
+        </div>
+        <button onclick="handleBuy(event, this)" class="plan-btn w-full bg-[#353B4F] hover:bg-[#3F465C] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6">
+          Buy this plan
+        </button>
+        <ul class="flex flex-col border-t border-gray-700/30">
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom domains</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Edge content delivery</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Dedicated account manager</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>Custom integrations</li>
+          <li class="flex items-center text-sm text-gray-200 py-3 border-b border-gray-700/30"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>99.99% Uptime SLA</li>
+          <li class="flex items-center text-sm text-gray-200 pt-3"><svg class="w-4 h-4 mr-3 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>24/7 VIP Phone support</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHECKOUT MODAL (Placed outside section for pure z-index isolation) -->
+  <div 
+    id="checkout-modal" 
+    class="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-md hidden opacity-0 transition-opacity duration-300"
+    onclick="closeModalOnBackdrop(event)"
+  >
+    <div 
+      id="modal-box" 
+      class="bg-[#1C2233] border border-white/10 rounded-2xl p-6 md:p-8 max-w-md w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300 relative text-white"
+    >
+      <div class="flex justify-between items-center mb-6">
+        <h4 class="text-xl font-bold text-white">Confirm Checkout</h4>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="bg-[#121520] p-4 rounded-xl mb-6 border border-gray-800 flex flex-col gap-3">
+        <div class="flex justify-between items-center">
+          <span class="text-gray-400 text-sm">Selected Plan</span>
+          <span id="modal-plan-name" class="font-semibold text-white">Scale</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-400 text-sm">Billing Interval</span>
+          <span id="modal-billing-cycle" class="font-semibold text-emerald-400 capitalize">Monthly</span>
+        </div>
+        <div class="flex justify-between items-center border-t border-gray-800 pt-3 mt-1">
+          <span class="text-gray-300 text-sm font-semibold">Total Due</span>
+          <span id="modal-price" class="text-xl font-bold text-indigo-400">$99/mo</span>
+        </div>
+      </div>
+
+      <button 
+        onclick="confirmPurchase()" 
+        class="w-full bg-[#5C5AE8] hover:bg-[#4E4CD4] text-white font-semibold py-3 rounded-lg shadow-lg shadow-indigo-500/25 transition-colors"
+      >
+        Proceed to Payment
+      </button>
+    </div>
+  </div>
+
+
+<section
+    id="tech-stack-section"
+    class="tw-mt-5 tw-flex tw-min-h-[80vh] tw-w-full tw-flex-col tw-place-content-center tw-place-items-center tw-p-[2%] max-lg:tw-p-3"
+>
+  <div class="relative py-24 px-8 font-sans overflow-hidden w-full">
+    <div class="max-w-6xl mx-auto flex flex-col items-center">
+      
+      <!-- TOP LINE: "TECHNOLOGY" -->
+      <h1 data-text="TECHNOLOGY" class="text-7xl glitch sm:text-8xl md:text-9xl font-semibold tracking-tighter uppercase self-start leading-none w-full">
+        TECHNOLOGY
+      </h1>
+  
+      <!-- BOTTOM ROW: SMALL SUBTEXT + "STACK" PUSHED TO THE RIGHT -->
+      <div class="w-full flex flex-col sm:flex-row items-start justify-between mt-2">
+        
+        <!-- SMALL SUBTEXT WITH SCROLL REVEAL -->
+        <div class="subtext-reveal max-w-xs mt-4 sm:mt-12 pl-2 md:pl-8">
+          <p class="text-xs sm:text-sm font-medium tw-text-base tracking-wide uppercase leading-tight">
+            <span class="reveal-line"><span>BUILT WITH PERFORMANCE-FIRST,</span></span>
+            <span class="reveal-line"><span>SCALABLE FRONT-END ARCHITECTURE.</span></span>
+          </p>
+        </div>
+  
+        <!-- "STACK" (PUSHED RIGHT) -->
+        <h1 data-text="STACK" class="text-7xl glitch sm:text-8xl md:text-9xl font-semibold tracking-tighter uppercase leading-none mt-2 sm:mt-0 sm:ml-auto text-right">
+          STACK
+        </h1>
+        
+      </div>
+  
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Wrapper section pinned by ScrollTrigger -->
+<div id="footer-reveal-wrapper" class="relative w-full h-screen overflow-hidden">
+  <section class="max-w-6xl mx-auto space-y-8 p-6 md:p-12 relative">
+  
+    <!-- Top Hero / Search Banner -->
+    <div class="bg-[#f4f4f5] rounded-2xl py-12 px-6 text-center space-y-4">
+      
+      <!-- FAQs Badge -->
+      <div>
+        <span class="inline-block bg-white text-xs font-medium text-gray-600 px-3 py-1 rounded-full border border-gray-200/60 shadow-sm transition-transform hover:scale-105 cursor-default">
+          FAQs
+        </span>
+      </div>
+  
+      <!-- Main Heading -->
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-black">
+        Frequently Inquired Queries
+      </h2>
+  
+      <!-- Subtitle -->
+      <p class="text-gray-500 text-sm md:text-base max-w-2xl mx-auto">
+        Utilize cutting-edge artificial intelligence techniques to deliver valuable insights for travelers.
+      </p>
+  
+      <!-- Search Input Container -->
+      <div class="flex items-center justify-center gap-2 pt-2 max-w-md mx-auto">
+        <input 
+          type="text" 
+          id="faqSearchInput" 
+          placeholder="Type to search (e.g., refund, baggage, flight)..."
+          class="w-full bg-white text-sm text-gray-800 placeholder-gray-400 px-4 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/10 hover:border-gray-300 transition-all shadow-sm"
+        />
+        <button 
+          id="faqSearchBtn"
+          class="bg-[#18181b] hover:bg-black text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-md active:scale-95 shrink-0"
+        >
+          Search
+        </button>
+      </div>
+  
+    </div>
+  
+    <!-- Main Grid Wrapper with Collapsible Height -->
+    <div class="relative">
+      
+      <!-- FAQ Cards Grid -->
+      <div id="faqGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden max-h-[480px] transition-all duration-700 ease-in-out">
+        
+        <!-- Card 1 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            What services your agency provide?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            We offer a range of travel services, including flight bookings, hotel reservations, tour packages, cruise bookings, travel insurance.
+          </p>
+        </div>
+  
+        <!-- Card 2 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            How do I book a trip with your agency?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            Booking a trip with us is easy! You can book online through our website, call our customer service team, or visit our office in person.
+          </p>
+        </div>
+  
+        <!-- Card 3 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            Can I customize my travel itinerary?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            Absolutely! We specialize in creating tailor-made travel experiences. You can customize everything from your flights.
+          </p>
+        </div>
+  
+        <!-- Card 4 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            What payment methods do you accept?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            We accept major credit/debit cards, bank wire transfers, PayPal, and flexible buy-now-pay-later payment plans.
+          </p>
+        </div>
+  
+        <!-- Card 5 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            Is travel insurance included with my booking?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            Comprehensive travel insurance is optional but highly recommended. We offer affordable add-on coverage for health and luggage.
+          </p>
+        </div>
+  
+        <!-- Card 6 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            What is your cancellation and refund policy?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            Cancellations made 30 days prior to departure receive a full refund. Airline charges may apply depending on fare class.
+          </p>
+        </div>
+  
+        <!-- Card 7 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            How far in advance should I book my trip?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            We recommend booking 2–3 months early for international travel and 4 weeks early for domestic trips to ensure availability.
+          </p>
+        </div>
+  
+        <!-- Card 8 -->
+        <div class="faq-card group bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-gray-300 transition-all duration-300 space-y-4 cursor-pointer">
+          <div class="w-10 h-10 bg-[#f4f4f5] group-hover:bg-gray-200/80 rounded-lg flex items-center justify-center text-gray-700 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="faq-title font-bold text-lg text-black leading-snug group-hover:text-gray-900 transition-colors">
+            How do I reach 24/7 customer support?
+          </h3>
+          <p class="faq-desc text-gray-500 text-sm leading-relaxed">
+            Our global support team is available via live chat in our app, email support, or our toll-free hotline while traveling.
+          </p>
+        </div>
+  
+      </div>
+  
+      <!-- Dark Gradient Overlay Container -->
+      <div 
+        id="faqOverlay" 
+        class="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[2px] flex items-end justify-center pb-6 transition-all duration-300 pointer-events-auto"
+      >
+        <!-- Toggle Button (Moves outside grid when expanded) -->
+        <button 
+          id="toggleFaqBtn"
+          class="bg-white hover:bg-gray-100 text-black font-semibold text-sm px-6 py-3 rounded-full shadow-lg border border-gray-200 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer z-10"
+        >
+          <span id="toggleText">See all questions</span>
+          <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+      </div>
+  
+    </div>
+  
+    <!-- Empty State Message (Hidden by default) -->
+    <div id="noResults" class="hidden text-center py-12 space-y-2">
+      <p class="text-gray-800 font-semibold text-lg">No matching questions found</p>
+      <p class="text-gray-500 text-sm">Try adjusting your search terms or keyword.</p>
+    </div>
+  
+  </section>
+
+  <footer id="main-footer" class="absolute inset-0 top-0 left-0 w-screen h-screen min-h-screen text-white bg-[#131314] flex flex-col justify-between overflow-hidden z-[999] px-8 md:px-16 pt-16 pb-0">
+      
+      <!-- Background Glow -->
+      <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/40 via-transparent to-transparent pointer-events-none animate-pulse"></div>
+      <div class="absolute -bottom-10 inset-x-0 mx-auto w-full h-72 bg-emerald-600/20 blur-3xl rounded-full pointer-events-none animate-pulse"></div>
+
+      <!-- Top Section: Links & Info (Stretched) -->
+      <div class="w-full grid grid-cols-1 lg:grid-cols-6 gap-8 md:gap-12 relative z-10 my-auto">
+          
+          <!-- Brand & Socials -->
+          <div class="lg:col-span-3 text-base space-y-6">
+              <a href="https://prebuiltui.com" class="block">
+                  <svg width="157" height="40" viewBox="0 0 157 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="m8.75 11.3 6.75 3.884 6.75-3.885M8.75 34.58v-7.755L2 22.939m27 0-6.75 3.885v7.754M2.405 15.408 15.5 22.954l13.095-7.546M15.5 38V22.939M29 28.915V16.962a2.98 2.98 0 0 0-1.5-2.585L17 8.4a3.01 3.01 0 0 0-3 0L3.5 14.377A3 3 0 0 0 2 16.962v11.953A2.98 2.98 0 0 0 3.5 31.5L14 37.477a3.01 3.01 0 0 0 3 0L27.5 31.5a3 3 0 0 0 1.5-2.585" class="stroke-white transition-colors duration-300" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+              </a>
+              <p class="text-sm/6 max-w-md text-neutral-300">PrebuiltUI helps you build faster by transforming your design vision into fully functional, production-ready UI components.</p>
+              
+              <div class="flex gap-5 md:gap-6">
+                  <!-- Twitter -->
+                  <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                  </a>
+                  <!-- Github -->
+                  <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  </a>
+                  <!-- Linkedin -->
+                  <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  </a>
+              </div>
+          </div>
+
+          <!-- Links Columns -->
+          <div class="lg:col-span-3 grid grid-cols-2 text-base md:grid-cols-3 gap-8 md:gap-12 lg:gap-20 items-start">
+              <div>
+                  <h3 class="font-medium text-sm mb-4">Products</h3>
+                  <ul class="space-y-3 text-sm text-neutral-400">
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">Components</a></li>
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">Templates</a></li>
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">Icons</a></li>
+                  </ul>
+              </div>
+
+              <div>
+                  <h3 class="font-medium text-sm mb-4">Resources</h3>
+                  <ul class="space-y-3 text-sm text-neutral-400">
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">PrebuiltUI</a></li>
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">Templates</a></li>
+                      <li><a href="#" class="hover:text-emerald-400 transition-colors">Components</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <!-- SEPARATOR LINE -->
+      <div class="w-full border-t border-neutral-800/80 relative z-10 my-auto"></div>
+
+      <!-- Bottom Edge-to-Edge Outline Text -->
+      <div class="relative w-full overflow-hidden z-10 mt-auto leading-none">
+          <h1 class="text-center font-extrabold text-transparent text-[16vw] leading-none select-none tracking-tighter whitespace-nowrap block w-full" style="-webkit-text-stroke: 2px #10B981;">
+              PrebuiltUI
+          </h1>
+      </div>
+  </footer>
+</div>
+
+    </div>
+</div>
+</body>
+    
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<!-- ScrollSmoother requires ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/EaselPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/GSDevTools.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/InertiaPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathHelper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MorphSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Physics2DPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PhysicsPropsPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PixiPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/TextPlugin.min.js"></script>
+
+<script src="index.js"></script>
+<script src="scripts/components.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>// ==========================================
+  // 1. REGISTER GSAP PLUGINS & CONFIG (TOP PRIORITY)
+  // ==========================================
+  gsap.registerPlugin(GSDevTools, MorphSVGPlugin, ScrollTrigger, Flip, ScrollSmoother, SplitText);
+  
+  // Prevent mobile address-bar hide/show from triggering heavy layout recalculations
+  ScrollTrigger.config({ 
+    ignoreMobileResize: true,
+    autoRefreshEvents: "DOMContentLoaded,load" 
+  });
+  
+  // Smooth performance buffer when dragging/resizing
+  ScrollTrigger.refreshDebounceDelay = 200;
+  
+  // Setup ScrollSmoother cleanly across both Desktop and Mobile
+  let smoother;
+  if (typeof ScrollSmoother !== "undefined") {
+    smoother = ScrollSmoother.create({
+      smooth: 1, 
+      effects: true,
+      smoothTouch: 0.1, // Enabled for responsive touch scrolling
+    });
+  }
+  
+  // ==========================================
+  // 2. THREE.JS 3D BACKGROUND LOGIC (MOBILE & DESKTOP)
+  // ==========================================
+  const section = document.getElementById('hero-section');
+  const canvas = document.getElementById('hero-3d-bg');
+  
+  if (section && canvas) {
+    const clock = new THREE.Clock(); 
+  
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75, 
+      section.clientWidth / section.clientHeight, 
+      0.1, 
+      1000
+    );
+    camera.position.z = 5;
+  
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      alpha: true,
+      antialias: true
+    });
+  
+    renderer.setSize(section.clientWidth, section.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    scene.add(ambientLight);
+  
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+  
+    // Model & Animations
+    let model;
+    let mixer;
+  
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+      'assets/model/cloud_station.glb', 
+      (gltf) => {
+        model = gltf.scene;
+        model.scale.set(1.5, 1.5, 1.5);
+        model.position.set(0, 0, 0);
+        scene.add(model);
+  
+        if (gltf.animations && gltf.animations.length > 0) {
+          mixer = new THREE.AnimationMixer(model);
+          gltf.animations.forEach((clip) => {
+            mixer.clipAction(clip).play();
+          });
+        }
+      },
+      undefined,
+      (error) => console.error('Error loading 3D model:', error)
+    );
+  
+    // Mouse & Touch Interaction Targets
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+  
+    const handlePointerMove = (clientX, clientY) => {
+      mouseX = (clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (clientY / window.innerHeight - 0.5) * 2;
+    };
+  
+    window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+  
+    // Debounced Resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (!section) return;
+        const width = section.clientWidth;
+        const height = section.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      }, 150);
+    });
+  
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+  
+      if (mixer) mixer.update(delta);
+  
+      if (model) {
+        model.rotation.y += 0.002;
+        targetX = mouseX * 0.5;
+        targetY = mouseY * 0.5;
+  
+        model.rotation.y += (targetX - model.rotation.y) * 0.05;
+        model.rotation.x += (targetY - model.rotation.x) * 0.05;
+      }
+  
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+  
+  // ==========================================
+  // 3. SUPABASE CONFIG
+  // ==========================================
+  const SUPABASE_URL = "https://hpvuengqcynrcdwjrwcu.supabase.co"; 
+  const SUPABASE_ANON_KEY = "sb_publishable_qUkt1zYC_F1zb9LeNo9yWA_3VXgplcV";
+  const supabaseClient = window.supabase ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+  
+  // ==========================================
+  // 4. MAIN APPLICATION INIT (DOM READY)
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', () => {
+  
+    // --- Auth & Header UI ---
+    const guestBtn = document.getElementById('guestHeaderBtn');
+    const userProfile = document.getElementById('userHeaderProfile');
+    const profileMenuBtn = document.getElementById('profileMenuBtn');
+    const profileDropdown = document.getElementById('profileDropdown');
+    const logoutBtn = document.getElementById('logoutBtn');
+  
+    function showLoggedInState(session) {
+      if (session && session.user) {
+        const firstLetter = session.user.email.charAt(0).toUpperCase();
+        
+        if (document.getElementById('userEmailText')) document.getElementById('userEmailText').textContent = session.user.email;
+        if (document.getElementById('userAvatarHeader')) document.getElementById('userAvatarHeader').textContent = firstLetter;
+        if (document.getElementById('userAvatarDropdown')) document.getElementById('userAvatarDropdown').textContent = firstLetter;
+  
+        if (guestBtn) guestBtn.style.display = 'none';
+        if (userProfile) userProfile.style.display = 'block';
+      } else {
+        if (guestBtn) guestBtn.style.display = 'inline-block';
+        if (userProfile) userProfile.style.display = 'none';
+        if (profileDropdown) profileDropdown.classList.add('tw-hidden');
+      }
+    }
+  
+    if (supabaseClient) {
+      supabaseClient.auth.onAuthStateChange((event, session) => {
+        showLoggedInState(session);
+      });
+    }
+  
+    if (profileMenuBtn && profileDropdown) {
+      profileMenuBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        profileDropdown.classList.toggle('tw-hidden');
+      });
+  
+      window.addEventListener('click', () => {
+        profileDropdown.classList.add('tw-hidden');
+      });
+    }
+  
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        showLoggedInState(null);
+  
+        try {
+          if (supabaseClient) await supabaseClient.auth.signOut();
+          localStorage.clear();
+          sessionStorage.clear();
+        } catch (err) {
+          console.error("Signout error:", err);
+        }
+      });
+    }
+  
+    // --- Footer Reveal Animation (Mobile & Desktop) ---
+if (document.querySelector("#main-footer") && document.querySelector("#footer-reveal-wrapper")) {
+  let mm = gsap.matchMedia();
+
+  mm.add({
+    isDesktop: "(min-width: 1024px)",
+    isMobile: "(max-width: 1023px)"
+  }, (context) => {
+    let { isMobile } = context.conditions;
+
+    // Reset initial state safely
+    gsap.set("#main-footer", { 
+      clipPath: "inset(100% 0% 0% 0%)",
+      willChange: "clip-path" 
+    });
+
+    gsap.to("#main-footer", {
+      clipPath: "inset(0% 0% 0% 0%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#footer-reveal-wrapper",
+        start: isMobile ? "top bottom" : "top top", // Mobile triggers as soon as the wrapper enters the screen
+        end: isMobile ? "bottom bottom" : "+=100%", // Mobile completes as footer reaches bottom
+        pin: !isMobile, // Disable fixed pinning on mobile to avoid viewport height jitter
+        pinType: "transform",
+        scrub: 0.5, // 0.5 gives silky-smooth reveal tracking on mobile touch
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    return () => {
+      gsap.set("#main-footer", { clearProps: "all" });
+    };
+  });
+}
+    // --- Text Reveal Animation ---
+    document.fonts.ready.then(() => {
+      if (document.querySelector(".animate-me")) {
+        gsap.set(".animate-text", { opacity: 1 });
+        let split = SplitText.create(".animate-me", { type: "words", aria: "hidden" });
+  
+        gsap.from(split.words, {
+          opacity: 0,
+          duration: 2,
+          ease: "sine.out",
+          stagger: 0.08,
+        });
+      }
+    });
+  
+    // --- FAQ Section Logic ---
+    const searchInput = document.getElementById("faqSearchInput");
+    const searchBtn = document.getElementById("faqSearchBtn");
+    const cards = document.querySelectorAll(".faq-card");
+    const noResults = document.getElementById("noResults");
+    const faqGrid = document.getElementById("faqGrid");
+    const faqOverlay = document.getElementById("faqOverlay");
+    const toggleFaqBtn = document.getElementById("toggleFaqBtn");
+    const toggleText = document.getElementById("toggleText");
+    const toggleIcon = document.getElementById("toggleIcon");
+  
+    if (toggleFaqBtn && faqGrid) {
+      let isExpanded = false;
+  
+      function toggleFaqs() {
+        isExpanded = !isExpanded;
+  
+        if (isExpanded) {
+          faqGrid.classList.remove("max-h-[480px]");
+          faqGrid.classList.add("max-h-[2000px]");
+          
+          if (faqOverlay) {
+            faqOverlay.classList.remove("bg-gradient-to-t", "from-black/80", "via-black/40", "to-transparent", "backdrop-blur-[2px]", "h-48", "absolute", "bottom-0");
+            faqOverlay.classList.add("relative", "mt-6", "h-auto");
+          }
+          
+          if (toggleText) toggleText.innerText = "Show less";
+          if (toggleIcon) toggleIcon.classList.add("rotate-180");
+        } else {
+          faqGrid.classList.remove("max-h-[2000px]");
+          faqGrid.classList.add("max-h-[480px]");
+          
+          if (faqOverlay) {
+            faqOverlay.classList.add("bg-gradient-to-t", "from-black/80", "via-black/40", "to-transparent", "backdrop-blur-[2px]", "h-48", "absolute", "bottom-0");
+            faqOverlay.classList.remove("relative", "mt-6", "h-auto");
+          }
+          
+          if (toggleText) toggleText.innerText = "See all questions";
+          if (toggleIcon) toggleIcon.classList.remove("rotate-180");
+  
+          faqGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+  
+      toggleFaqBtn.addEventListener("click", toggleFaqs);
+  
+      if (searchInput) {
+        const cardData = Array.from(cards).map(card => ({
+          element: card,
+          titleEl: card.querySelector(".faq-title"),
+          descEl: card.querySelector(".faq-desc"),
+          titleText: card.querySelector(".faq-title")?.innerText || "",
+          descText: card.querySelector(".faq-desc")?.innerText || ""
+        }));
+  
+        function performSearch() {
+          const query = searchInput.value.trim().toLowerCase();
+          let matchesCount = 0;
+  
+          if (query !== "" && !isExpanded) toggleFaqs();
+  
+          cardData.forEach(item => {
+            const titleMatch = item.titleText.toLowerCase().includes(query);
+            const descMatch = item.descText.toLowerCase().includes(query);
+  
+            if (titleMatch || descMatch) {
+              item.element.classList.remove("hidden");
+              matchesCount++;
+  
+              if (query !== "") {
+                const regex = new RegExp(`(${query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')})`, 'gi');
+                if (item.titleEl) item.titleEl.innerHTML = item.titleText.replace(regex, `<mark class="bg-yellow-200 text-black rounded px-0.5">$1</mark>`);
+                if (item.descEl) item.descEl.innerHTML = item.descText.replace(regex, `<mark class="bg-yellow-200 text-black rounded px-0.5">$1</mark>`);
+              } else {
+                if (item.titleEl) item.titleEl.innerText = item.titleText;
+                if (item.descEl) item.descEl.innerText = item.descText;
+              }
+            } else {
+              item.element.classList.add("hidden");
+            }
+          });
+  
+          if (noResults) {
+            matchesCount === 0 ? noResults.classList.remove("hidden") : noResults.classList.add("hidden");
+          }
+        }
+  
+        searchInput.addEventListener("input", performSearch);
+        if (searchBtn) searchBtn.addEventListener("click", performSearch);
+      }
+    }
+  
+    // --- Tech Stack Observer ---
+    const techSection = document.querySelector("#tech-stack-section");
+    const subtext = document.querySelector(".subtext-reveal");
+  
+    if (techSection && subtext) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            subtext.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+  
+      observer.observe(techSection);
+    }
+  });
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+let currentBilling = 'monthly';
+
+    function setBillingCycle(type) {
+      if (currentBilling === type) return;
+      currentBilling = type;
+
+      const btnMonthly = document.getElementById('btn-monthly');
+      const btnAnnually = document.getElementById('btn-annually');
+
+      if (type === 'annually') {
+        btnAnnually.className = 'bg-[#5C5AE8] text-white text-sm font-semibold px-6 py-1.5 rounded-full shadow-md transition-all duration-300 flex items-center gap-1.5';
+        btnMonthly.className = 'text-gray-300 hover:text-white text-sm font-semibold px-6 py-1.5 rounded-full transition-all duration-300';
+      } else {
+        btnMonthly.className = 'bg-[#5C5AE8] text-white text-sm font-semibold px-6 py-1.5 rounded-full shadow-md transition-all duration-300';
+        btnAnnually.className = 'text-gray-300 hover:text-white text-sm font-semibold px-6 py-1.5 rounded-full transition-all duration-300 flex items-center gap-1.5';
+      }
+
+
+      
+      document.querySelectorAll('.pricing-card').forEach(card => {
+        const priceValEl = card.querySelector('.price-val');
+        const labelEl = card.querySelector('.billing-label');
+        const newPrice = type === 'annually' ? card.dataset.priceAnnually : card.dataset.priceMonthly;
+
+        gsap.to(priceValEl, {
+          opacity: 0,
+          y: -10,
+          duration: 0.2,
+          onComplete: () => {
+            priceValEl.textContent = `$${newPrice}`;
+            if (labelEl) {
+              labelEl.textContent = card.dataset.priceMonthly === "0" ? "Forever free" : (type === 'annually' ? 'Billed annually' : 'Billed monthly');
+            }
+            gsap.to(priceValEl, { opacity: 1, y: 0, duration: 0.2 });
+          }
+        });
+      });
+    }
+
+    function makeActive(clickedCard) {
+      if (clickedCard.classList.contains('active-card')) return;
+
+      const container = document.getElementById('pricing-cards-container');
+      const allCards = Array.from(container.querySelectorAll('.pricing-card'));
+
+      const state = Flip.getState(allCards);
+
+      allCards.forEach(card => {
+        card.classList.remove(
+          'active-card', 'z-20', 'opacity-100', 'scale-100', 
+          'bg-[#22293C]', 'md:w-[360px]', 'md:py-12', 'border-white/10'
+        );
+        card.classList.add(
+          'z-0', 'opacity-40', 'scale-90', 
+          'bg-[#1C2233]', 'md:w-[300px]', 'hover:opacity-70', 'border-white/5'
+        );
+
+        const btn = card.querySelector('.plan-btn');
+        btn.className = 'plan-btn w-full bg-[#353B4F] hover:bg-[#3F465C] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6';
+      });
+
+      clickedCard.classList.remove('z-0', 'opacity-40', 'scale-90', 'bg-[#1C2233]', 'md:w-[300px]', 'hover:opacity-70', 'border-white/5');
+      clickedCard.classList.add(
+        'active-card', 'z-20', 'opacity-100', 'scale-100', 
+        'bg-[#22293C]', 'md:w-[360px]', 'md:py-12', 'border-white/10'
+      );
+
+      const activeBtn = clickedCard.querySelector('.plan-btn');
+      activeBtn.className = 'plan-btn w-full bg-[#5C5AE8] hover:bg-[#4E4CD4] text-white font-semibold text-sm py-3 rounded-lg transition-colors mb-6 shadow-lg shadow-indigo-500/25';
+
+      const remainingCards = allCards.filter(c => c !== clickedCard);
+      
+      container.innerHTML = '';
+      container.appendChild(remainingCards[0]);
+      container.appendChild(remainingCards[1]);
+      container.appendChild(clickedCard);
+      container.appendChild(remainingCards[2]);
+      container.appendChild(remainingCards[3]);
+
+      Flip.from(state, {
+        duration: 0.6,
+        ease: "power2.inOut",
+        scale: true,
+        absolute: false
+      });
+    }
+
+    
+
+    function handleBuy(event, buttonEl) {
+  event.stopPropagation(); // Prevents triggering makeActive()
+  
+  const card = buttonEl.closest('.pricing-card');
+  const planName = card.dataset.plan;
+  const price = currentBilling === 'annually' 
+    ? card.dataset.priceAnnually 
+    : card.dataset.priceMonthly;
+
+  // Build checkout URL with params
+  const checkoutUrl = `checkout.html?plan=${encodeURIComponent(planName)}&billing=${currentBilling}&price=${price}`;
+  
+  // Navigate to checkout page
+  window.location.href = checkoutUrl;
+}
+
+    function openModal() {
+      const modal = document.getElementById('checkout-modal');
+      const box = document.getElementById('modal-box');
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('checkout-modal');
+      const box = document.getElementById('modal-box');
+      
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    function closeModalOnBackdrop(event) {
+      if (event.target.id === 'checkout-modal') {
+        closeModal();
+      }
+    }
+
+    function confirmPurchase() {
+      alert('Redirecting to checkout gateway...');
+      closeModal();
+    }
+
+
+  // ==========================================
+  // 6. FINAL REFRESH ON FULL LOAD
+  // ==========================================
+  window.addEventListener("load", () => {
+    ScrollTrigger.refresh();
+  });
+  </script>
+
+</html>

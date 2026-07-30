@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en" class="tw-dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Services</title>
+        <meta name="description" content="Get all your AI models and tools in one place" />
+        <link
+            rel="shortcut icon"
+            href="./assets/logo/logo.png"
+            type="image/x-icon"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:title" content="All your AI models in one place - Try Pixa Playground" />
+        <meta property="og:description" content="Get all your AI models and tools in one place" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://github.com/PaulleDemon" />
+        <meta property="og:image" content="" />
+
+        <!-- <link rel="stylesheet" href="css/tailwind-runtime.css" /> -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/tailwind-build.css">
+        <link rel="stylesheet" href="css/index.css" />
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+            integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <!-- Google tag (gtag.js) -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-');
+        </script>
+    <body
+        class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-[#fcfcfc] 
+            tw-text-black dark:tw-bg-black  dark:tw-text-white"
+    >
+    <div id="smooth-wrapper">
+
+      <header
+      style="width: calc(100% - 2rem) !important;"
+      class="tw-fixed tw-top-4 tw-left-1/2 tw--translate-x-1/2 tw-z-50 tw-flex tw-h-[60px] lg:!tw-w-full lg:tw-max-w-5xl tw-items-center tw-justify-between tw-px-4 lg:tw-px-8 tw-bg-white dark:tw-bg-[#17181b] tw-text-gray-700 dark:tw-text-gray-200 tw-rounded-xl tw-shadow-md dark:tw-shadow-gray-700 lg:tw-backdrop-blur-lg lg:tw-opacity-[0.99]"
+  >
+      <!-- Logo -->
+      <a class="tw-flex tw-items-center tw-gap-2 tw-z-50" href="#">
+          <div class="tw-h-[30px] tw-w-[30px] tw-flex tw-items-center">
+              <img
+                  src="./assets/logo/logo.png"
+                  alt="logo"
+                  class="tw-object-contain tw-h-full tw-w-full dark:tw-invert"
+              />
+          </div>
+          <span class="tw-uppercase tw-text-base tw-font-medium">Pixa</span>
+      </a>
+  
+      <!-- Nav Links Wrapper (Mobile Slide-down / Desktop Inline) -->
+      <div
+          class="collapsible-header animated-collapse max-lg:tw-absolute max-lg:tw-top-[60px] max-lg:tw-left-0 max-lg:tw-right-0 max-lg:tw-w-full max-lg:tw-bg-white dark:max-lg:tw-bg-[#17181b] max-lg:tw-shadow-xl lg:tw-static lg:tw-flex lg:tw-items-center lg:tw-gap-8 lg:tw-bg-transparent lg:tw-shadow-none"
+          id="collapsed-header-items"
+      >
+          <nav class="tw-flex max-lg:tw-flex-col lg:tw-flex-row tw-gap-2 lg:tw-gap-6 tw-items-center max-lg:tw-py-4">
+              <a class="header-links" href="index.html"> Home </a>
+              <a class="header-links" href="About.html"> About </a>
+              <a class="header-links" href="Services.html"> Services </a>
+              <a class="header-links" href="Pricing.html"> Pricing </a>
+          </nav>
+      </div>
+  
+      <!-- Right Controls: Theme Toggle + Sign In / Profile + Hamburger Button -->
+      <div class="tw-flex tw-items-center tw-gap-3 tw-z-50">
+          <!-- Theme Toggle (Placed next to Sign in button) -->
+          <button 
+              type="button" 
+              onclick="toggleMode()" 
+              class="tw-flex tw-items-center tw-justify-center tw-p-1.5 tw-rounded-lg hover:tw-bg-gray-100 dark:hover:tw-bg-gray-800 tw-text-gray-600 dark:tw-text-gray-300 tw-transition-colors" 
+              title="toggle-theme" 
+              id="theme-toggle"
+          > 
+              <i class="bi bi-moon tw-text-lg" id="toggle-mode-icon"></i>
+          </button>
+  
+          <!-- Guest Sign In Button -->
+          <a 
+              href="login.html" 
+              id="guestHeaderBtn" 
+              class="btn tw-text-white tw-bg-blue-600 hover:tw-bg-blue-700 tw-font-medium tw-py-2 tw-px-4 tw-rounded-lg tw-transition-all tw-duration-150 tw-text-sm tw-shadow-md"
+          >
+              Sign in
+          </a>
+  
+          <!-- User Profile Dropdown -->
+          <div id="userHeaderProfile" class="tw-relative" style="display: none;">
+              <button 
+                  id="profileMenuBtn" 
+                  type="button"
+                  class="tw-flex tw-items-center tw-justify-center tw-w-[34px] tw-h-[34px] tw-rounded-full tw-bg-blue-600 tw-border-2 tw-border-blue-500 hover:tw-opacity-90 tw-transition-all focus:tw-outline-none"
+              >
+                  <span id="userAvatarHeader" class="tw-text-white tw-font-semibold tw-text-sm">
+                      U
+                  </span>
+              </button>
+  
+              <div 
+                  id="profileDropdown" 
+                  class="tw-hidden dark:tw-bg-[#17181b] tw-bg-white tw-shadow-lg dark:tw-shadow-gray-800 tw-absolute tw-right-0 tw-mt-3 tw-w-[190px] tw-border tw-border-gray-200 dark:tw-border-[#21262d] tw-rounded-md tw-py-1 tw-z-50"
+              >
+                  <div class="tw-flex tw-p-3 tw-flex-col">
+                      <div class="tw-flex tw-items-center tw-gap-2.5 tw-px-2 tw-py-1.5 tw-border-b tw-border-gray-200 dark:tw-border-[#21262d] tw-mb-1">
+                          <div class="tw-flex tw-flex-col tw-min-w-0">
+                              <span class="tw-text-[10px] tw-text-gray-400 tw-font-medium">Signed in as</span>
+                              <span id="userEmailText" class="tw-text-[12px] tw-text-gray-800 dark:tw-text-[#c9d1d9] tw-font-medium tw-truncate">
+                                  user@example.com
+                              </span>
+                          </div>
+                      </div>
+  
+                      <a href="#account" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-gray-700 dark:tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">Account settings</a>
+                      <a href="#support" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-gray-700 dark:tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">Support</a>
+                      <a href="#license" class="tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-[#c9d1d9] hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded">License</a>
+  
+                      <div class="tw-border-t tw-border-gray-200 dark:tw-border-[#21262d] tw-my-1"></div>
+  
+                      <button 
+                          id="logoutBtn" 
+                          type="button"
+                          class="tw-w-full tw-text-left tw-px-2 tw-py-1.5 tw-text-[13px] tw-text-red-500 hover:tw-bg-gray-100 dark:hover:tw-bg-[#161b22] tw-rounded"
+                      >
+                          Sign out
+                      </button>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Mobile Hamburger Button -->
+          <button
+              class="bi bi-list tw-text-2xl tw-text-gray-600 dark:tw-text-gray-300 lg:tw-hidden tw-z-50 tw-p-1"
+              onclick="toggleHeader()"
+              aria-label="menu"
+              id="collapse-btn"
+          ></button>
+      </div>
+  </header>
+<div id="smooth-content">
+    
+
+  <section id="home" class="relative h-screen pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+    <!-- Background Gradient Glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-orange-100/60 via-purple-100/30 to-transparent blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="max-w-5xl tw-mt-20 mx-auto px-6 text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-3 bg-white border border-slate-200/80 shadow-sm rounded-full px-4 py-1.5 text-sm font-medium mb-8 hover:shadow-md transition-all">
+        <div class="flex -space-x-1.5 overflow-hidden">
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="user">
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="user">
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="user">
+        </div>
+        <span class="text-slate-700 font-semibold">60K+</span>
+        <span class="text-slate-500">Happy users worldwide</span>
+        <span class="text-orange-500 font-semibold flex items-center gap-1">
+          <i class="fa-solid fa-star text-xs"></i> 4.9
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] max-w-3xl mx-auto">
+        Build, Launch & Scale <br class="hidden sm:inline" />
+        with AI agents.
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="mt-6 text-lg md:text-xl text-slate-500 max-w-2xl mx-auto font-normal leading-relaxed">
+        Design, automate, and deploy intelligent AI agents to power your products, workflows, and business growth.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="#pricing" class="px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all">
+          Get Started
+        </a>
+        <a href="#demo" class="px-7 py-3.5 rounded-full bg-white border border-slate-200 text-slate-700 font-semibold shadow-sm hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
+          Watch Demo
+        </a>
+      </div>
+    </div>
+    <!-- Scrolling Track -->
+    <div class="flex whitespace-nowrap tw-mt-20 text-[7vw] animate-ticker">
+      
+      <!-- First Copy of Text -->
+      <div class="flex whitespace-nowrap font-black tracking-tighter uppercase leading-none text-white opacity-90">
+        <span>INNOVATE</span>
+        <span class="text-slate-400 font-bold">+</span>
+        <span>IMPAC</span>
+        <span class="text-slate-400 font-bold">+</span>
+        <span>INSPIRE</span>
+        <span class="text-slate-400 font-bold">+</span>
+      </div>
+  
+      <!-- Second Identical Copy for Seamless Infinite Loop -->
+      <div class="flex whitespace-nowrap font-black tracking-tighter uppercase leading-none text-white opacity-90">
+        <span>INNOVATE</span>
+        <span class="text-slate-400 font-bold">+</span>
+        <span>IMPAC</span>
+        <span class="text-slate-400 font-bold">+</span>
+        <span>INSPIRE</span>
+        <span class="text-slate-400 font-bold">+</span>
+      </div>
+  
+    </div>
+  </section>
+
+  <section id="testimonial-section" class="relative overflow-hidden min-h-screen bg-[#0A0D14] text-white py-24 px-4 sm:px-6 lg:px-12 font-sans flex flex-col justify-center items-center">
+  
+    <!-- Background Grid -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+    
+    <!-- Interactive Cursor Follow Light (Only active within this section) -->
+    <div id="cursor-light" class="absolute w-[500px] h-[500px] bg-indigo-600/20 blur-[130px] rounded-full pointer-events-none opacity-0 transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 z-0"></div>
+  
+    <!-- Dynamic Spider-Web Canvas Lines -->
+    <svg id="web-svg" class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40"></svg>
+  
+    <!-- Header Section -->
+    <div class="relative z-10 text-center max-w-3xl mx-auto mb-20 space-y-3 pointer-events-none">
+      <span class="text-indigo-400 font-semibold text-sm tracking-wide">Testimonials</span>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+        We have worked with thousands of amazing people
+      </h2>
+    </div>
+  
+    <!-- Testimonials Grid Container with Increased Spacing (gap-8) -->
+    <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+  
+      <!-- COLUMN 1 -->
+      <div class="space-y-8">
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsum.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Leslie Alexander">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Leslie Alexander</h4>
+              <p class="text-xs text-slate-400">@lesliealexander</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Quia dolorem qui et. Atque quo aliquid sit eos officia. Dolores similique laboriosam quaerat cupiditate.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Michael Foster">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Michael Foster</h4>
+              <p class="text-xs text-slate-400">@michaelfoster</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Consequatur ut atque. Itaque nostrum molestiae id veniam eos cumque. Ut quia eum fugit laborum autem inventore ut voluptate.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Dries Vincent">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Dries Vincent</h4>
+              <p class="text-xs text-slate-400">@driesvincent</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- COLUMN 2 -->
+      <div class="space-y-8">
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-8 shadow-xl flex flex-col justify-between space-y-6">
+          <p class="text-white font-medium text-lg leading-relaxed">
+            “Integer id nunc sit semper purus. Bibendum at lacus ut arcu blandit montes vitae auctor libero. Hac condimentum dignissim nibh vulputate ut nunc. Amet nibh orci mi venenatis blandit vel et proin. Non hendrerit in vel ac diam.”
+          </p>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-800/60">
+            <div class="flex items-center space-x-3">
+              <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150" alt="Brenna Goyette">
+              <div>
+                <h4 class="text-sm font-semibold text-white">Brenna Goyette</h4>
+                <p class="text-xs text-slate-400">@brennagoyette</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5 text-white font-bold text-sm tracking-tight">
+              <span class="w-6 h-6 rounded-full bg-white text-[#0A0D14] flex items-center justify-center text-xs font-extrabold">S</span>
+              <span>SavvyCal</span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+            <p class="text-slate-300 text-xs leading-relaxed">
+              “Aut reprehenderit voluptatem eum asperiores beatae id. Iure molestiae ipsum ut officia rem nulla blanditiis.”
+            </p>
+            <div class="flex items-center space-x-3 pt-2">
+              <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Lindsay Walton">
+              <div>
+                <h4 class="text-xs font-semibold text-white">Lindsay Walton</h4>
+                <p class="text-[10px] text-slate-400">@lindsaywalton</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+            <p class="text-slate-300 text-xs leading-relaxed">
+              “Voluptas quos itaque ipsum in voluptatem est. Iste eos blanditiis repudiandae. Earum deserunt enim molestiae.”
+            </p>
+            <div class="flex items-center space-x-3 pt-2">
+              <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="Tom Cook">
+              <div>
+                <h4 class="text-xs font-semibold text-white">Tom Cook</h4>
+                <p class="text-[10px] text-slate-400">@tomcook</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+            <p class="text-slate-300 text-xs leading-relaxed">
+              “Nam nesciunt dolorem dolor asperiores cum. Incidunt molestiae quis deleniti vitae ut in earum delectus iusto.”
+            </p>
+            <div class="flex items-center space-x-3 pt-2">
+              <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" alt="Courtney Henry">
+              <div>
+                <h4 class="text-xs font-semibold text-white">Courtney Henry</h4>
+                <p class="text-[10px] text-slate-400">@courtneyhenry</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+            <p class="text-slate-300 text-xs leading-relaxed">
+              “Aliquid dolore praesentium ratione. Cumque ea officia repellendus laboriosam. Vitae quod id explicabo non sunt.”
+            </p>
+            <div class="flex items-center space-x-3 pt-2">
+              <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150" alt="Whitney Francis">
+              <div>
+                <h4 class="text-xs font-semibold text-white">Whitney Francis</h4>
+                <p class="text-[10px] text-slate-400">@whitneyfrancis</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- COLUMN 3 -->
+      <div class="space-y-8">
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Molestias ea earum quos nostrum doloremque sed. Quaerat quasi aut velit incidunt excepturi rerum voluptatem minus harum.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150" alt="Leonard Krasner">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Leonard Krasner</h4>
+              <p class="text-xs text-slate-400">@leonardkrasner</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Architecto libero natus est. Est quam debitis officia enim atque et ut non. Sunt reiciendis quasi eaque. Itaque error ut et.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150" alt="Floyd Miles">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Floyd Miles</h4>
+              <p class="text-xs text-slate-400">@floydmiles</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="floating-card bg-[#121824]/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-6 shadow-xl space-y-4">
+          <p class="text-slate-300 text-sm leading-relaxed">
+            “Temporibus ea molestiae impedit adipisci perspiciatis illo aliquid. Quis ut ratione et voluptatem et. Nostrum explicabo iste unde beatae.”
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" alt="Emily Selman">
+            <div>
+              <h4 class="text-sm font-semibold text-white">Emily Selman</h4>
+              <p class="text-xs text-slate-400">@emilyselman</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Example for a 16:9 background image -->
+  <section class="relative w-full min-h-screen flex flex-col justify-between bg-[url('assets/images/bg/5.jpg')] bg-cover bg-center bg-no-repeat overflow-hidden p-8 sm:p-12 lg:p-16 text-white font-sans">
+  
+    <!-- Ambient Backlight Glow -->
+    <div class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 blur-[140px] w-[50rem] h-[50rem] bg-amber-600 rounded-full" aria-hidden="true"></div>
+  
+    <!-- TOP BAR: Left Heading & Right Badge -->
+    <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start gap-6">
+      
+      <!-- Top-Left Main Heading -->
+      <div>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-none" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+          Sunny Rathod
+        </h1>
+        <p class="mt-2 text-lg sm:text-xl text-slate-300 font-bold">
+          Founder & CEO
+        </p>
+      </div>
+  
+      <!-- Top-Right Badge/Block -->
+      <div class="max-w-xs text-left sm:text-right">
+        <div class="inline-block bg-black px-2.5 py-1 text-xs font-bold uppercase tracking-wider mb-2">
+          w.
+        </div>
+        <p class="text-xs sm:text-sm font-medium tracking-wide uppercase text-slate-200 leading-snug">
+          Awwwards Jury, Shaping Digital Experiences for Global Brands.
+        </p>
+      </div>
+  
+    </div>
+  
+    <!-- BOTTOM BAR: Left Bio & Center Cookie Consent -->
+    <div class="relative z-10 flex flex-col lg:flex-row justify-between items-end gap-8 pt-20">
+      
+      <!-- Bottom-Left Social/Bio Block -->
+      <div class="max-w-xs">
+        <div class="inline-block bg-black px-2.5 py-1 text-xs font-bold uppercase tracking-wider mb-3">
+          in
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+          Award-winning designer & Founder of Trionn® with 27+ yrs of experience in UI/UX, web, and brand systems.
+        </p>
+      </div>
+  
+      <!-- Center Bottom Cookie Bar -->
+      <div class="w-full lg:w-auto lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-12 flex items-center justify-center">
+        <div class="flex items-center gap-4 border border-white/20 bg-black/40 backdrop-blur-md px-4 py-2 rounded-sm text-[10px] sm:text-xs tracking-wider uppercase">
+          <span class="text-slate-300">We use cookies to enhance your experience.</span>
+          <button class="text-slate-400 hover:text-white transition-colors">Decline</button>
+          <button class="text-white font-bold hover:underline">Accept</button>
+        </div>
+      </div>
+  
+      <!-- Right Spacer to keep layout balanced on wide screens -->
+      <div class="hidden lg:block w-32"></div>
+  
+    </div>
+  
+  </section>
+
+  <div id="pin-container" class="relative w-full h-screen overflow-hidden bg-[#f8f8f8]">
+
+    <!-- HERO / AWARD SECTION -->
+    <section id="award-section" class="relative w-full h-screen text-black flex flex-col justify-between p-8 sm:p-12 lg:p-16 select-none">
+      
+      <!-- TOP BAR -->
+      <div id="top-bar" class="relative z-30 flex justify-between items-start w-full pointer-events-auto">
+        <div class="max-w-[200px]">
+          <p class="text-[11px] sm:text-xs font-bold uppercase tracking-wider leading-tight text-black">
+            Results matter most.<br>
+            Awards add recognition<br>
+            and value.
+          </p>
+        </div>
+  
+        <a href="#" class="group text-[11px] sm:text-xs font-bold uppercase tracking-widest text-black flex items-center gap-2 border-b border-black pb-1 hover:opacity-70 transition-opacity">
+          Win an Award?
+          <span class="transition-transform group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+  
+      <!-- CENTER LAYOUT: Moving Text + Expandable Video Oval -->
+      <div class="relative w-full my-auto flex items-center justify-center py-12">
+        
+        <!-- Horizontal Moving Text Layer -->
+        <div id="marquee-text" class="whitespace-nowrap z-20 pointer-events-none flex items-center gap-8 text-[14vw] font-black uppercase tracking-tighter leading-none text-white mix-blend-difference">
+          <span>CREATION</span>
+          <span class="font-light">+</span>
+          <span>AWARDS</span>
+          <span class="font-light">+</span>
+          <span>RECOGNITION</span>
+          <span class="font-light">+</span>
+          <span>EXCELLENCE</span>
+        </div>
+  
+        <!-- Video Oval Frame (Transforms to Full Screen) -->
+        <div id="video-wrapper" class="absolute z-10 w-[260px] h-[360px] sm:w-[340px] sm:h-[460px] lg:w-[400px] lg:h-[540px] rounded-[50%] overflow-hidden shadow-2xl bg-black">
+          <video 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="w-full h-full object-cover object-center scale-105"
+          >
+            <source src="assets/video/Galaxy.mp4" type="video/mp4" />
+          </video>
+        </div>  
+      </div>
+  
+    </section>
+
+    <!-- NEXT SECTION (Updated: absolute positioning, removed translate-x-full) -->
+    <section 
+      id="next-section" 
+      class="absolute inset-0 min-h-screen z-50 text-white bg-[#0b0f19] flex items-center justify-center p-6 md:p-12 overflow-hidden pointer-events-none -mb-1 pb-2"
+    >
+      <!-- Outer Glows -->
+      <div class="absolute inset-0 bg-gradient-to-b from-purple-950/20 via-transparent to-transparent pointer-events-none animate-pulse"></div>
+      <div class="absolute -bottom-10 inset-x-0 mx-auto w-full h-72 bg-purple-600/10 blur-3xl rounded-full pointer-events-none animate-pulse"></div>
+
+      <!-- Content Card -->
+      <div class="relative w-full max-w-4xl bg-[#161f2e] border border-slate-800 rounded-2xl p-8 md:p-20 text-center overflow-hidden shadow-2xl z-10">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-48 bg-purple-900/20 blur-[60px] pointer-events-none rounded-full"></div>
+
+        <div class="relative z-10 flex flex-col items-center">
+          <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
+            Get notified when we’re launching
+          </h2>
+
+          <p class="text-slate-400 max-w-lg text-sm md:text-base leading-relaxed mb-8">
+            Reprehenderit ad esse et non officia in nulla. Id proident tempor incididunt nostrud nulla et culpa.
+          </p>
+
+          <form class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md" onsubmit="event.preventDefault();">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              required
+              class="w-full px-4 py-2.5 rounded-lg bg-[#212b3c]/60 border border-slate-700/80 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+            />
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto shrink-0 px-5 py-2.5 rounded-lg bg-white text-slate-900 font-semibold text-sm hover:bg-slate-100 transition-colors cursor-pointer"
+            >
+              Notify me
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+</div>
+
+   <!-- FOOTER -->
+   <footer class="bg-[#131314] text-white min-h-screen px-8 md:px-16 pt-16 pb-8 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Top Section: Links & Info -->
+      <div class="grid grid-cols-1 lg:grid-cols-6 gap-8 md:gap-12 pb-12">
+        
+        <div class="lg:col-span-3 text-base space-y-5">
+          <a href="https://prebuiltui.com" class="block">
+            <svg width="157" height="40" viewBox="0 0 157 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="m8.75 11.3 6.75 3.884 6.75-3.885M8.75 34.58v-7.755L2 22.939m27 0-6.75 3.885v7.754M2.405 15.408 15.5 22.954l13.095-7.546M15.5 38V22.939M29 28.915V16.962a2.98 2.98 0 0 0-1.5-2.585L17 8.4a3.01 3.01 0 0 0-3 0L3.5 14.377A3 3 0 0 0 2 16.962v11.953A2.98 2.98 0 0 0 3.5 31.5L14 37.477a3.01 3.01 0 0 0 3 0L27.5 31.5a3 3 0 0 0 1.5-2.585" class="stroke-white transition-colors duration-300" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <p class="text-sm/6 max-w-md text-neutral-300">
+            PrebuiltUI helps you build faster by transforming your design vision into fully functional UI components.
+          </p>
+  
+          <div class="flex gap-5">
+            <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+            </a>
+            <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a href="#" class="text-white hover:text-emerald-400 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+  
+        <div class="lg:col-span-3 grid grid-cols-2 text-base md:grid-cols-3 gap-8 md:gap-12 items-start">
+          <div>
+            <h3 class="font-medium text-sm mb-4 text-white">Products</h3>
+            <ul class="space-y-3 text-sm text-neutral-400">
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Components</a></li>
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Templates</a></li>
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Icons</a></li>
+            </ul>
+          </div>
+  
+          <div>
+            <h3 class="font-medium text-sm mb-4 text-white">Resources</h3>
+            <ul class="space-y-3 text-sm text-neutral-400">
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Documentation</a></li>
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Changelog</a></li>
+              <li><a href="#" class="hover:text-emerald-400 transition-colors">Support</a></li>
+            </ul>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="w-full border-t border-neutral-800/80 my-8"></div>
+  
+      <!-- Big Brand Text -->
+      <div class="relative w-full overflow-hidden leading-none pt-4">
+        <h1 class="text-center font-extrabold text-transparent text-[16vw] leading-none select-none tracking-tighter whitespace-nowrap block w-full" style="-webkit-text-stroke: 2px #10B981;">
+          PrebuiltUI
+        </h1>
+      </div>
+  
+    </div>
+  </footer>
+</div>
+</div>
+</body>
+    
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<!-- ScrollSmoother requires ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/EaselPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/GSDevTools.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/InertiaPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathHelper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/MorphSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Physics2DPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PhysicsPropsPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/PixiPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/TextPlugin.min.js"></script>
+
+<script src="index.js"></script>
+<script src="scripts/components.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>// ==========================================
+  // 1. SAFE GSAP PLUGIN REGISTRATION
+  // ==========================================
+  const registeredPlugins = [
+    typeof GSDevTools !== "undefined" && GSDevTools,
+    typeof MorphSVGPlugin !== "undefined" && MorphSVGPlugin,
+    typeof ScrollTrigger !== "undefined" && ScrollTrigger,
+    typeof Flip !== "undefined" && Flip,
+    typeof ScrollSmoother !== "undefined" && ScrollSmoother,
+    typeof SplitText !== "undefined" && SplitText,
+  ].filter(Boolean);
+  
+  if (registeredPlugins.length) {
+    gsap.registerPlugin(...registeredPlugins);
+  }
+  
+  // Config ScrollTrigger
+  if (typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.config({ 
+      ignoreMobileResize: true,
+      autoRefreshEvents: "DOMContentLoaded,load,visibilitychange" 
+    });
+    ScrollTrigger.refreshDebounceDelay = 200;
+  }
+  
+  // Setup ScrollSmoother safely
+  let smoother = null;
+  if (typeof ScrollSmoother !== "undefined" && document.getElementById('smooth-wrapper')) {
+    smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1, 
+      effects: true,
+      smoothTouch: 0.1,
+    });
+  }
+  
+  // ==========================================
+  // 2. THREE.JS 3D BACKGROUND
+  // ==========================================
+  const heroSection = document.getElementById('hero-section');
+  const heroCanvas = document.getElementById('hero-3d-bg');
+  
+  if (heroSection && heroCanvas && typeof THREE !== "undefined") {
+    const clock = new THREE.Clock(); 
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, heroSection.clientWidth / heroSection.clientHeight, 0.1, 1000);
+    camera.position.z = 5;
+  
+    const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+    renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
+    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+    dirLight.position.set(5, 5, 5);
+    scene.add(dirLight);
+  
+    let model, mixer;
+    if (typeof THREE.GLTFLoader !== "undefined") {
+      new THREE.GLTFLoader().load(
+        'assets/model/cloud_station.glb', 
+        (gltf) => {
+          model = gltf.scene;
+          model.scale.set(1.5, 1.5, 1.5);
+          scene.add(model);
+          if (gltf.animations?.length) {
+            mixer = new THREE.AnimationMixer(model);
+            gltf.animations.forEach((clip) => mixer.clipAction(clip).play());
+          }
+        },
+        undefined,
+        (err) => console.error('3D model load error:', err)
+      );
+    }
+  
+    let mouseX = 0, mouseY = 0;
+    const handlePointer = (x, y) => {
+      mouseX = (x / window.innerWidth - 0.5) * 2;
+      mouseY = (y / window.innerHeight - 0.5) * 2;
+    };
+  
+    window.addEventListener('mousemove', (e) => handlePointer(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length) handlePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+  
+    window.addEventListener('resize', () => {
+      if (!heroSection) return;
+      camera.aspect = heroSection.clientWidth / heroSection.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+    });
+  
+    function animateThree() {
+      requestAnimationFrame(animateThree);
+      const delta = clock.getDelta();
+      if (mixer) mixer.update(delta);
+      if (model) {
+        model.rotation.y += 0.002 + (mouseX * 0.5 - model.rotation.y) * 0.05;
+        model.rotation.x += (mouseY * 0.5 - model.rotation.x) * 0.05;
+      }
+      renderer.render(scene, camera);
+    }
+    animateThree();
+  }
+  
+  // ==========================================
+  // 3. MAIN APPLICATION INITIALIZATION
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', () => {
+  
+    // --- A. SUPABASE AUTH & HEADER UI ---
+    const SUPABASE_URL = "https://hpvuengqcynrcdwjrwcu.supabase.co"; 
+    const SUPABASE_ANON_KEY = "sb_publishable_qUkt1zYC_F1zb9LeNo9yWA_3VXgplcV";
+    const supabaseClient = (typeof supabase !== "undefined" && window.supabase) 
+      ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) 
+      : null;
+  
+    const guestBtn = document.getElementById('guestHeaderBtn');
+    const userProfile = document.getElementById('userHeaderProfile');
+    const profileMenuBtn = document.getElementById('profileMenuBtn');
+    const profileDropdown = document.getElementById('profileDropdown');
+    const logoutBtn = document.getElementById('logoutBtn');
+  
+    function showLoggedInState(session) {
+      if (session?.user) {
+        const letter = session.user.email.charAt(0).toUpperCase();
+        const emailElem = document.getElementById('userEmailText');
+        const avatarHeader = document.getElementById('userAvatarHeader');
+        const avatarDropdown = document.getElementById('userAvatarDropdown');
+  
+        if (emailElem) emailElem.textContent = session.user.email;
+        if (avatarHeader) avatarHeader.textContent = letter;
+        if (avatarDropdown) avatarDropdown.textContent = letter;
+  
+        if (guestBtn) guestBtn.style.display = 'none';
+        if (userProfile) userProfile.style.display = 'block';
+      } else {
+        if (guestBtn) guestBtn.style.display = 'inline-block';
+        if (userProfile) userProfile.style.display = 'none';
+        if (profileDropdown) profileDropdown.classList.add('tw-hidden');
+      }
+    }
+  
+    if (supabaseClient) {
+      supabaseClient.auth.onAuthStateChange((_, session) => showLoggedInState(session));
+    }
+  
+    if (profileMenuBtn && profileDropdown) {
+      profileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('tw-hidden');
+      });
+      window.addEventListener('click', () => profileDropdown.classList.add('tw-hidden'));
+    }
+  
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        showLoggedInState(null);
+        try {
+          if (supabaseClient) await supabaseClient.auth.signOut();
+          localStorage.clear();
+          sessionStorage.clear();
+        } catch (err) { console.error("Signout error:", err); }
+      });
+    }
+  
+    // --- B. RENDER TESTIMONIAL CARDS ---
+    const testimonials = [
+      { id: 1, description: "PrebuiltUI helped us reduce build time drastically. The components feel production ready and consistent across the product.", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200", name: "Alex Turner", company: "Vercel" },
+      { id: 2, description: "We shipped our MVP weeks earlier than planned. PrebuiltUI removed a huge amount of repetitive UI work. ", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200", name: "Harry Peter", company: "Amazon" },
+      { id: 3, description: "PrebuiltUI strikes the right balance between flexibility and consistency. It feels like a system built by real product teams.", image: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60", name: "Jason Kim", company: "Flipkart" },
+      { id: 4, description: "The component structure and tokens system make scaling design incredibly easy. Highly recommended.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop", name: "Sofia Martinez", company: "Linear" },
+      { id: 5, description: "PrebuiltUI allows me to focus on building features instead of fighting CSS. Everything looks premium right out of the box.", image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60", name: "Alex Johnson", company: "Microsoft" },
+      { id: 6, description: "If you're using Tailwind CSS, PrebuiltUI is a must have. It dramatically speeds up development while keeping the UI clean.", image: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200", name: "Emily Karter", company: "Stripe" },
+      { id: 7, description: "PrebuiltUI strikes the right balance between flexibility and consistency. It feels like a system built by real product teams.", image: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png", name: "Christofer Levin", company: "Deloitte" },
+      { id: 8, description: "PrebuiltUI helped us reduce build time drastically. The components feel production ready and consistent across the product.", image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200", name: "Alex Turner", company: "Vercel" },
+      { id: 9, description: "We shipped our MVP weeks earlier than planned. PrebuiltUI removed a huge amount of repetitive UI work. ", image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200", name: "Harry Peter", company: "Amazon" }
+    ];
+  
+    const columns = [
+      { start: 0, end: 3, className: "animate-scroll-up-1" },
+      { start: 3, end: 6, className: "hidden md:block animate-scroll-up-2" },
+      { start: 6, end: 9, className: "hidden lg:block animate-scroll-up-3" }
+    ];
+  
+    function renderCard(testimonial, index, colIndex) {
+      return `
+        <div key="col${colIndex}-${testimonial.id}-${index}" class="bg-linear-to-b from-[#020204] to-[#191130] border border-slate-800 rounded-xl p-6 mb-4 hover:border-slate-700 transition-all duration-300">
+          <div class="mb-5">
+            <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13.056c.464 0 .91-.131 1.237-.364.329-.234.513-.55.513-.88v-3.73c0-.33-.184-.647-.513-.88C7.91 6.97 7.464 6.838 7 6.838c-.232 0-.455-.066-.619-.182-.164-.117-.256-.275-.256-.44v-.622c0-.33.184-.646.513-.879.328-.233.773-.364 1.237-.364.232 0 .455-.066.619-.182.164-.117.256-.275.256-.44V2.485c0-.165-.092-.323-.256-.44a1.1 1.1 0 0 0-.619-.181c-1.392 0-2.728.393-3.712 1.092-.985.7-1.538 1.649-1.538 2.638v6.218c0 .33.184.646.513.88.328.233.773.364 1.237.364zm9.83 0c.465 0 .91-.131 1.238-.364.328-.234.513-.55.513-.88v-3.73c0-.33-.184-.647-.513-.88-.328-.233-.773-.364-1.237-.364-.232 0-.455-.066-.619-.182-.164-.117-.256-.275-.256-.44v-.622c0-.33.184-.646.512-.879.329-.233.774-.364 1.238-.364.232 0 .454-.066.619-.182.164-.117.256-.275.256-.44V2.485c0-.165-.092-.323-.256-.44a1.1 1.1 0 0 0-.62-.181c-1.391 0-2.727.393-3.711 1.092-.985.7-1.538 1.649-1.538 2.638v6.218c0 .33.184.646.512.88.329.233.774.364 1.238.364z"/>
+              </g>
+            </svg>
+          </div>
+          <p class="text-sm text-slate-400 mb-5 leading-relaxed">${testimonial.description}</p>
+          <div class="flex items-center gap-3">
+            <img src="${testimonial.image}" alt="${testimonial.name}" class="size-9 rounded-full border border-slate-800" />
+            <div>
+              <p class="text-sm text-slate-300">${testimonial.name}</p>
+              <p class="text-sm text-slate-500">${testimonial.company}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  
+    const columnsContainer = document.getElementById('columns-container');
+    if (columnsContainer) {
+      columns.forEach((col, colIndex) => {
+        const columnDiv = document.createElement('div');
+        columnDiv.className = col.className;
+  
+        const columnTestimonials = [...testimonials.slice(col.start, col.end), ...testimonials.slice(col.start, col.end)];
+        columnDiv.innerHTML = columnTestimonials.map((testimonial, index) =>
+          renderCard(testimonial, index, colIndex)
+        ).join('');
+  
+        columnsContainer.appendChild(columnDiv);
+      });
+    }
+  
+    // --- C. MAIN GSAP MATCHMEDIA & SCROLLTRIGGERS ---
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+  
+      let mm = gsap.matchMedia();
+  
+      mm.add({
+        isDesktop: "(min-width: 1024px)",
+        isMobile: "(max-width: 1023px)"
+      }, (context) => {
+        let { isDesktop } = context.conditions;
+  
+        const pinContainer = document.querySelector("#pin-container");
+        if (!pinContainer) return;
+  
+        gsap.set("#next-section", { xPercent: 100 });
+  
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#pin-container",
+            start: "top top",
+            end: isDesktop ? "+=6000" : "+=4000", 
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+  
+        tl.to("#marquee-text", { 
+          xPercent: isDesktop ? -50 : -80, 
+          duration: 3, 
+          ease: "power1.inOut" 
+        })
+        .to("#video-wrapper", {
+          width: "100vw",
+          height: "108vh",
+          borderRadius: "0px",
+          duration: 3,
+          ease: "power2.inOut"
+        }, "+=0.2")
+        .to(["#top-bar", "#marquee-text"], {
+          opacity: 0,
+          duration: 1.5,
+          ease: "power1.out"
+        }, "<")
+        .to("#next-section", {
+          xPercent: 0,
+          duration: 3,
+          ease: "power2.inOut",
+          onStart: () => {
+            document.querySelector("#next-section")?.classList.remove("pointer-events-none");
+          },
+          onReverseComplete: () => {
+            document.querySelector("#next-section")?.classList.add("pointer-events-none");
+          }
+        }, "+=0.3")
+        .to({}, { duration: 4 }); 
+  
+        return () => {};
+      });
+    }
+  
+    // --- D. TEXT REVEALS & OBSERVERS ---
+    document.fonts.ready.then(() => {
+      if (document.querySelector(".animate-me") && typeof SplitText !== "undefined") {
+        gsap.set(".animate-text", { opacity: 1 });
+        let split = SplitText.create(".animate-me", { type: "words", aria: "hidden" });
+        gsap.from(split.words, { opacity: 0, duration: 2, ease: "sine.out", stagger: 0.08 });
+      }
+    });
+  
+    const techSection = document.querySelector("#tech-stack-section");
+    const subtext = document.querySelector(".subtext-reveal");
+  
+    if (techSection && subtext) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            subtext.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(techSection);
+    }
+  
+    // --- E. FLOATING TESTIMONIAL CARDS & SPIDER WEB INTERACTION ---
+    const testimonialSection = document.getElementById("testimonial-section");
+    const cards = document.querySelectorAll(".floating-card");
+    const svg = document.getElementById("web-svg");
+    const cursorLight = document.getElementById("cursor-light");
+  
+    if (testimonialSection && cards.length) {
+      const cardData = Array.from(cards).map(() => ({ pushX: 0, pushY: 0 }));
+  
+      cards.forEach((card) => {
+        const randomY = 12 + Math.random() * 10;
+        const randomX = 6 + Math.random() * 8;
+        const randomDuration = 3 + Math.random() * 2;
+        const randomDelay = Math.random() * 2;
+  
+        gsap.to(card, {
+          keyframes: [
+            { x: randomX, y: -randomY, duration: randomDuration / 2, ease: "sine.inOut" },
+            { x: -randomX, y: randomY, duration: randomDuration / 2, ease: "sine.inOut" }
+          ],
+          repeat: -1,
+          yoyo: true,
+          delay: randomDelay
+        });
+      });
+  
+      const radius = 220;
+      const force = 40;
+  
+      testimonialSection.addEventListener("mouseenter", () => {
+        if (cursorLight) {
+          cursorLight.classList.remove("opacity-0");
+          cursorLight.classList.add("opacity-100");
+        }
+      });
+  
+      testimonialSection.addEventListener("mousemove", (e) => {
+        const secRect = testimonialSection.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+  
+        if (cursorLight) {
+          const relativeX = mouseX - secRect.left;
+          const relativeY = mouseY - secRect.top;
+  
+          gsap.to(cursorLight, {
+            left: relativeX,
+            top: relativeY,
+            duration: 0.2,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        }
+  
+        cards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenterX = rect.left + rect.width / 2;
+          const cardCenterY = rect.top + rect.height / 2;
+  
+          const deltaX = cardCenterX - mouseX;
+          const deltaY = cardCenterY - mouseY;
+          const distance = Math.hypot(deltaX, deltaY);
+  
+          if (distance < radius) {
+            const angle = Math.atan2(deltaY, deltaX);
+            const pushAmount = (1 - distance / radius) * force;
+  
+            cardData[i].pushX = Math.cos(angle) * pushAmount;
+            cardData[i].pushY = Math.sin(angle) * pushAmount;
+          } else {
+            cardData[i].pushX = 0;
+            cardData[i].pushY = 0;
+          }
+  
+          gsap.to(card, {
+            x: cardData[i].pushX,
+            y: cardData[i].pushY,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        });
+      });
+  
+      testimonialSection.addEventListener("mouseleave", () => {
+        if (cursorLight) {
+          cursorLight.classList.remove("opacity-100");
+          cursorLight.classList.add("opacity-0");
+        }
+  
+        cards.forEach((card) => {
+          gsap.to(card, {
+            x: 0,
+            y: 0,
+            duration: 1,
+            ease: "elastic.out(1, 0.4)",
+            overwrite: "auto"
+          });
+        });
+      });
+  
+      if (svg) {
+        const lines = [];
+        const ringPaths = [];
+        
+        function setupWebNodes() {
+          svg.innerHTML = `
+            <defs>
+              <radialGradient id="webGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#818cf8" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#6366f1" stop-opacity="0.1"/>
+              </radialGradient>
+            </defs>
+            <circle id="center-dot" r="6" fill="#818cf8" class="animate-pulse" />
+            <circle id="center-glow" r="16" fill="url(#webGlow)" />
+            <g id="line-group"></g>
+            <g id="ring-group"></g>
+          `;
+  
+          const lineGroup = svg.querySelector("#line-group");
+          const ringGroup = svg.querySelector("#ring-group");
+  
+          cards.forEach(() => {
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("stroke", "#818cf8");
+            line.setAttribute("stroke-width", "1.2");
+            line.setAttribute("stroke-opacity", "0.35");
+            line.setAttribute("stroke-dasharray", "4 2");
+            lineGroup.appendChild(line);
+            lines.push(line);
+          });
+  
+          for (let ring = 1; ring <= 3; ring++) {
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("stroke", "#a5b4fc");
+            path.setAttribute("stroke-width", "0.8");
+            path.setAttribute("stroke-opacity", (0.25 - ring * 0.05).toString());
+            path.setAttribute("fill", "none");
+            ringGroup.appendChild(path);
+            ringPaths.push(path);
+          }
+        }
+  
+        setupWebNodes();
+  
+        const centerDot = svg.querySelector("#center-dot");
+        const centerGlow = svg.querySelector("#center-glow");
+  
+        function updateWeb() {
+          const secRect = testimonialSection.getBoundingClientRect();
+          const centerX = secRect.width / 2;
+          const centerY = secRect.height / 2;
+  
+          centerDot.setAttribute("cx", centerX);
+          centerDot.setAttribute("cy", centerY);
+          centerGlow.setAttribute("cx", centerX);
+          centerGlow.setAttribute("cy", centerY);
+  
+          const cardPoints = [];
+  
+          cards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const cardX = rect.left + rect.width / 2 - secRect.left;
+            const cardY = rect.top + rect.height / 2 - secRect.top;
+  
+            cardPoints.push({ x: cardX, y: cardY });
+  
+            if (lines[index]) {
+              lines[index].setAttribute("x1", centerX);
+              lines[index].setAttribute("y1", centerY);
+              lines[index].setAttribute("x2", cardX);
+              lines[index].setAttribute("y2", cardY);
+            }
+          });
+  
+          ringPaths.forEach((path, ringIndex) => {
+            const factor = (ringIndex + 1) / 3.5;
+            let ringPath = "";
+  
+            cardPoints.forEach((pt, index) => {
+              const rx = centerX + (pt.x - centerX) * factor;
+              const ry = centerY + (pt.y - centerY) * factor;
+              ringPath += (index === 0 ? `M ${rx} ${ry} ` : `L ${rx} ${ry} `);
+            });
+  
+            ringPath += "Z";
+            path.setAttribute("d", ringPath);
+          });
+  
+          requestAnimationFrame(updateWeb);
+        }
+  
+        requestAnimationFrame(updateWeb);
+      }
+    }
+  
+    // --- F. LAYOUT REFRESH ---
+    setTimeout(() => {
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+    }, 300);
+  });
+  
+  // Final fallback layout refresh on window load
+  window.addEventListener("load", () => {
+    if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+  });
+  </script>
+
+</html>
