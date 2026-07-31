@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Zenith</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/npbg.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome & Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Bootstrap & Custom -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- JsBarcode -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+
+ <!-- Pavior Embed -->
+    <script src="https://app.pavior.com/embed">
+    </script>
+    <script>
+        window.Pavior ||= function() { console.error('Pavior failed to load'); };
+        Pavior('init', {
+            'teamVanityId': 'zenith-2',
+            'doChat': true,
+            'doTimeTravel': false,
+            'quadClickForFeedback': false,
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+    <!-- ============================================================
+    SPINNER
+    ============================================================ -->
+    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-drop">
+            <span class="drop-icon">💧</span>
+            <span class="drop-text">Every Drop Counts</span>
+            <span class="drop-sub">Loading...</span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <a href="#heroVideo" class="navbar-brand">
+            <span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:1.5rem;color:#fff;">
+                <img class="om" src="img/npbg.png" width="35" height="30"  alt="Logo Light" style="margin-bottom: 5px;"/>ENITH<span style="color:var(--primary);">💧</span>
+            </span>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto p-4 p-lg-0">
+                <a href="#heroVideo" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">Impacts</a>
+                <a href="#tips" class="nav-item nav-link">Tips</a>
+                <a href="#calculator" class="nav-item nav-link">Calculator</a>
+                <a href="#challenge" class="nav-item nav-link">Challenge</a>
+                <a href="#quiz" class="nav-item nav-link">Quiz</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
+            </div>
+
+            <!-- Search -->
+            <div class="webcup-search-wrapper d-flex align-items-center mx-2 my-2 my-lg-0">
+                <div class="webcup-search-container">
+                    <i class="fas fa-search webcup-search-icon"></i>
+                    <input type="text" class="webcup-search-input" id="webcupSearchInput" placeholder="Search..." aria-label="Search" autocomplete="off">
+                    <button class="webcup-search-btn" id="webcupSearchBtn"><i class="fas fa-search"></i></button>
+                    <div class="webcup-search-results" id="webcupSearchResults">
+                        <span class="webcup-search-count" id="webcupSearchCount">0</span>
+                        <button class="webcup-search-nav-btn" id="webcupSearchPrev"><i class="fas fa-chevron-up"></i></button>
+                        <button class="webcup-search-nav-btn" id="webcupSearchNext"><i class="fas fa-chevron-down"></i></button>
+                        <button class="webcup-search-clear-btn" id="webcupSearchClear"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="lang-selector" id="langSelector">
+                <button class="lang-toggle" id="langToggle" aria-label="Select language" aria-expanded="false">
+                    <i class="fas fa-globe globe-icon"></i>
+                    <span class="current-lang-label" id="currentLangLabel">EN</span>
+                    <i class="fas fa-chevron-down chevron-icon"></i>
+                </button>
+                <div class="lang-dropdown" id="langDropdown" role="listbox">
+                    <button class="lang-option active" data-lang="en" role="option" aria-selected="true">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span class="lang-name">English</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="fr" role="option" aria-selected="false">
+                        <span class="lang-flag">🇫🇷</span>
+                        <span class="lang-name">Français</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="es" role="option" aria-selected="false">
+                        <span class="lang-flag">🇪🇸</span>
+                        <span class="lang-name">Español</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="de" role="option" aria-selected="false">
+                        <span class="lang-flag">🇩🇪</span>
+                        <span class="lang-name">Deutsch</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="lang-option" data-lang="zh-CN" role="option" aria-selected="false">
+                        <span class="lang-flag">🇨🇳</span>
+                        <span class="lang-name">普通话</span>
+                        <span class="lang-check"><i class="fas fa-check"></i></span>
+                    </button>
+                </div>
+            </div>
+            <!-- Dark Mode -->
+            <div class="d-flex align-items-center my-2 my-lg-0">
+                <button id="darkModeToggle" class="btn btn-nav-icon rounded-circle me-3" aria-label="Dark mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+
+            <div class="d-none d-lg-flex align-items-center">
+                <a href="#challenge" class="btn btn-primary rounded-pill" style="padding:0.6rem 1.8rem;font-size:0.85rem;">
+                    <i class="fas fa-tint me-1"></i> Take the Challenge
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="video-hero" id="heroVideo" role="banner">
+        <video class="hero-video" id="heroBgVideo" autoplay muted loop playsinline preload="metadata" poster="img/carousel-1.jpg">
+            <source src="video/videobg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🌍 #EveryDropCounts</div>
+            <h1 class="hero-title">
+               Every Drop Counts,<br><span class="highlight">Save Ile Bleue</span>
+            </h1>
+            <p class="hero-sub">
+                Rodrigues, the Blue Island, faces freshwater challenges.<br>
+                Together, every drop counts.
+            </p>
+            <div class="hero-actions">
+               
+                <a href="#challenge" class="btn-hero-secondary">7-Day Challenge <i class="fas fa-calendar-check ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    STATS BAR
+    ============================================================ -->
+    <div class="stats-bar wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-number" data-counter="3">3</div>
+                    <div class="stat-label">% Freshwater</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-number" data-counter="71">71</div>
+                    <div class="stat-label">% of Earth</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-number" data-counter="90">90</div>
+                    <div class="stat-label">% Used in Agriculture</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item">
+                    <div class="stat-number" data-counter="50">50</div>
+                    <div class="stat-label">L per Shower</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- ============================================================
+    ABOUT SECTION
+    ============================================================ -->
+    <div id="about" class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4 class="text-primary text-uppercase" style="letter-spacing:5px;">Impacts</h4>
+                <h1 class="display-4">The Blue Island is running dry</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 py-0 py-lg-5 wow fadeInLeft" data-wow-delay="0.2s">
+                    <h1 class="mb-3">Impacts of lack of water.</h1>
+                    <h5 class="mb-3">
+                        <i class="fas fa-quote-left text-primary mr-2"></i>
+                        Unproper water management can lead to :
+                    </h5>
+                    <p>
+                        Water wastage disrupts natural water cycles and depletes freshwater resources such as rivers, lakes, and aquifers, leading to water scarcity and ecosystem degradation ,
+. Excessive withdrawal reduces water flow, harming aquatic life and altering habitats, which can result in reduced biodiversity and the loss of species dependent on these ecosystems
+                    </p>
+                </div>
+                <div class="col-lg-4 py-5 py-lg-0 about-img-wrap wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="position-relative h-100 w-100">
+                        <img class="position-absolute w-100 h-100 floating-img-about" src="img/zenzen.png" alt="About Bake & Co" style="object-fit:cover;" onerror="this.onerror=null; this.classList.add('img-placeholder'); this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23e9ecef%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2220%22%3Eabout%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                </div>
+                <div class="col-lg-4 py-0 py-lg-5 wow fadeInRight" data-wow-delay="0.6s">
+                    <h1 class="mb-3">Zeno`s Super power</h1>
+                    <p>
+                        My role is to help the Blue Island to cope with this lack of water issue by engaging myself in this compulsory campaign for proper water management.
+                    </p>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        Revives dry plants and restores damaged ecosystems using few drops of water.
+                    </h5>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        Create a sheild of recycled water to protect nature and communities.
+                    </h5>
+                    <h5 class="mb-3">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
+                        Cleans polluted water,making it safe for consumption and for animals and plants.
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- ============================================================
+    TIPS – Flip Cards
+    ============================================================ -->
+    <div id="tips" class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4>Good Practices</h4>
+                <h1 class="display-4">Save water every day</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="flip-card-container" onclick="this.querySelector('.flip-card').classList.toggle('flipped')">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <span class="front-icon">🚿</span>
+                                <span class="front-label">Shower</span>
+                            </div>
+                            <div class="flip-card-back">
+                                <span class="back-icon">⏱️</span>
+                                <span class="back-text">5-minute shower<br>Saves up to 50 L</span>
+                                <span class="back-sub">Turn off water while soaping</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="flip-card-container" onclick="this.querySelector('.flip-card').classList.toggle('flipped')">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <span class="front-icon">🪥</span>
+                                <span class="front-label">Brushing</span>
+                            </div>
+                            <div class="flip-card-back">
+                                <span class="back-icon">🚫</span>
+                                <span class="back-text">Turn off the tap<br>while brushing</span>
+                                <span class="back-sub">Saves 12 L per day</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="flip-card-container" onclick="this.querySelector('.flip-card').classList.toggle('flipped')">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <span class="front-icon">🌧️</span>
+                                <span class="front-label">Rainwater</span>
+                            </div>
+                            <div class="flip-card-back">
+                                <span class="back-icon">🪣</span>
+                                <span class="back-text">Collect rainwater<br>for your garden</span>
+                                <span class="back-sub">Free and eco-friendly</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="flip-card-container" onclick="this.querySelector('.flip-card').classList.toggle('flipped')">
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <span class="front-icon">🔧</span>
+                                <span class="front-label">Leaks</span>
+                            </div>
+                            <div class="flip-card-back">
+                                <span class="back-icon">✅</span>
+                                <span class="back-text">Fix a leak<br>saves thousands of litres</span>
+                                <span class="back-sub">One drop/sec = 10,000 L/year</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- ============================================================
+    ABOUT ORIGINAL
+    ============================================================ -->
+    <div id="about-original" class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="img/deeper2.jpeg" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img class="img-fluid rounded" src="img/deeper.jpeg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <p class="text-primary text-uppercase mb-2"></p>
+                        <h1 class="display-6 mb-4">Let us go deeper into the issue.</h1>
+                        <p>Many small island communities face serious water challenges due to their limited freshwater resources. On some islands, such as those in the Pacific and Caribbean, rainfall is the main source of drinking water, but changing weather patterns and prolonged droughts caused by climate change have made supplies unreliable. Over-extraction of groundwater often leads to saltwater intrusion, making the water unsafe for consumption. Pollution from poor waste management and agricultural runoff further reduces the quality of available water. With growing populations and tourism increasing demand, these islands must adopt sustainable water management practices—such as rainwater harvesting, desalination, and conservation education—to secure a safe and reliable water supply for the future.</p>
+
+                        <div class="row g-2 mb-4">
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Severe drought</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Unproper infrastructure</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Water wastage</div>
+                            <div class="col-sm-6"><i class="fa fa-check text-primary me-2"></i>Climate change</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+<!-- ============================================================
+    WATER SAVING TIPS
+    ============================================================ -->
+<div id="service" class="container-fluid pt-5 bg-light">
+    <div class="container">
+        <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+            <h4 class="text-primary text-uppercase" style="letter-spacing:5px;">Save Water</h4>
+            <h1 class="display-4">Every Drop Counts</h1>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row">
+
+            <!-- 1. AT HOME -->
+            <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.2s">
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <img class="img-fluid mb-3 mb-sm-0" src="img/home.jpeg" alt="At Home" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3EAt%20Home%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h4><i class="fas fa-home service-icon"></i>At Home</h4>
+                        <ul class="m-0" style="list-style:none; padding-left:0;">
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Close the tap when not in use</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Take shorter showers</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Fix leaks as soon as you see them</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Run machines when they're full</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. IN THE GARDEN -->
+            <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.3s">
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <img class="img-fluid mb-3 mb-sm-0" src="img/sof.jpeg" alt="In the Garden" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3EGarden%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h4><i class="fas fa-seedling service-icon"></i>In the Garden</h4>
+                        <ul class="m-0" style="list-style:none; padding-left:0;">
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Water early morning or evening when it's cooler</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Collect rainwater for watering plants</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Use water carefully for plants</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Avoid waste during cleaning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. AT SCHOOL -->
+            <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.4s">
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <img class="img-fluid mb-3 mb-sm-0" src="img/sof2.jpeg" alt="At School" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3ESchool%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h4><i class="fas fa-graduation-cap service-icon"></i>At School</h4>
+                        <ul class="m-0" style="list-style:none; padding-left:0;">
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Report a leaking tap to an adult</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Don't let water run unnecessarily</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Raise awareness among classmates about good practices</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Participate in water-related projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. IN THE NEIGHBORHOOD -->
+            <div class="col-lg-6 mb-5 service-item wow fadeInUp" data-wow-delay="0.5s">
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <img class="img-fluid mb-3 mb-sm-0" src="img/lacaz.jpeg" alt="In the Neighborhood" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23f8f4ef%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23bbb%22 font-family=%22sans-serif%22 font-size=%2218%22%3ENeighborhood%3C/text%3E%3C/svg%3E';" />
+                    </div>
+                    <div class="col-sm-7">
+                        <h4><i class="fas fa-user service-icon"></i>In the Neighborhood</h4>
+                        <ul class="m-0" style="list-style:none; padding-left:0;">
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Share good practices with others</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Protect water points and green spaces</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Avoid throwing waste in nature</li>
+                            <li><i class="fas fa-check-circle text-primary mr-2"></i>Act together to save water</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <!-- ============================================================
+    CALCULATOR
+    ============================================================ -->
+    <div id="calculator" class="container-fluid py-5 bg-light">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4>Calculate Your Usage</h4>
+                <h1 class="display-4">What's your water footprint?</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="calculator-wrap wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="fw-bold" style="font-size:0.9rem;">🚿 Showers per day</label>
+                                <input type="range" class="calc-slider" id="calcShowers" min="0" max="5" value="1" step="0.5">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted small">0</span>
+                                    <span class="fw-bold" id="calcShowersVal">1</span>
+                                    <span class="text-muted small">5</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold" style="font-size:0.9rem;">🧺 Laundry per week</label>
+                                <input type="range" class="calc-slider" id="calcLaundry" min="0" max="7" value="2" step="1">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted small">0</span>
+                                    <span class="fw-bold" id="calcLaundryVal">2</span>
+                                    <span class="text-muted small">7</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold" style="font-size:0.9rem;">🍽️ Dishwashing per day</label>
+                                <input type="range" class="calc-slider" id="calcDishes" min="0" max="4" value="1" step="0.5">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted small">0</span>
+                                    <span class="fw-bold" id="calcDishesVal">1</span>
+                                    <span class="text-muted small">4</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold" style="font-size:0.9rem;">🌱 Garden watering per week</label>
+                                <input type="range" class="calc-slider" id="calcGarden" min="0" max="5" value="1" step="0.5">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted small">0</span>
+                                    <span class="fw-bold" id="calcGardenVal">1</span>
+                                    <span class="text-muted small">5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-result mt-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-4">
+                                    <div class="result-number" id="calcTotal">0</div>
+                                    <div class="result-label">Litres per day</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="result-number" id="calcMonthly" style="font-size:2rem;">0</div>
+                                    <div class="result-label">Litres per month</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="result-status" id="calcStatus">Excellent</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted small text-center mt-3">
+                            <i class="fas fa-info-circle me-1"></i> Based on averages: shower 50L, laundry 60L, dishes 20L, garden 30L.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <!-- ============================================================
+   GALLERY
+    ============================================================ -->
+
+     <section class="work-section-wrapper">
+        <div class="work-pinned-container">
+            <div class="work-track">
+
+                <!-- 1. Section Title Block -->
+                <div class="header-card animate-card">
+                    <h2>Proper Practices<br>To save water</h2>
+                </div>
+
+                <!-- 2. Card 1 (Light Theme) -->
+                <div class="project-card light animate-card">
+                    <div class="project-img-wrapper">
+                        <img src="img/3.jpeg" alt="MyWorker AI">
+                    </div>
+                    <div class="project-details">
+                        <h4 class="project-title">Close the tap while brushing teeh.</h4>
+                        <p class="project-desc"></p>
+                        
+                    </div>
+                </div>
+
+                <!-- 3. Card 2 (Dark Theme) -->
+                <div class="project-card light animate-card">
+                    <div class="project-img-wrapper">
+                        <img src="img/2.jpeg" alt="Pulse Studio">
+                    </div>
+                    <div class="project-details">
+                        <h4 class="project-title">Use a bucket of water to wash cars to minimise water wastage.</h4>
+                        <p class="project-desc"></p>
+                        
+                    </div>
+                </div>
+
+                <!-- 4. Card 3 (Light Theme) -->
+                <div class="project-card light animate-card">
+                    <div class="project-img-wrapper">
+                        <img src="img/1.jpeg" alt="Lofiloom">
+                    </div>
+                    <div class="project-details">
+                        <h4 class="project-title">Use a watering can in the garden instead of using a water pipe.</h4>
+                        <p class="project-desc"></p>
+                        
+                    </div>
+                </div>
+                <div class="project-card light animate-card">
+                    <div class="project-img-wrapper">
+                        <img src="img/4.jpeg" alt="Pulse Studio">
+                    </div>
+                    <div class="project-details">
+                        <h4 class="project-title">Fix leakage in pips to avoid useless water leakage</h4>
+                        <p class="project-desc"></p>
+                        
+                    </div>
+                </div>
+
+                <!-- 5. End CTA Card -->
+                <div class="cta-card animate-card">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ============================================================
+    CHALLENGE – 7 Days
+    ============================================================ -->
+    <div id="challenge" class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4>Citizen Challenge</h4>
+                <h1 class="display-4">7 days to save water</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="calculator-wrap wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="progress-bar-wrap">
+                            <div class="progress-fill" id="challengeProgress" style="width:0%;"></div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fw-bold" id="challengeCount">0 / 7</span>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="resetChallenge()"><i class="fas fa-redo me-1"></i>Reset</button>
+                        </div>
+                        <div id="challengeList">
+                            <div class="challenge-item" data-day="1">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I turn off the water while brushing my teeth.</span>
+                                <span class="ch-day">Day 1</span>
+                            </div>
+                            <div class="challenge-item" data-day="2">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I take a shorter shower of 5 minutes.</span>
+                                <span class="ch-day">Day 2</span>
+                            </div>
+                            <div class="challenge-item" data-day="3">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">Check and fix leaks</span>
+                                <span class="ch-day">Day 3</span>
+                            </div>
+                            <div class="challenge-item" data-day="4">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I reuse water that is still clean.</span>
+                                <span class="ch-day">Day 4</span>
+                            </div>
+                            <div class="challenge-item" data-day="5">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I water at the right time.</span>
+                                <span class="ch-day">Day 5</span>
+                            </div>
+                            <div class="challenge-item" data-day="6">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I share a gesture with a loved one.</span>
+                                <span class="ch-day">Day 6</span>
+                            </div>
+                            <div class="challenge-item" data-day="7">
+                                <div class="ch-check" onclick="toggleChallenge(this)">✓</div>
+                                <span class="ch-text">I choose the habit I will keep.</span>
+                                <span class="ch-day">Day 7</span>
+                            </div>
+                        </div>
+                        <div id="challengeComplete" style="display:none;text-align:center;padding:1.5rem;background:rgba(0,174,239,0.04);border-radius:16px;margin-top:1rem;">
+                            <span style="font-size:3rem;">🎉</span>
+                            <h5 class="fw-bold mt-2">Congratulations!</h5>
+                            <p class="text-muted">You completed the 7-day challenge. You're a water hero!</p>
+                            <span class="badge bg-primary rounded-pill px-4 py-2">🏆 Water Champion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    QUIZ
+    ============================================================ -->
+    <div id="quiz" class="container-fluid py-5 bg-light">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4>Test Your Knowledge</h4>
+                <h1 class="display-4">Water Quiz</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="calculator-wrap wow fadeInUp" data-wow-delay="0.2s">
+                        <div id="quizContainer">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="fw-bold" id="quizQuestionNum">Question 1 / 5</span>
+                                <span class="badge bg-primary rounded-pill px-3 py-2" id="quizScoreDisplay">⭐ 0</span>
+                            </div>
+                            <h5 id="quizQuestion" class="fw-bold mb-3">What percentage of Earth's water is fresh?</h5>
+                            <div id="quizOptions"></div>
+                            <div id="quizResult" style="display:none;text-align:center;padding:1.5rem;">
+                                <span style="font-size:3rem;" id="quizEmoji">🌟</span>
+                                <h4 class="fw-bold mt-2" id="quizResultTitle">Excellent!</h4>
+                                <p class="text-muted" id="quizResultDesc">You scored 5/5</p>
+                                <button class="btn btn-primary rounded-pill px-4" onclick="resetQuiz()">🔄 Retry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    GAME
+    ============================================================ -->
+    <div id="game" class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h4>Mini Game</h4>
+                <h1 class="display-4">Catch the Drops!</h1>
+                <div class="section-divider"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="game-container wow fadeInUp" data-wow-delay="0.2s" id="gameContainer">
+                        <div class="game-score" id="gameScore">💧 0</div>
+                        <div class="game-timer" id="gameTimer">⏱️ 30s</div>
+                        <div class="game-overlay" id="gameOverlay">
+                            <h3  style="color: beige;">💧 Catch the Drops!</h3>
+                            <p style="opacity:0.7;margin-bottom:0.5rem;">Click on blue drops.<br>Avoid the dirty ones!</p>
+                            <div class="game-final-score" id="gameFinalScore">0</div>
+                            <button class="game-start-btn" onclick="startGame()">▶️ Play</button>
+                        </div>
+                        <div id="gameDrops"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- ============================================================
+    TEAM
+    ============================================================ -->
+    <div id="team" class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:500px;">
+                <p class="text-primary text-uppercase mb-2">// OUR TEAM</p>
+                <h1 class="display-6 mb-4">We're Super Professional At Our Skills</h1>
+            </div>
+            <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
+                <!-- Member 1 -->
+                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <div class="team-img-wrap">
+                            <img class="img-fluid team-img" src="img/team01.jpeg" height="100" alt="Felicté Marie Danaëlle">
+                        </div>
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Felicité Marie Danaëlle</h5>
+                                <span>WEB DESIGNER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href="https://www.instagram.com/zenith_.mlc?igsh=MXI2b25zanZvYnRyeg==&utm_source=ig_contact_invite"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="col wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <div class="team-img-wrap">
+                            <img class="img-fluid team-img" src="img/team02.jpeg" alt="Gentil Jean Hansley">
+                        </div>
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Gentil Jean Hansley</h5>
+                                <span>WEB DEVELOPER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href="https://www.instagram.com/zenith_.mlc?igsh=MXI2b25zanZvYnRyeg==&utm_source=ig_contact_invite"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="col wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden h-100 d-flex flex-column">
+                        <div class="team-img-wrap">
+                            <img class="img-fluid team-img" src="img/team03.jpeg" alt="Perrine Joseph Jonathan">
+                        </div>
+                        <div class="team-text d-flex flex-column flex-grow-1">
+                            <div class="team-title">
+                                <h5>Perrine Joseph Jonathan</h5>
+                                <span>WEB DEVELOPER</span>
+                            </div>
+                            <div class="team-social mt-auto">
+                                <a class="btn btn-square btn-light rounded-circle" href="https://www.instagram.com/zenith_.mlc?igsh=MXI2b25zanZvYnRyeg==&utm_source=ig_contact_invite"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TESTIMONIALS
+    ============================================================ -->
+    <div id="testimonial" class="container-xxl bg-light my-6 py-6 pb-0">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width:500px;">
+                <p class="text-primary text-uppercase mb-2">// Testimonials</p>
+                <h1 class="display-6 mb-4">They act for water</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Marie-Claire</h5>
+                            <span>Student, Rodrigues</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"Since I started the 7-day challenge, I've saved over 200 litres of water. It's amazing how every small gesture counts!"</p>
+                </div>
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Jean-Paul</h5>
+                            <span>Farmer</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"I installed a rainwater harvesting system for my garden. My vegetables have never been better and I no longer use drinking water."</p>
+                </div>
+                <div class="testimonial-item bg-white rounded p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/user.jpg" alt="">
+                        <div class="ms-4">
+                            <h5 class="mb-1">Sophie</h5>
+                            <span>Teacher</span>
+                        </div>
+                    </div>
+                    <p class="mb-0">"I integrated the water quiz into my class. The students became water ambassadors and they're raising awareness in their families!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section id="contact" class="contact-section section-padding position-relative">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.15s">
+                        <h2 class="display-4 fw-bold" style="color:var(--secondary);line-height:1.1;">
+                            Join the movement<br>
+                            <span style="color:var(--primary);position:relative;">
+                                Together, every drop counts
+                                <span style="position:absolute;bottom:-2px;left:0;width:100%;height:4px;background:var(--primary);border-radius:4px;opacity:0.3;"></span>
+                            </span>
+                        </h2>
+                        <p class="text-muted mt-3" style="max-width:450px;margin:0.5rem auto 0;font-size:1.05rem;">
+                            A question, an idea? We're here for you.
+                        </p>
+                    </div>
+                    <ul class="nav nav-pills justify-content-center gap-3 mb-4 wow fadeInUp" data-wow-delay="0.2s" id="contactTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" id="form-tab" data-bs-toggle="pill" data-bs-target="#form-pane" type="button"><i class="fas fa-envelope me-2"></i>Write to us</button></li>
+                        <li class="nav-item"><button class="nav-link" id="map-tab" data-bs-toggle="pill" data-bs-target="#map-pane" type="button"><i class="fas fa-map-marked-alt me-2"></i>Find us</button></li>
+                    </ul>
+                    <div class="tab-content wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="tab-pane fade show active" id="form-pane">
+                            <div class="contact-card p-4 p-md-5 rounded-4 shadow-lg">
+                                <form id="contactForm" class="custom-form contact-form">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" name="contact-name" id="name" class="form-control" placeholder="Full name" required>
+                                                <label for="name"><i class="fas fa-user text-primary me-2"></i>Full name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="email" name="contact-email" id="emailid" class="form-control" placeholder="Email" required>
+                                                <label for="emailid"><i class="fas fa-envelope text-primary me-2"></i>Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea name="contact-message" rows="5" class="form-control" id="msgContent" placeholder="Message" style="min-height:140px;" required></textarea>
+                                                <label for="msgContent"><i class="fas fa-comment text-primary me-2"></i>Message</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-primary rounded-pill py-3 px-5">
+                                                <i class="fas fa-paper-plane me-2"></i>Send
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="map-pane">
+                            <div class="contact-card p-3 p-md-4 rounded-4 shadow-lg">
+                                <div class="google-map rounded-3 overflow-hidden">
+                                    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&amp;q=mont%20lubin%20college&amp;maptype=roadmap&amp;zoom=17" width="100%" height="420" style="border:0;" allowfullscreen="" loading="Fast"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer-section wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand">
+                        <h2 class="text-light mb-3">
+                            <span class="text-primary">💧</span> ÎLE BLEUE
+                        </h2>
+                        <p class="text-muted small mb-3" style="max-width:300px;">
+                            Protect water today to preserve tomorrow. Together, every drop counts.
+                        </p>
+                        <div class="footer-social d-flex gap-3">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-light mb-4">Links</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#about">Impacts</a></li>
+                        <li><a href="#tips">Tips</a></li>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#challenge">Challenge</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-light mb-4">Resources</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#quiz">Quiz</a></li>
+                        <li><a href="#game">Game</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <div class="row g-3">
+                        <div class="col-lg-7 col-md-8">
+                            <h5 class="text-light mb-4">Stay connected</h5>
+                            <div class="footer-contact mt-4">
+                                <p class="mb-1"><i class="fas fa-map-marker-alt text-primary me-2"></i>Mont Lubin College, Rodrigues</p>
+                                <p class="mb-1"><i class="fas fa-phone-alt text-primary me-2"></i>(+230) 832 5647</p>
+                                <p class="mb-0"><i class="fas fa-envelope text-primary me-2"></i>montlubincollege@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 d-flex align-items-start justify-content-lg-end">
+                            <div>
+                                <h5 class="text-light mb-4">EcoIndex</h5>
+                                <a href="https://www.ecoindex.fr/en/ecodesign/" target="_blank" class="ecoindex-badge-wrapper">
+                                    <span class="eco-icon a">A</span>
+                                    <span class="eco-info">
+                                        <span class="eco-label">EcoIndex</span>
+                                        <span class="eco-score">84 / 100</span>
+                                        <span class="eco-grade a">A — Very good</span>
+                                    </span>
+                                    <span class="eco-leaf">🌱</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="small text-muted mb-0">&copy; 2026 <span class="text-light">ÎLE BLEUE</span>. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="small text-muted mb-0">
+                            Made with <i class="fas fa-heart text-primary" style="font-size:0.8rem;"></i> by <span class="text-light">ZENITH</span>
+                            <span class="mx-2">·</span>
+                            <span class="text-muted" style="font-size:0.6rem;">💧 Every drop counts</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    MASCOT
+    ============================================================ -->
+    <div style=" margin-left: 20vh;" class="mascot-float" id="mascot" onclick="showMascotTip()">
+        <div class="mascot-bubble" id="mascotBubble">
+            💡 Turn off water while soaping!
+        </div>
+        <span class="mascot-icon"><img src="img/zenzen.png" style="height: 15vh; width: auto; margin-bottom: 5vh;" alt=""></span>
+    </div>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js">
+    </script>
+    <script src="js/searchbar.js"></script>
+    <script src="js/translator.js"></script>
+
+    <!-- GSAP + ScrollTrigger + ScrollSmoother -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js">
+    </script>
+
+    <script>
+        // ============================================================
+        // FIREBASE CONFIG
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCxltrXRZIYQxSthUvDAAxodPLHF2KRwXU",
+            authDomain: "contact-af26c.firebaseapp.com",
+            databaseURL: "https://contact-af26c-default-rtdb.firebaseio.com",
+            projectId: "contact-af26c",
+            storageBucket: "contact-af26c.firebasestorage.app",
+            messagingSenderId: "346273146574",
+            appId: "1:346273146574:web:b6af8f9614c759b768129f"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.database();
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(message, type, duration) {
+            type = type || 'success';
+            duration = duration || 4000;
+            const old = document.querySelector('.custom-toast');
+            if (old) old.remove();
+            const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
+            const bgColors = { success: '#28a745', error: '#dc3545', warning: '#ffc107', info: '#17a2b8' };
+            const toast = document.createElement('div');
+            toast.className = 'custom-toast';
+            toast.style.cssText = `
+                    position:fixed;top:20px;right:20px;background:${bgColors[type]||'#333'};
+                    color:${type==='warning'?'#333':'#fff'};padding:14px 20px;border-radius:10px;
+                    box-shadow:0 8px 24px rgba(0,0,0,0.25);font-size:1rem;font-weight:500;z-index:99999;
+                    display:flex;align-items:center;gap:10px;transform:translateX(120%);
+                    transition:transform 0.4s cubic-bezier(0.68,-0.55,0.27,1.55);max-width:380px;
+                    border-left:5px solid rgba(255,255,255,0.3);font-family:system-ui,sans-serif;
+                `;
+            toast.innerHTML = `
+                    <span style="font-size:1.4rem;">${icons[type]||'📢'}</span>
+                    <span>${message}</span>
+                    <button style="background:none;border:none;color:inherit;font-size:1.2rem;cursor:pointer;opacity:0.7;margin-left:6px;">&times;</button>
+                `;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => { toast.style.transform = 'translateX(0)'; });
+            toast.querySelector('button').addEventListener('click', function() {
+                toast.style.transform = 'translateX(120%)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            });
+            setTimeout(() => {
+                toast.style.transform = 'translateX(120%)';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            }, duration);
+        }
+
+        // ============================================================
+        // WATER CYCLE
+        // ============================================================
+        function showCycleInfo(title, desc) {
+            const el = document.getElementById('cycleInfo');
+            document.getElementById('cycleTitle').textContent = title;
+            document.getElementById('cycleDesc').textContent = desc;
+            el.style.display = 'block';
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ============================================================
+        // CALCULATOR
+        // ============================================================
+        function updateCalculator() {
+            const showers = parseFloat(document.getElementById('calcShowers').value);
+            const laundry = parseFloat(document.getElementById('calcLaundry').value);
+            const dishes = parseFloat(document.getElementById('calcDishes').value);
+            const garden = parseFloat(document.getElementById('calcGarden').value);
+
+            document.getElementById('calcShowersVal').textContent = showers;
+            document.getElementById('calcLaundryVal').textContent = laundry;
+            document.getElementById('calcDishesVal').textContent = dishes;
+            document.getElementById('calcGardenVal').textContent = garden;
+
+            const daily = showers * 50 + (laundry / 7) * 60 + dishes * 20 + (garden / 7) * 30;
+            const total = Math.round(daily);
+            const monthly = Math.round(total * 30);
+
+            document.getElementById('calcTotal').textContent = total;
+            document.getElementById('calcMonthly').textContent = monthly;
+
+            const statusEl = document.getElementById('calcStatus');
+            let status, cls;
+            if (total < 100) { status = '🌟 Excellent';
+                cls = 'excellent'; } else if (total < 200) { status = '👍 Good';
+                cls = 'good'; } else if (total < 350) { status = '⚠️ High';
+                cls = 'high'; } else { status = '🔴 Danger';
+                cls = 'danger'; }
+            statusEl.textContent = status;
+            statusEl.className = 'result-status ' + cls;
+        }
+
+        document.querySelectorAll('.calc-slider').forEach(el => {
+            el.addEventListener('input', updateCalculator);
+        });
+        updateCalculator();
+
+        // ============================================================
+        // CHALLENGE
+        // ============================================================
+        function toggleChallenge(el) {
+            const item = el.closest('.challenge-item');
+            const text = item.querySelector('.ch-text');
+            const isDone = el.classList.contains('done');
+            if (isDone) {
+                el.classList.remove('done');
+                text.classList.remove('done');
+                el.textContent = '✓';
+            } else {
+                el.classList.add('done');
+                text.classList.add('done');
+                el.textContent = '✔';
+            }
+            updateChallengeProgress();
+        }
+
+        function updateChallengeProgress() {
+            const items = document.querySelectorAll('.challenge-item');
+            const done = document.querySelectorAll('.challenge-item .ch-check.done').length;
+            const total = items.length;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('challengeProgress').style.width = pct + '%';
+            document.getElementById('challengeCount').textContent = done + ' / ' + total;
+            if (done === total) {
+                document.getElementById('challengeComplete').style.display = 'block';
+                showToast('🎉 7-day challenge completed! You are a water hero!', 'success', 5000);
+            } else {
+                document.getElementById('challengeComplete').style.display = 'none';
+            }
+            localStorage.setItem('challengeDone', JSON.stringify(
+                Array.from(document.querySelectorAll('.challenge-item .ch-check')).map(el => el.classList.contains(
+                'done'))
+            ));
+        }
+
+        function resetChallenge() {
+            document.querySelectorAll('.challenge-item .ch-check').forEach(el => {
+                el.classList.remove('done');
+                el.textContent = '✓';
+                el.closest('.challenge-item').querySelector('.ch-text').classList.remove('done');
+            });
+            document.getElementById('challengeComplete').style.display = 'none';
+            updateChallengeProgress();
+            localStorage.removeItem('challengeDone');
+            showToast('🔄 Challenge reset', 'info', 2000);
+        }
+
+        const saved = localStorage.getItem('challengeDone');
+        if (saved) {
+            const states = JSON.parse(saved);
+            document.querySelectorAll('.challenge-item .ch-check').forEach((el, i) => {
+                if (states[i]) {
+                    el.classList.add('done');
+                    el.textContent = '✔';
+                    el.closest('.challenge-item').querySelector('.ch-text').classList.add('done');
+                }
+            });
+            updateChallengeProgress();
+        }
+
+        // ============================================================
+        // QUIZ
+        // ============================================================
+        const quizData = [{
+            question: 'What percentage of Earth\'s water is fresh?',
+            options: ['3%', '10%', '25%', '50%'],
+            correct: 0
+        }, {
+            question: 'How many litres of water are used on average for a shower?',
+            options: ['20 L', '50 L', '100 L', '150 L'],
+            correct: 1
+        }, {
+            question: 'What can you do to save water in the garden?',
+            options: ['Water in full sun', 'Collect rainwater', 'Leave tap running', 'Water every day'],
+            correct: 1
+        }, {
+            question: 'A leak of one drop per second wastes how many litres per year?',
+            options: ['1,000 L', '5,000 L', '10,000 L', '50,000 L'],
+            correct: 2
+        }, {
+            question: 'What is the main source of water in Rodrigues?',
+            options: ['Groundwater', 'Rainfall', 'Rivers', 'Desalination'],
+            correct: 1
+        }];
+
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswered = false;
+
+        function loadQuiz() {
+            if (quizIndex >= quizData.length) {
+                showQuizResult();
+                return;
+            }
+            const data = quizData[quizIndex];
+            document.getElementById('quizQuestionNum').textContent = `Question ${quizIndex+1} / ${quizData.length}`;
+            document.getElementById('quizQuestion').textContent = data.question;
+            const container = document.getElementById('quizOptions');
+            container.innerHTML = '';
+            quizAnswered = false;
+            data.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                btn.dataset.index = i;
+                btn.addEventListener('click', () => answerQuiz(i));
+                container.appendChild(btn);
+            });
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('quizContainer').querySelector('.d-flex').style.display = 'flex';
+        }
+
+        function answerQuiz(index) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+            const data = quizData[quizIndex];
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((el, i) => {
+                el.classList.add('disabled');
+                if (i === data.correct) el.classList.add('correct');
+                if (i === index && i !== data.correct) el.classList.add('wrong');
+            });
+            if (index === data.correct) quizScore++;
+            document.getElementById('quizScoreDisplay').textContent = '⭐ ' + quizScore;
+            setTimeout(() => {
+                quizIndex++;
+                loadQuiz();
+            }, 1200);
+        }
+
+        function showQuizResult() {
+            document.getElementById('quizContainer').querySelector('.d-flex').style.display = 'none';
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('quizQuestion').textContent = '';
+            document.getElementById('quizResult').style.display = 'block';
+            const pct = Math.round((quizScore / quizData.length) * 100);
+            let emoji, title, desc;
+            if (pct === 100) { emoji = '🌟';
+                title = 'Perfect!';
+                desc = 'You are a water expert!'; } else if (pct >= 80) { emoji = '👏';
+                title = 'Excellent!';
+                desc = 'You know water well.'; } else if (pct >= 60) { emoji = '📖';
+                title = 'Not bad!';
+                desc = 'A bit more learning.'; } else { emoji = '💪';
+                title = 'Try again!';
+                desc = 'Play again to improve your score.'; }
+            document.getElementById('quizEmoji').textContent = emoji;
+            document.getElementById('quizResultTitle').textContent = title;
+            document.getElementById('quizResultDesc').textContent = `${desc} (${quizScore}/${quizData.length})`;
+        }
+
+        function resetQuiz() {
+            quizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quizScoreDisplay').textContent = '⭐ 0';
+            loadQuiz();
+        }
+        loadQuiz();
+       
+
+         // ============================================================
+        // GAME
+        // ============================================================
+        let gameRunning = false;
+        let gameScoreVal = 0;
+        let gameTime = 30;
+        let gameTimerInterval = null;
+        let gameSpawnInterval = null;
+        let gameDropInterval = null;
+
+        function startGame() {
+            const overlay = document.getElementById('gameOverlay');
+            overlay.classList.add('hidden');
+            gameRunning = true;
+            gameScoreVal = 0;
+            gameTime = 10;
+            document.getElementById('gameScore').textContent = '💧 0';
+            document.getElementById('gameTimer').textContent = '⏱️ 10s';
+            document.getElementById('gameDrops').innerHTML = '';
+            if (gameTimerInterval) clearInterval(gameTimerInterval);
+            if (gameSpawnInterval) clearInterval(gameSpawnInterval);
+            if (gameDropInterval) clearInterval(gameDropInterval);
+
+            gameTimerInterval = setInterval(() => {
+                gameTime--;
+                document.getElementById('gameTimer').textContent = '⏱️ ' + gameTime + 's';
+                if (gameTime <= 0) {
+                    endGame();
+                }
+            }, 1000);
+
+            gameSpawnInterval = setInterval(() => {
+                if (gameRunning) spawnDrop();
+            }, 600);
+
+            gameDropInterval = setInterval(() => {
+                if (!gameRunning) return;
+                document.querySelectorAll('.game-drop').forEach(el => {
+                    const top = parseFloat(el.dataset.top) || 0;
+                    const newTop = top + 3 + Math.random() * 2;
+                    if (newTop > 100) {
+                        el.remove();
+                        return;
+                    }
+                    el.dataset.top = newTop;
+                    el.style.top = newTop + '%';
+                });
+            }, 50);
+
+            for (let i = 0; i < 4; i++) setTimeout(spawnDrop, i * 300);
+        }
+
+       function spawnDrop() {
+    if (!gameRunning) return;
+    const container = document.getElementById('gameContainer');
+    const drop = document.createElement('div');
+    const isDirty = Math.random() < 0.2;
+    drop.className = 'game-drop' + (isDirty ? ' dirty' : '');
+    drop.textContent = isDirty ? '💩' : '💧';
+    const x = 10 + Math.random() * 80;
+    drop.style.left = x + '%';
+    drop.style.top = '-5%';
+    drop.dataset.top = -5;
+    drop.dataset.dirty = isDirty ? 'true' : 'false';
+
+    // ✅ Use pointerdown instead of click
+    drop.addEventListener('pointerdown', function(e) {
+        e.preventDefault();        // prevent text selection / drag
+        if (!gameRunning) return;
+        if (this.dataset.dirty === 'true') {
+            gameScoreVal = Math.max(0, gameScoreVal - 2);
+            this.remove();
+            showToast('💩 -2 points', 'warning', 400);
+        } else {
+            gameScoreVal += 1;
+            this.remove();
+        }
+        document.getElementById('gameScore').textContent = '💧 ' + gameScoreVal;
+    });
+
+    container.appendChild(drop);
+    setTimeout(() => {
+        if (drop.parentNode) drop.remove();
+    }, 8000);
+}
+
+        function endGame() {
+            gameRunning = false;
+            if (gameTimerInterval) clearInterval(gameTimerInterval);
+            if (gameSpawnInterval) clearInterval(gameSpawnInterval);
+            if (gameDropInterval) clearInterval(gameDropInterval);
+            document.querySelectorAll('.game-drop').forEach(el => el.remove());
+            const overlay = document.getElementById('gameOverlay');
+            overlay.classList.remove('hidden');
+            document.getElementById('gameFinalScore').textContent = '💧 ' + gameScoreVal;
+            overlay.querySelector('h3').textContent = gameScoreVal >= 20 ? '🏆 Well done!' : '💪 Keep going!';
+            overlay.querySelector('p').textContent = gameScoreVal >= 20 ? 'You caught so many drops!' :
+                'Train to save more water!';
+            showToast('⏱️ Game over! Score: ' + gameScoreVal, 'info', 3000);
+        }
+
+
+        
+        
+        // ============================================================
+        // MASCOT
+        // ============================================================
+        const mascotTips = [
+            '💡 Turn off water while soaping!',
+            '💡 Collect rainwater for your garden.',
+            '💡 Fix leaks to save litres.',
+            '💡 Use a glass of water to brush your teeth.',
+            '💡 Water early morning to avoid evaporation.',
+            '💡 Wash your car with a bucket, not a hose.',
+            '💡 Install aerators on your taps.'
+        ];
+        let tipIndex = 0;
+
+        function showMascotTip() {
+            const bubble = document.getElementById('mascotBubble');
+            tipIndex = (tipIndex + 1) % mascotTips.length;
+            bubble.textContent = mascotTips[tipIndex];
+            bubble.style.animation = 'none';
+            setTimeout(() => { bubble.style.animation = ''; }, 10);
+        }
+        setInterval(showMascotTip, 12000);
+
+        // ============================================================
+        // NAVBAR SCROLL
+        // ============================================================
+        const navbar = document.getElementById('mainNav');
+
+        function handleNavbarScroll() {
+            if (!navbar) return;
+            if (window.scrollY > 30) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('load', function() {
+            handleNavbarScroll();
+            setTimeout(handleNavbarScroll, 100);
+        });
+        window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+
+        // ============================================================
+        // DARK MODE
+        // ============================================================
+        const toggle = document.getElementById('darkModeToggle');
+        const icon = document.getElementById('themeIcon');
+        if (toggle) {
+            toggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.className = 'fas fa-sun';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    icon.className = 'fas fa-moon';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // ============================================================
+        // WOW
+        // ============================================================
+        if (typeof WOW !== 'undefined') {
+            new WOW().init();
+        }
+
+        // ============================================================
+        // COUNTERUP
+        // ============================================================
+        if (typeof $ !== 'undefined' && $.fn.counterUp) {
+            $('[data-counter]').counterUp({ delay: 10, time: 1200 });
+        }
+
+        // ============================================================
+        // OWL CAROUSEL
+        // ============================================================
+        if (typeof $ !== 'undefined' && $.fn.owlCarousel) {
+            $('.testimonial-carousel').owlCarousel({
+                center: true,
+                items: 1,
+                loop: true,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                smartSpeed: 1000,
+                navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
+                responsive: { 768: { items: 2 }, 992: { items: 3 } }
+            });
+        }
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backBtn = document.querySelector('.back-to-top');
+        if (backBtn) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backBtn.classList.add('show');
+                } else {
+                    backBtn.classList.remove('show');
+                }
+            });
+        }
+
+        // ============================================================
+        // SPINNER
+        // ============================================================
+        const spinner = document.getElementById('spinner');
+        if (spinner) {
+            setTimeout(() => {
+                spinner.classList.remove('show');
+            }, 800);
+        }
+
+        // ============================================================
+        // CONTACT FORM
+        // ============================================================
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('emailid').value.trim();
+                const msg = document.getElementById('msgContent').value.trim();
+                if (!name || !email || !msg) {
+                    showToast('Please fill in all fields.', 'warning');
+                    return;
+                }
+                const btn = contactForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.innerHTML =
+                    `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Sending...`;
+                const ref = db.ref('contactForm').push();
+                ref.set({
+                    name,
+                    emailid: email,
+                    msgContent: msg,
+                    timestamp: new Date().toISOString()
+                }).then(() => {
+                    showToast('✅ Message sent!', 'success');
+                    contactForm.reset();
+                }).catch(() => {
+                    showToast('❌ Failed to send.', 'error');
+                }).finally(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fas fa-paper-plane me-2"></i>Send`;
+                });
+            });
+        }
+
+        // ============================================================
+        // SCROLL SPY
+        // ============================================================
+        const sectionIds = ['heroVideo', 'about', 'tips', 'calculator', 'challenge', 'quiz', 'contact'];
+        const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        function updateActiveLink() {
+            let current = '';
+            const scrollPos = window.scrollY + 130;
+            for (let i = 0; i < sections.length; i++) {
+                const section = sections[i];
+                if (!section) continue;
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                if (scrollPos >= top && scrollPos < top + height) {
+                    current = section.getAttribute('id');
+                    break;
+                }
+            }
+            if (!current && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 20) {
+                const last = sections[sections.length - 1];
+                if (last) current = last.getAttribute('id');
+            }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('load', () => setTimeout(updateActiveLink, 100));
+        window.addEventListener('scroll', updateActiveLink, { passive: true });
+    </script>
+
+    <script>
+     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    const track = document.querySelector(".work-track");
+    const cards = document.querySelectorAll(".animate-card");
+
+    if (track && cards.length > 0) {
+        function getScrollAmount() {
+            return -(track.scrollWidth - window.innerWidth + (window.innerWidth * 0.05));
+        }
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".work-section-wrapper",
+                start: "top top",
+                end: () => `+=${track.scrollWidth}`,
+                pin: true,
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+                anticipatePin: 1
+            }
+        });
+
+        tl.from(cards, {
+            y: 100,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.1,
+            ease: "power1.out"
+        })
+        .to(track, {
+            x: getScrollAmount,
+            ease: "none",
+            duration: 5
+        });
+    }
+    </script>
+
+<style>
+    .game-drop {
+    position: absolute;
+    cursor: pointer;
+    font-size: 2.4rem;
+    user-select: none;           /* prevent text selection */
+    -webkit-user-select: none;
+    touch-action: none;          /* prevent touch scrolling */
+    pointer-events: auto;        /* ensure clicks register */
+    transition: none;            /* no transition – instant movement */
+    z-index: 10;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100%;
+    height: 500px;               /* or your desired height */
+    overflow: hidden;
+    background: #0d2f3b;
+    border-radius: 16px;
+    touch-action: none;          /* prevent touch scrolling on container */
+}
+</style>
+</body>
+</html>

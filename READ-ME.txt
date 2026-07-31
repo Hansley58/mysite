@@ -1,0 +1,102 @@
+# Support
+
+## WebCup 2026
+
+**Organized by Mont Lubin College**
+
+Welcome to the WebCup Support Centre. Our team is available throughout the competition to assist participants with any competition-related issues.
+
+---
+
+## Technical Support
+
+If you experience any technical problems, such as:
+
+* The competition website is not loading.
+* A page or feature is not working correctly.
+* Your project files cannot be accessed.
+* Your assigned computer encounters an error.
+* The timer or submission system is not functioning.
+
+Please **raise your hand immediately** and wait for a competition official. Do not attempt to fix the issue yourself unless instructed by an organizer.
+
+---
+
+## Competition Assistance
+
+If you have questions regarding:
+
+* Competition rules
+* Challenge requirements
+* Submission procedures
+* Competition schedule
+* Judging criteria
+
+Please speak to a WebCup official or a member of the organizing committee.
+
+---
+
+## Reporting Issues
+
+To ensure a fair competition:
+
+* Report technical issues as soon as they occur.
+* Do not attempt to access another participant's computer.
+* Do not modify competition software or system files.
+* Follow the instructions given by competition supervisors.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### Can I use the internet?
+
+No. WebCup is an **offline competition**, and internet access is not permitted unless specifically authorized by the organizers.
+
+### What should I do if my computer freezes?
+
+Raise your hand immediately and wait for a competition official. Do not restart the computer unless instructed.
+
+### Can I use my own USB drive?
+
+Only if permission has been granted by the organizers before the competition begins.
+
+### Can I ask judges for programming help?
+
+No. Judges may clarify the competition rules but will not provide coding assistance or solutions.
+
+### What happens if I accidentally close the website?
+
+Notify a competition official immediately. They will assist you in reopening the competition system if appropriate.
+
+---
+
+## Contact the Organizing Committee
+
+For assistance during the competition, please contact:
+
+**WebCup Organizing Committee**
+**Mont Lubin College**
+
+📍 Competition Help Desk
+
+Competition officials are available throughout the event to provide support and ensure a fair and enjoyable competition for all participants.
+
+---
+
+### Need Help?
+
+**Raise your hand and wait for a competition official.**
+
+We're here to help—good luck, and enjoy **WebCup 2026!**
+
+
+  =>  Template Name    : Baker - Bakery Website Template
+
+  =>  Template Link    : https://htmlcodex.com/bakery-website-template
+
+  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
+
+  =>  Template Author  : HTML Codex
+
+  =>  Author Website   : https://htmlcodex.com
