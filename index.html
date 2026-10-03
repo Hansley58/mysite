@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ZENITH — Terra Nova Command Center</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2335e6ff'/%3E%3Cstop offset='100%25' stop-color='%233b7bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2304070f'/%3E%3Crect x='6' y='6' width='52' height='52' rx='11' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' fill='%2302121a' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     /* ============================================================
@@ -769,6 +770,30 @@
     .check-item.done .check-box { background: var(--green); border-color: var(--green); color: #04140c; }
     .check-item.done span { color: var(--muted); text-decoration: line-through; }
 
+    /* ---------- SOLUTION TEXTAREA ---------- */
+    #solutionInput {
+      width: 100%;
+      min-height: 160px;
+      background: rgba(6, 11, 22, .95);
+      border: 1px solid var(--line-2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      outline: none;
+      font-size: 13.2px;
+      font-family: inherit;
+      line-height: 1.6;
+      color: var(--txt);
+      resize: vertical;
+      transition: .18s;
+      box-shadow: inset 0 0 0 1px rgba(53, 230, 255, .05);
+    }
+    #solutionInput::placeholder { color: #54687f; }
+    #solutionInput:focus {
+      border-color: rgba(53, 230, 255, .6);
+      box-shadow: 0 0 0 3px rgba(53, 230, 255, .12), inset 0 0 0 1px rgba(53, 230, 255, .15);
+    }
+    #solutionInput[readonly] { opacity: .8; cursor: default; }
+
     /* ============================================================
        TOASTS / EMERGENCY
        ============================================================ */
@@ -860,7 +885,7 @@
     <nav class="nav" id="nav"></nav>
     <div class="side-foot">
       <div class="api-pill" id="apiPill"><span class="dot off"></span><span id="apiPillTxt">MODE DÉMO</span></div>
-      <div>v2.6 — 24H by Webcup 2026</div>
+      <div>v2.6</div>
     </div>
   </aside>
 
@@ -873,7 +898,7 @@
       </div>
       <div class="top-actions">
         <div class="clock" id="clock">--:--:--</div>
-        <button class="icon-btn" id="emgBtn" title="Mode urgence">⚠</button>
+        <button class="icon-btn" id="emgBtn" style="color: red;" title="Mode urgence">⚠</button>
         <button class="icon-btn" id="notifBtn" title="Notifications">🔔<span class="badge hidden" id="notifBadge">0</span></button>
       </div>
     </header>
@@ -964,14 +989,15 @@
       critical: { key: 'critical', label: 'Critique', color: '#ff2e8b' }
     };
 
+    /* ---- NAV ORDER (as requested) ---- */
     const NAV_ITEMS = [
       { key: 'command', label: 'Command Center', icon: '◈' },
-      { key: 'requests', label: 'Demandes en direct', icon: '≡' },
-      { key: 'operations', label: 'Opérations', icon: '⚙' },
       { key: 'map', label: 'Carte & Planète', icon: '◎' },
+      { key: 'requests', label: 'Demandes en direct', icon: '≡' },
+      { key: 'alerts', label: 'Alertes', icon: '⚠' },
+      { key: 'operations', label: 'Opérations', icon: '⚙' },
       { key: 'analytics', label: 'Analytique', icon: '▤' },
       { key: 'citizens', label: 'Citoyens', icon: '☺' },
-      { key: 'alerts', label: 'Alertes', icon: '⚠' },
       { key: 'council', label: 'Haut Conseil', icon: '⌂' },
       { key: 'settings', label: 'Paramètres', icon: '⚒' }
     ];
@@ -989,11 +1015,12 @@
       sessionStart: Date.now(),
       lastSync: null,
       apiOnline: false,
+      apiSession: null,
       settings: {
-        apiUrl: '',
+        apiUrl: 'https://24h.webcup.fr/wp-json/webcup/v1/requests',
         apiKey: '',
         demoMode: true,
-        simInterval: 15000,
+        simInterval: 30000,
         autoSim: true,
         theme: 'dark'
       },
@@ -1185,88 +1212,286 @@
     }
 
     /* ============================================================
-       5. API MANAGER
-       ============================================================ */
+       5. OFFICIAL TERRA NOVA API MANAGER
+       ============================================================
+       Official endpoint:
+       GET https://24h.webcup.fr/wp-json/webcup/v1/requests
+       Auth header: X-Webcup-Api-Key
+       The server decides which requests are currently visible.
+    */
     const APIManager = {
-      configured() { return !!State.settings.apiUrl; },
+      DEFAULT_URL: 'https://24h.webcup.fr/wp-json/webcup/v1/requests',
+      POLL_MS: 30000,
+
+      configured() {
+        return !!(State.settings.apiUrl && State.settings.apiKey);
+      },
+
       headers() {
-        const h = { 'Accept': 'application/json' };
-        if (State.settings.apiKey) h['X-API-Key'] = State.settings.apiKey;
+        const h = {
+          'Accept': 'application/json',
+          'X-Webcup-Api-Key': State.settings.apiKey || ''
+        };
         return h;
       },
-      async test() {
+
+      async requestSnapshot() {
         if (!this.configured()) {
-          State.apiOnline = false;
-          return { ok: false, message: "Aucun endpoint renseigné. Renseignez l'URL officielle de l'API Terra Nova." };
+          throw new Error('Clé API manquante');
         }
-        try {
-          const res = await fetch(State.settings.apiUrl, { headers: this.headers() });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          State.apiOnline = true;
-          State.lastSync = Date.now();
-          return { ok: true, message: 'Connexion établie — HTTP ' + res.status };
-        } catch (e) {
-          State.apiOnline = false;
-          return { ok: false, message: 'Échec de connexion : ' + e.message + '. Bascule en mode démo.' };
+
+        const res = await fetch(State.settings.apiUrl || this.DEFAULT_URL, {
+          method: 'GET',
+          headers: this.headers(),
+          cache: 'no-store'
+        });
+
+        let data = null;
+        try { data = await res.json(); } catch (_) {}
+
+        if (!res.ok) {
+          const msg = data && data.message ? data.message : ('HTTP ' + res.status);
+          const err = new Error(msg);
+          err.status = res.status;
+          throw err;
+        }
+
+        if (!data || typeof data !== 'object') {
+          throw new Error('Réponse API invalide');
+        }
+
+        return data;
+      },
+
+      applySession(session) {
+        State.apiSession = session || null;
+        if (session && Number.isFinite(Number(session.elapsed_minutes))) {
+          // The API exposes elapsed minutes, not a calendar timestamp.
+          State.sessionStart = Date.now() - Number(session.elapsed_minutes) * 60000;
         }
       },
+
+      difficultyKey(raw) {
+        const level = Number(raw.difficulty_level);
+        if (level === 1) return 'facile';
+        if (level === 2) return 'moyenne';
+        if (level === 3) return 'difficile';
+        if (level === 4) return 'expert';
+
+        const text = String(raw.difficulty || '').toLowerCase();
+        if (text.startsWith('fac')) return 'facile';
+        if (text.startsWith('dif')) return 'difficile';
+        if (text.startsWith('exp')) return 'expert';
+        return 'moyenne';
+      },
+
+      sectorFromGroup(groupName) {
+        // group_name is optional. Only classify when its wording clearly maps
+        // to one of ZENITH's existing operational sectors.
+        const g = String(groupName || '').toLowerCase();
+        if (g.includes('transport') || g.includes('mobil')) return 'transport';
+        if (g.includes('sécur') || g.includes('secur') || g.includes('polic')) return 'security';
+        if (g.includes('environ') || g.includes('écolog') || g.includes('ecolog') || g.includes('énergie') || g.includes('energie')) return 'environment';
+        return 'daily';
+      },
+
       normalize(raw) {
-        const difficulty = String(raw.difficulty || raw.difficulte || 'moyenne').toLowerCase();
-        const diffKey = DIFFICULTIES[difficulty] ? difficulty :
-          (difficulty.startsWith('fac') ? 'facile' :
-            difficulty.startsWith('dif') ? 'difficile' :
-              difficulty.startsWith('exp') ? 'expert' : 'moyenne');
-        const sectorRaw = String(raw.sector || raw.secteur || 'daily').toLowerCase();
-        const sectorKey = SECTORS[sectorRaw] ? sectorRaw :
-          (sectorRaw.includes('transp') ? 'transport' :
-            sectorRaw.includes('secu') ? 'security' :
-              sectorRaw.includes('env') ? 'environment' : 'daily');
-        const createdAt = raw.createdAt ? new Date(raw.createdAt).getTime() : Date.now();
-        const lateBonus = XPEngine.lateBonus(diffKey, createdAt);
-        const base = XPEngine.base(diffKey);
+        const difficulty = this.difficultyKey(raw);
+        const baseXP = Number(raw.xp_base) || DIFFICULTIES[difficulty].xp;
+        const timeBonus = Number(raw.xp_time_bonus) || 0;
+        const totalXP = Number(raw.xp_total);
+        const availableXP = Number(raw.xp_available);
+        const requestCode = String(raw.request_code || raw.id || '').trim();
+        const stableId = requestCode || ('TN-' + String(raw.id || uid()));
+
+        // arrival_time is a duration from contest start, not a time of day.
+        let createdAt = State.sessionStart;
+        const arrival = String(raw.arrival_time || '').trim();
+        const parts = arrival.match(/^(\d+):(\d{2}):(\d{2})$/);
+        if (parts) {
+          const elapsed = Number(parts[1]) * 3600000 + Number(parts[2]) * 60000 + Number(parts[3]) * 1000;
+          createdAt = State.sessionStart + elapsed;
+        }
+
+        const message = String(raw.message_public || '').trim();
+        const title = requestCode ? ('Demande ' + requestCode) : 'Demande Terra Nova';
+        const sector = this.sectorFromGroup(raw.group_name);
+
         return {
-          id: raw.id || raw.reference || uid(),
-          title: raw.title || raw.titre || 'Demande sans titre',
-          description: raw.description || '',
-          sector: sectorKey,
-          difficulty: diffKey,
-          baseXP: base,
-          lateBonus,
-          totalXP: base + lateBonus,
+          id: stableId,
+          requestCode,
+          apiId: raw.id ?? null,
+          title,
+          description: message || 'Aucun message public fourni.',
+          sector,
+          groupName: raw.group_name || '',
+          requesterName: raw.requester_name || '',
+          requesterType: raw.requester_type || '',
+          difficulty,
+          difficultyLevel: Number(raw.difficulty_level) || ({ facile: 1, moyenne: 2, difficile: 3, expert: 4 }[difficulty]),
+          baseXP,
+          lateBonus: timeBonus,
+          totalXP: Number.isFinite(totalXP) ? totalXP : baseXP + timeBonus,
+          xpAvailable: Number.isFinite(availableXP) ? availableXP : (Number.isFinite(totalXP) ? totalXP : baseXP + timeBonus),
           status: 'new',
-          priority: raw.priority || randomPriority(diffKey, sectorKey),
-          location: raw.location || raw.lieu || 'Localisation non précisée',
-          citizen: raw.citizen || raw.citoyen || 'CIT-0000',
+          priority: this.priorityFromDifficulty(difficulty),
+          location: raw.group_name ? String(raw.group_name) : 'Terra Nova',
+          citizen: raw.requester_name ? String(raw.requester_name) : (raw.requester_type || 'Demandeur'),
           createdAt,
-          updatedAt: createdAt,
+          updatedAt: Date.now(),
           simulated: false,
-          wave: raw.wave || 1,
+          isInitial: raw.is_initial === true,
+          visibleSinceWave: Number(raw.visible_since_wave) || 0,
+          arrivalType: raw.arrival_type || '',
+          wave: Number(raw.wave_number) || 0,
+          arrivalTime: arrival,
+          isAiRelated: raw.is_ai_related === true,
+          isAiRequest: raw.is_ai_request === true,
+          sortOrder: raw.sort_order ?? null,
           checklist: [
-            'Analyser la demande et vérifier les informations',
-            'Identifier les services et équipes concernés',
-            'Appliquer la solution sur le terrain',
-            'Informer le citoyen et documenter l\'intervention'
+            'Analyser la demande publique et vérifier les informations',
+            'Identifier la fonctionnalité ou le service à intégrer',
+            'Implémenter et tester la réponse dans ZENITH',
+            'Documenter la solution et préparer la démonstration'
           ].map(text => ({ text, done: false })),
           solution: '',
           history: [{ status: 'received', at: createdAt }]
         };
       },
-      async fetchNew() {
-        if (!this.configured()) return [];
+
+      priorityFromDifficulty(difficulty) {
+        if (difficulty === 'expert') return 'high';
+        if (difficulty === 'difficile') return 'medium';
+        return 'low';
+      },
+
+      async test() {
+        if (!State.settings.apiUrl) State.settings.apiUrl = this.DEFAULT_URL;
+        if (!State.settings.apiKey) {
+          State.apiOnline = false;
+          return { ok: false, message: 'Clé API manquante. Renseignez-la dans Paramètres.' };
+        }
+
         try {
-          const res = await fetch(State.settings.apiUrl, { headers: this.headers() });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const data = await res.json();
-          const list = Array.isArray(data) ? data : (data.requests || data.demandes || data.data || []);
+          const data = await this.requestSnapshot();
+          this.applySession(data.session);
           State.apiOnline = true;
           State.lastSync = Date.now();
-          return list.map(x => this.normalize(x));
+          return {
+            ok: true,
+            message: 'Connexion établie — ' + ((data.requests || []).length) + ' demande(s) visible(s).',
+            data
+          };
         } catch (e) {
           State.apiOnline = false;
-          return [];
+          const suffix = e.status === 403 ? ' — clé API refusée (HTTP 403).' : '';
+          return { ok: false, message: 'Échec de connexion : ' + e.message + suffix };
+        }
+      },
+
+      async sync({ silent = false } = {}) {
+        if (!this.configured()) return { ok: false, newRequests: [], data: null };
+
+        try {
+          const data = await this.requestSnapshot();
+          const list = Array.isArray(data.requests) ? data.requests : [];
+          this.applySession(data.session);
+          State.apiOnline = true;
+          State.settings.demoMode = false;
+          State.lastSync = Date.now();
+
+          const normalized = list.map(raw => this.normalize(raw));
+          const newRequests = [];
+
+          normalized.forEach(incoming => {
+            const existing = State.requests.find(r =>
+              r.requestCode === incoming.requestCode || r.id === incoming.id
+            );
+
+            if (!existing) {
+              newRequests.push(incoming);
+              RequestManager.add(incoming, { notify: !silent });
+              return;
+            }
+
+            // Refresh official API fields without destroying the team's local work.
+            Object.assign(existing, {
+              apiId: incoming.apiId,
+              title: incoming.title,
+              description: incoming.description,
+              sector: incoming.sector,
+              groupName: incoming.groupName,
+              requesterName: incoming.requesterName,
+              requesterType: incoming.requesterType,
+              difficulty: incoming.difficulty,
+              difficultyLevel: incoming.difficultyLevel,
+              baseXP: incoming.baseXP,
+              lateBonus: incoming.lateBonus,
+              totalXP: incoming.totalXP,
+              xpAvailable: incoming.xpAvailable,
+              isInitial: incoming.isInitial,
+              visibleSinceWave: incoming.visibleSinceWave,
+              arrivalType: incoming.arrivalType,
+              wave: incoming.wave,
+              arrivalTime: incoming.arrivalTime,
+              isAiRelated: incoming.isAiRelated,
+              isAiRequest: incoming.isAiRequest,
+              sortOrder: incoming.sortOrder,
+              updatedAt: Date.now(),
+              simulated: false
+            });
+          });
+
+          persist();
+          return { ok: true, newRequests, data };
+        } catch (e) {
+          State.apiOnline = false;
+          if (!silent) toast('critical', 'API Terra Nova indisponible', e.message + ' — données locales conservées.');
+          return { ok: false, newRequests: [], data: null, error: e };
         }
       }
     };
+
+
+    let apiPollTimer = null;
+    let apiSyncBusy = false;
+
+    function stopApiPolling() {
+      if (apiPollTimer) {
+        clearInterval(apiPollTimer);
+        apiPollTimer = null;
+      }
+    }
+
+    function startApiPolling() {
+      stopApiPolling();
+      if (!APIManager.configured()) return;
+      apiPollTimer = setInterval(async () => {
+        if (apiSyncBusy || document.hidden) return;
+        apiSyncBusy = true;
+        try {
+          const beforeWave = State.apiSession && State.apiSession.current_wave;
+          const result = await APIManager.sync({ silent: true });
+          const afterWave = State.apiSession && State.apiSession.current_wave;
+          if (result.ok && (result.newRequests.length || beforeWave !== afterWave)) {
+            result.newRequests.forEach(r => {
+              Notifications.add(
+                r.priority === 'critical' ? 'critical' : 'new',
+                'Nouvelle demande Terra Nova',
+                r.requestCode + ' — ' + r.description.slice(0, 110),
+                r.id
+              );
+            });
+            refresh();
+          } else if (result.ok && State.ui.section === 'settings') {
+            render();
+          }
+        } finally {
+          apiSyncBusy = false;
+        }
+      }, APIManager.POLL_MS);
+    }
+
 
     /* ============================================================
        6. REQUEST MANAGER
@@ -1598,8 +1823,6 @@
 
       return '<div class="sec-head"><div><h1>Command Center</h1>' +
         '<p>Terra Nova — état consolidé du réseau urbain en temps réel</p></div>' +
-        '<div class="spacer"></div>' +
-        '<button class="btn primary" data-action="start-jury-demo">▶ Lancer la démo</button>' +
         '</div>' + sim + kpis + sectorCards +
         '<div class="grid g2">' + criticalBlock + feedBlock + '</div>';
     }
@@ -2683,11 +2906,11 @@
     function renderSettings() {
       const s = State.settings;
       return '<div class="sec-head"><div><h1>Paramètres</h1>' +
-        '<p>Centre de contrôle API, mode démo et persistance locale</p></div></div>' +
+        '<p>API officielle Terra Nova, synchronisation live et persistance locale</p></div></div>' +
         '<div class="grid g2">' +
         '<div class="card"><h3>Centre de contrôle API</h3>' +
         '<div class="field"><label>Endpoint officiel</label>' +
-        '<input type="text" data-setting="apiUrl" value="' + esc(s.apiUrl) + '" placeholder="https://... (documentation officielle)"></div>' +
+        '<input type="text" data-setting="apiUrl" value="' + esc(s.apiUrl) + '" placeholder="https://24h.webcup.fr/wp-json/webcup/v1/requests"></div>' +
         '<div class="field"><label>Clé API</label>' +
         '<input type="password" data-setting="apiKey" value="' + esc(s.apiKey) + '" placeholder="Clé fournie en annexe"></div>' +
         '<div class="field"><label>Intervalle de synchronisation / simulation (ms)</label>' +
@@ -2696,12 +2919,14 @@
         '<button class="btn primary" data-action="test-api">Tester la connexion</button>' +
         '<button class="btn ghost" data-action="reset-data">Réinitialiser les données locales</button>' +
         '</div>' +
-        '<div class="note warn" style="margin-top:14px"><b>Sécurité —</b> ne jamais coder en dur une clé API secrète dans du JavaScript client public. ' +
-        'Si le service officiel exige un identifiant secret, utilisez une architecture backend/proxy adaptée.</div>' +
+        '<div class="note warn" style="margin-top:14px"><b>Clé API —</b> elle est utilisée uniquement comme header <code>X-Webcup-Api-Key</code>. Une clé placée dans une application navigateur reste techniquement visible côté client : ne publiez donc pas cette version avec une clé intégrée en dur dans le code.</div>' +
         '<div style="margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:2">' +
         'Statut : <span style="color:' + (State.apiOnline ? 'var(--green)' : 'var(--amber)') + '">' +
         (State.apiOnline ? 'API EN LIGNE' : 'API INDISPONIBLE — MODE DÉMO') + '</span><br>' +
         'Dernière synchronisation : ' + (State.lastSync ? fmtDT(State.lastSync) : '—') + '<br>' +
+        'Vague actuelle : ' + (State.apiSession ? (State.apiSession.current_wave ?? 0) : '—') + '<br>' +
+        'Demandes visibles API : ' + (State.apiSession ? (State.apiSession.visible_requests_count ?? '—') : '—') + '<br>' +
+        'Prochaine vague : ' + (State.apiSession ? (State.apiSession.next_wave_number ?? 0) : '—') + ' · ' + (State.apiSession ? (State.apiSession.minutes_until_next_wave ?? 0) : '—') + ' min<br>' +
         'Demandes reçues : ' + State.requests.length + '<br>' +
         'XP cumulés : ' + fmtNum(State.xp) +
         '</div>' +
@@ -2799,7 +3024,9 @@
       const dot = pill.querySelector('.dot');
       const online = State.apiOnline && !State.settings.demoMode;
       dot.className = 'dot' + (online ? '' : ' off');
-      txt.textContent = online ? 'API EN LIGNE' : (State.settings.demoMode ? 'MODE DÉMO' : 'API HORS LIGNE');
+      txt.textContent = online
+        ? ('API EN LIGNE' + (State.apiSession && State.apiSession.current_wave != null ? ' · VAGUE ' + State.apiSession.current_wave : ''))
+        : (State.settings.demoMode ? 'MODE DÉMO' : 'API HORS LIGNE');
     }
 
     function refresh() {
@@ -3179,11 +3406,20 @@
           toast('info', 'Test de connexion', 'Vérification de l\'endpoint en cours…');
           const res = await APIManager.test();
           if (res.ok) {
-            toast('resolved', 'Connexion réussie', res.message);
-            State.settings.demoMode = false;
+            const sync = await APIManager.sync({ silent: false });
+            if (sync.ok) {
+              State.settings.demoMode = false;
+              State.requests = State.requests.filter(r => !r.simulated);
+              startApiPolling();
+              toast('resolved', 'API Terra Nova connectée', res.message + ' Synchronisation automatique : 30 s.');
+            } else {
+              State.settings.demoMode = true;
+              toast('critical', 'Synchronisation échouée', 'La connexion est valide mais le flux n’a pas pu être synchronisé.');
+            }
           } else {
             toast('critical', 'Connexion échouée', res.message);
             State.settings.demoMode = true;
+            stopApiPolling();
           }
           persist(); render();
           break;
@@ -3310,8 +3546,24 @@
        ============================================================ */
     async function init() {
       const hadData = Storage.load();
+      const hasApiCredentials = APIManager.configured();
+      let apiStarted = false;
 
-      if (!hadData || !State.requests.length) {
+      if (hasApiCredentials) {
+        const test = await APIManager.test();
+        if (test.ok) {
+          const sync = await APIManager.sync({ silent: true });
+          if (sync.ok) {
+            apiStarted = true;
+            State.settings.demoMode = false;
+            // Do not mix synthetic demo requests with the official contest feed.
+            State.requests = State.requests.filter(r => !r.simulated);
+            persist();
+          }
+        }
+      }
+
+      if (!apiStarted && (!hadData || !State.requests.length)) {
         State.sessionStart = Date.now();
         seedDemoData();
         Notifications.add('info', 'ZENITH initialisé',
@@ -3319,15 +3571,7 @@
         persist();
       }
 
-      if (APIManager.configured()) {
-        await APIManager.test();
-        if (State.apiOnline) {
-          const news = await APIManager.fetchNew();
-          news.forEach(r => RequestManager.add(r, { notify: true }));
-          State.settings.demoMode = false;
-        }
-      }
-      if (!State.apiOnline) State.settings.demoMode = true;
+      if (!apiStarted) State.settings.demoMode = true;
 
       renderNotifPanel();
       updateBadge();
@@ -3336,6 +3580,7 @@
 
       await runBoot();
       startSimulation();
+      if (apiStarted) startApiPolling();
 
       setInterval(() => {
         if (document.hidden) return;
