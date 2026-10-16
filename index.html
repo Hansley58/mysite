@@ -180,7 +180,46 @@
             box-shadow: 0 6px 16px rgba(255, 180, 200, 0.4);
             max-width: 100%;
             line-height: 1.4;
+            transition: all 0.4s ease;
         }
+
+        /* ============ NO BUTTON TEASE BUBBLE ============ */
+        .tease-bubble {
+            position: fixed;
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 24px 24px 24px 4px;
+            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+            font-weight: 600;
+            font-style: italic;
+            max-width: 260px;
+            line-height: 1.35;
+            box-shadow: 0 14px 30px -6px rgba(255, 94, 138, 0.6), 0 0 0 3px white inset;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.5) translateY(10px);
+            transform-origin: bottom left;
+            transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .tease-bubble.show {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .tease-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            transform: rotate(45deg);
+            border-radius: 0 0 4px 0;
+        }
+
+        /* ============ NO BUTTON VARIANTS ============ */
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -228,6 +267,8 @@
             box-shadow: 0 26px 40px -6px #ff5e8a;
             background: linear-gradient(135deg, #ff7aa8, #ff3d71);
         }
+
+        /* The "No" button — starts tiny, gets smaller with each attempt */
         .btn-no {
             background: #ffeef2;
             color: #b34167;
@@ -239,10 +280,23 @@
                 top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
                 transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
                 background 0.3s ease,
-                box-shadow 0.3s ease;
-            will-change: left, top, transform;
+                box-shadow 0.3s ease,
+                font-size 0.4s ease,
+                padding 0.4s ease;
+            will-change: left, top, transform, font-size, padding;
         }
         .btn-no:hover { background: #ffe0e9; box-shadow: 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
+
+        /* Glow ring when she's about to try again */
+        .btn-no.pulse-ring {
+            animation: pulseRing 0.6s ease-out;
+        }
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(255, 94, 138, 0.7), 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
+            100% { box-shadow: 0 0 0 30px rgba(255, 94, 138, 0), 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
+        }
+
+        /* ============ DATE PLANNER (unchanged) ============ */
         .date-page {
             position: fixed;
             top: 0;
@@ -525,6 +579,7 @@
             .options-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
             .action-row { flex-direction: column; }
             .confirm-btn, .back-btn { flex: 1 1 auto; width: 100%; }
+            .tease-bubble { font-size: 0.85rem; padding: 10px 16px; max-width: 220px; }
         }
         @media (max-width: 400px) {
             .container { padding: 24px 14px; border-radius: 24px; }
@@ -548,6 +603,7 @@
         @media (prefers-reduced-motion: reduce) {
             .heart-bg, h1 i, .btn-yes { animation: none !important; }
             .btn, .option-card, .confirm-btn, .btn-no, .back-btn { transition-duration: 0.2s !important; }
+            .tease-bubble { transition: opacity 0.1s; }
         }
         @supports (padding: max(0px)) {
             body {
@@ -579,12 +635,15 @@
 
     <div class="container" id="mainContainer">
         <h1><i class="fas fa-heart"></i> Will you date me? <i class="fas fa-heart"></i></h1>
-        <div class="sub-message">I've been wanting to ask you something special… 💌</div>
+        <div class="sub-message" id="subMessage">I've been wanting to ask you something special… 💌</div>
         <div class="btn-group" id="btnGroup">
             <button class="btn btn-yes" id="yesBtn">Yes 💖</button>
             <button class="btn btn-no" id="noBtn">No 🙈</button>
         </div>
     </div>
+
+    <!-- Tease bubble (fixed) -->
+    <div class="tease-bubble" id="teaseBubble"></div>
 
     <div class="date-page" id="datePage">
         <div class="date-container">
@@ -743,8 +802,6 @@
     <script>
         (function() {
             // ============ TRACKING HELPERS ============
-            // Every important event is stored in localStorage under 'sparkRomanticTracking'
-            // The dashboard reads this key to display live data.
             const TRACKING_KEY = 'sparkRomanticTracking';
 
             function loadTracking() {
@@ -764,7 +821,7 @@
             function saveTracking(data) {
                 try {
                     localStorage.setItem(TRACKING_KEY, JSON.stringify(data));
-                } catch (e) { /* quota or private mode - silently ignore */ }
+                } catch (e) {}
             }
 
             function trackVisit() {
@@ -774,7 +831,6 @@
                     userAgent: navigator.userAgent,
                     referrer: document.referrer || 'direct'
                 });
-                // keep last 200 visits
                 if (data.visits.length > 200) data.visits = data.visits.slice(-200);
                 saveTracking(data);
             }
@@ -783,7 +839,7 @@
                 const data = loadTracking();
                 data.answers.push({
                     timestamp: new Date().toISOString(),
-                    answer: answer, // 'yes' or 'no'
+                    answer: answer,
                     userAgent: navigator.userAgent
                 });
                 if (data.answers.length > 200) data.answers = data.answers.slice(-200);
@@ -792,7 +848,6 @@
 
             function trackDatePlan(plan) {
                 const data = loadTracking();
-                // Replace the last 'yes' answer with the full plan if one exists
                 if (data.answers.length > 0) {
                     const last = data.answers[data.answers.length - 1];
                     if (last.answer === 'yes' && !last.plan) {
@@ -802,7 +857,6 @@
                 saveTracking(data);
             }
 
-            // Track a visit right away
             trackVisit();
 
             // ============ NAME GATE ============
@@ -824,7 +878,6 @@
                     gateError.classList.remove('show');
                     gateScreen.classList.add('hidden');
                     document.body.focus();
-                    // Track that she entered her name correctly
                     const data = loadTracking();
                     data.lastAccess = new Date().toISOString();
                     saveTracking(data);
@@ -853,15 +906,100 @@
             const yesBtn = document.getElementById('yesBtn');
             const mainContainer = document.getElementById('mainContainer');
             const datePage = document.getElementById('datePage');
+            const subMessage = document.getElementById('subMessage');
+            const teaseBubble = document.getElementById('teaseBubble');
 
             const WHATSAPP_NUMBER = '23058226850';
 
+            // ============ FUNNY TEASE MESSAGES ============
+            // She'll get these one by one, in order, each time she tries to catch the No button
+            const TEASE_MESSAGES = [
+                "Nope, that button doesn't like you 😏",
+                "Try again... if you can catch it 😜",
+                "You're persistent, I'll give you that 💪",
+                "The No button is shy 🙈",
+                "It's running because it knows the answer 😌",
+                "Are you sure you want to click that? 🤔",
+                "I promise Yes is a much better choice 💖",
+                "The No button has left the chat 👋",
+                "Okay okay, you're really trying huh? 😅",
+                "The universe is telling you something ✨",
+                "Even the button knows we'd be cute together 🥰",
+                "You can't fight destiny 💫",
+                "Fine, I'll ask again... please? 🥺",
+                "The No button is out of breath 🏃‍♀️",
+                "Plot twist: Yes was the answer all along 💘",
+                "Your finger is getting tired, isn't it? 😴",
+                "The No button just filed a complaint 📝",
+                "It's not you, it's the button 🤷‍♀️",
+                "Yes is looking pretty good right now, huh? 😏",
+                "Accept it — Yes is your destiny 🌹"
+            ];
+
+            let teaseIndex = 0;
+            let lastMove = 0;
             let isFixed = false;
 
             function clamp(val, min, max) {
                 return Math.min(Math.max(val, min), max);
             }
 
+            // ---- Show a random tease bubble near the No button ----
+            function showTeaseBubble() {
+                const msg = TEASE_MESSAGES[teaseIndex % TEASE_MESSAGES.length];
+                teaseIndex++;
+
+                teaseBubble.textContent = msg;
+
+                // Position the bubble near the No button (top-left of it)
+                const rect = noBtn.getBoundingClientRect();
+                let bubbleX = rect.left;
+                let bubbleY = rect.top - 70;
+
+                // Keep the bubble on screen
+                const bubbleW = 260;
+                const bubbleH = 70;
+                if (bubbleX + bubbleW > window.innerWidth - 10) {
+                    bubbleX = window.innerWidth - bubbleW - 10;
+                }
+                if (bubbleX < 10) bubbleX = 10;
+                if (bubbleY < 10) {
+                    // Place below the button instead
+                    bubbleY = rect.bottom + 14;
+                }
+
+                teaseBubble.style.left = bubbleX + 'px';
+                teaseBubble.style.top = bubbleY + 'px';
+
+                teaseBubble.classList.add('show');
+
+                // Also change the sub-message on the main card to tease her
+                subMessage.textContent = msg;
+                subMessage.style.transform = 'scale(1.05)';
+                subMessage.style.background = 'rgba(255, 220, 235, 0.95)';
+                setTimeout(() => {
+                    subMessage.style.transform = '';
+                    subMessage.style.background = '';
+                }, 400);
+
+                // Hide the bubble after 2 seconds
+                clearTimeout(showTeaseBubble._t);
+                showTeaseBubble._t = setTimeout(() => {
+                    teaseBubble.classList.remove('show');
+                }, 2200);
+            }
+
+            // ---- Make the No button shrink each time it evades ----
+            function shrinkNoButton() {
+                const currentFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+                const minFontSize = 12; // stop shrinking at ~12px
+                if (currentFontSize > minFontSize) {
+                    const newSize = Math.max(minFontSize, currentFontSize * 0.92);
+                    noBtn.style.fontSize = newSize + 'px';
+                }
+            }
+
+            // ---- Move the No button far away ----
             function moveNoButton() {
                 const isSmall = window.innerWidth < 640;
                 const margin = isSmall ? 10 : 14;
@@ -914,17 +1052,27 @@
                 setTimeout(() => {
                     noBtn.style.transform = 'rotate(0deg)';
                 }, 700);
+
+                // Add a pulse ring animation
+                noBtn.classList.remove('pulse-ring');
+                void noBtn.offsetWidth;
+                noBtn.classList.add('pulse-ring');
+                setTimeout(() => noBtn.classList.remove('pulse-ring'), 650);
+
+                // Shrink it a little
+                shrinkNoButton();
             }
 
-            let lastMove = 0;
             const MOVE_COOLDOWN = 380;
             function tryMove() {
                 const now = Date.now();
                 if (now - lastMove < MOVE_COOLDOWN) return;
                 lastMove = now;
                 moveNoButton();
+                showTeaseBubble();
             }
 
+            // ============ ATTACH EVASIVE LISTENERS ============
             noBtn.addEventListener('mouseenter', (e) => { e.preventDefault(); tryMove(); });
             noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); tryMove(); }, { passive: false });
             noBtn.addEventListener('mousedown', (e) => { e.preventDefault(); tryMove(); });
@@ -932,6 +1080,7 @@
             noBtn.addEventListener('click', (e) => { e.preventDefault(); tryMove(); });
             noBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
+            // Pointer gets too close → jump away
             document.addEventListener('pointermove', (e) => {
                 if (!isFixed) return;
                 const rect = noBtn.getBoundingClientRect();
@@ -968,7 +1117,7 @@
                 noBtn.style.top = top + 'px';
             });
 
-            // ---------------- YES → DATE PLANNER ----------------
+            // ============ YES → DATE PLANNER ============
             yesBtn.addEventListener('click', () => {
                 trackAnswer('yes');
                 mainContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
@@ -982,7 +1131,7 @@
                 }, 350);
             });
 
-            // ---------------- DATE PLANNER LOGIC ----------------
+            // ============ DATE PLANNER LOGIC ============
             const optionCards = document.querySelectorAll('.option-card');
             const dateTimeInput = document.getElementById('dateTimeInput');
             const confirmBtn = document.getElementById('confirmBtn');
@@ -1085,7 +1234,7 @@
                 }
             });
 
-            // ---------------- CONFIRM & WHATSAPP ----------------
+            // ============ CONFIRM & WHATSAPP ============
             confirmBtn.addEventListener('click', () => {
                 summaryList.innerHTML = '';
 
@@ -1143,7 +1292,6 @@
                 backBtn.classList.remove('hidden');
                 summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                // -------- SAVE PLAN TO TRACKING --------
                 const plan = {
                     dateFormatted,
                     flowers: flowersD.value,
