@@ -219,7 +219,6 @@
             border-radius: 0 0 4px 0;
         }
 
-        /* ============ NO BUTTON VARIANTS ============ */
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -267,8 +266,6 @@
             box-shadow: 0 26px 40px -6px #ff5e8a;
             background: linear-gradient(135deg, #ff7aa8, #ff3d71);
         }
-
-        /* The "No" button — starts tiny, gets smaller with each attempt */
         .btn-no {
             background: #ffeef2;
             color: #b34167;
@@ -286,8 +283,6 @@
             will-change: left, top, transform, font-size, padding;
         }
         .btn-no:hover { background: #ffe0e9; box-shadow: 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
-
-        /* Glow ring when she's about to try again */
         .btn-no.pulse-ring {
             animation: pulseRing 0.6s ease-out;
         }
@@ -296,8 +291,8 @@
             100% { box-shadow: 0 0 0 30px rgba(255, 94, 138, 0), 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
         }
 
-        /* ============ DATE PLANNER (unchanged) ============ */
-        .date-page {
+        /* ============ GET-TO-KNOW-HER PAGE ============ */
+        .about-page {
             position: fixed;
             top: 0;
             left: 0;
@@ -312,11 +307,11 @@
             opacity: 0;
             transition: opacity 0.6s ease;
         }
-        .date-page.show { display: block; opacity: 1; }
-        .date-container {
-            max-width: 1100px;
+        .about-page.show { display: block; opacity: 1; }
+        .about-container {
+            max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: clamp(24px, 4vw, 40px);
@@ -324,149 +319,112 @@
             box-shadow: 0 30px 60px rgba(200, 100, 130, 0.25);
             border: 1px solid #fff;
         }
-        .date-container h2 {
-            font-size: clamp(1.4rem, 5vw, 2.8rem);
+        .about-container h2 {
+            font-size: clamp(1.4rem, 5vw, 2.6rem);
             color: #b34167;
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.25;
         }
-        .date-container > p {
+        .about-container > p.about-intro {
             text-align: center;
             color: #7a3e55;
-            font-size: clamp(0.9rem, 2.3vw, 1.2rem);
-            margin-bottom: clamp(18px, 3vw, 30px);
+            font-size: clamp(0.9rem, 2.3vw, 1.15rem);
+            margin-bottom: clamp(20px, 4vw, 32px);
             font-style: italic;
+            line-height: 1.5;
         }
-        .section-title {
-            font-size: clamp(1.05rem, 3vw, 1.6rem);
-            color: #b34167;
-            margin: clamp(18px, 3.5vw, 28px) 0 clamp(10px, 2vw, 16px);
+
+        /* Progress */
+        .about-progress-wrap { margin-bottom: clamp(20px, 4vw, 30px); }
+        .about-progress-info {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            flex-wrap: wrap;
-        }
-        .section-hint {
-            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            justify-content: space-between;
+            font-size: 0.85rem;
             color: #a06b80;
-            font-weight: 400;
-            font-style: italic;
-            margin-left: auto;
-        }
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 26vw, 200px), 1fr));
-            gap: clamp(10px, 2vw, 16px);
-        }
-        .option-card {
-            background: white;
-            border-radius: clamp(14px, 2.5vw, 20px);
-            padding: 0;
-            text-align: center;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 6px 16px rgba(200, 120, 150, 0.15);
-            user-select: none;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .option-card:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 22px rgba(200, 120, 150, 0.28); }
-        .option-card.selected {
-            border-color: #ff5e8a;
-            background: #fff0f5;
-            box-shadow: 0 8px 20px rgba(255, 94, 138, 0.4);
-            transform: scale(1.04);
-        }
-        .option-card.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #ff5e8a;
-            color: white;
-            width: clamp(22px, 4vw, 28px);
-            height: clamp(22px, 4vw, 28px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(0.7rem, 1.8vw, 1rem);
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 94, 138, 0.5);
-            animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 3;
-        }
-        @keyframes popIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-        .option-image {
-            width: 100%;
-            height: clamp(90px, 18vw, 130px);
-            overflow: hidden;
-            position: relative;
-            background: #ffeef2;
-        }
-        .option-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        .option-card:hover .option-image img { transform: scale(1.08); }
-        .option-info {
-            padding: clamp(8px, 1.8vw, 12px) clamp(6px, 1.5vw, 10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            flex: 1;
-            justify-content: center;
-        }
-        .option-card .label {
-            font-size: clamp(0.75rem, 1.9vw, 0.95rem);
-            color: #7a3e55;
             font-weight: 600;
-            line-height: 1.2;
-        }
-        .option-card .price {
-            font-size: clamp(0.7rem, 1.7vw, 0.85rem);
-            color: #ff5e8a;
-            font-weight: 700;
-            background: #fff0f5;
-            padding: 3px 10px;
-            border-radius: 20px;
+            margin-bottom: 8px;
             letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
-        .option-card.selected .price { background: #ff5e8a; color: white; }
-        .option-card.custom-card .option-image {
-            background: linear-gradient(135deg, #fff0f5, #ffe4ed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .option-card.custom-card .option-image .custom-icon {
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: #ff5e8a;
-            transition: transform 0.4s ease;
-        }
-        .option-card.custom-card:hover .option-image .custom-icon { transform: scale(1.15) rotate(-8deg); }
-        .option-card.custom-card.selected .option-image .custom-icon { animation: pulse 1.2s infinite; }
-        .custom-text-wrap { display: none; margin-top: 14px; animation: fadeIn 0.4s ease; }
-        .custom-text-wrap.show { display: block; }
-        .custom-text-wrap textarea {
+        .about-progress-track {
             width: 100%;
-            min-height: 90px;
-            padding: 14px 18px;
-            border-radius: 22px;
+            height: 10px;
+            background: #ffe4ed;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(200, 100, 130, 0.15);
+        }
+        .about-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff8eb5, #ff5e8a);
+            border-radius: 20px;
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 12px rgba(255, 94, 138, 0.6);
+        }
+
+        /* Question block */
+        .q-block {
+            background: white;
+            border-radius: clamp(16px, 3vw, 22px);
+            padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 26px);
+            margin-bottom: clamp(14px, 2.5vw, 20px);
+            box-shadow: 0 6px 18px rgba(200, 120, 150, 0.12);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            animation: qFadeIn 0.5s ease both;
+        }
+        .q-block:nth-child(1) { animation-delay: 0.03s; }
+        .q-block:nth-child(2) { animation-delay: 0.06s; }
+        .q-block:nth-child(3) { animation-delay: 0.09s; }
+        .q-block:nth-child(4) { animation-delay: 0.12s; }
+        .q-block:nth-child(5) { animation-delay: 0.15s; }
+        .q-block:nth-child(6) { animation-delay: 0.18s; }
+        .q-block:nth-child(7) { animation-delay: 0.21s; }
+        .q-block:nth-child(8) { animation-delay: 0.24s; }
+        .q-block:nth-child(9) { animation-delay: 0.27s; }
+        .q-block:nth-child(10) { animation-delay: 0.30s; }
+        @keyframes qFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .q-block:focus-within {
+            border-color: #ffb6c1;
+            box-shadow: 0 10px 24px rgba(255, 94, 138, 0.18);
+        }
+        .q-block-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: clamp(1rem, 2.6vw, 1.2rem);
+            color: #b34167;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
+        .q-block-label .q-emoji {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .q-block-hint {
+            font-size: clamp(0.78rem, 2vw, 0.9rem);
+            color: #a06b80;
+            font-style: italic;
+            font-weight: 400;
+            margin-top: -8px;
+            margin-bottom: 12px;
+            padding-left: 34px;
+            line-height: 1.35;
+        }
+        .q-block textarea,
+        .q-block input[type="text"] {
+            width: 100%;
+            padding: clamp(12px, 2.2vw, 14px) clamp(14px, 2.6vw, 18px);
+            border-radius: 16px;
             border: 2px solid #ffb6c1;
-            font-size: clamp(0.9rem, 2.3vw, 1.05rem);
+            font-size: clamp(0.92rem, 2.3vw, 1.02rem);
             font-family: inherit;
             color: #7a3e55;
             background: white;
@@ -475,28 +433,64 @@
             transition: border 0.2s, box-shadow 0.2s;
             line-height: 1.4;
         }
-        .custom-text-wrap textarea:focus { border-color: #ff5e8a; box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.15); }
-        .custom-text-wrap textarea::placeholder { color: #c99aae; font-style: italic; }
-        .date-input {
-            width: 100%;
-            padding: clamp(12px, 2.4vw, 16px) clamp(14px, 3vw, 20px);
-            border-radius: 60px;
-            border: 2px solid #ffb6c1;
-            font-size: clamp(0.9rem, 2.3vw, 1.1rem);
-            font-family: inherit;
-            color: #7a3e55;
-            background: white;
-            outline: none;
-            transition: border 0.2s, box-shadow 0.2s;
-            -webkit-appearance: none;
-            appearance: none;
+        .q-block textarea { min-height: 70px; }
+        .q-block textarea:focus,
+        .q-block input[type="text"]:focus {
+            border-color: #ff5e8a;
+            box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.15);
         }
-        .date-input:focus { border-color: #ff5e8a; box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.15); }
-        .action-row { display: flex; flex-wrap: wrap; gap: clamp(10px, 2vw, 16px); margin-top: clamp(24px, 4vw, 36px); }
-        .confirm-btn {
+        .q-block textarea::placeholder,
+        .q-block input[type="text"]::placeholder {
+            color: #c99aae;
+            font-style: italic;
+        }
+
+        /* Choice chips */
+        .choice-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .choice-chip {
+            padding: 10px 18px;
+            border-radius: 40px;
+            border: 2px solid #ffb6c1;
+            background: white;
+            color: #7a3e55;
+            font-size: clamp(0.82rem, 2.1vw, 0.95rem);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+        }
+        .choice-chip:hover {
+            transform: translateY(-2px);
+            border-color: #ff5e8a;
+            box-shadow: 0 8px 18px -6px rgba(255, 94, 138, 0.35);
+        }
+        .choice-chip.selected {
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            color: white;
+            border-color: #ff5e8a;
+            box-shadow: 0 8px 20px rgba(255, 94, 138, 0.4);
+            transform: scale(1.03);
+        }
+        .choice-chip.selected::before {
+            content: '✓ ';
+            font-weight: bold;
+        }
+
+        /* Confirm row */
+        .about-action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(10px, 2vw, 14px);
+            margin-top: clamp(20px, 4vw, 30px);
+        }
+        .about-confirm-btn {
             flex: 2 1 220px;
-            padding: clamp(14px, 2.8vw, 20px);
-            font-size: clamp(1rem, 2.8vw, 1.6rem);
+            padding: clamp(14px, 2.8vw, 18px);
+            font-size: clamp(1rem, 2.7vw, 1.4rem);
             font-weight: 700;
             border: none;
             border-radius: 60px;
@@ -505,80 +499,87 @@
             cursor: pointer;
             box-shadow: 0 14px 30px -6px #ff8eb5;
             transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
-        .confirm-btn:hover:not(:disabled) { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 38px -6px #ff5e8a; }
-        .confirm-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .back-btn {
+        .about-confirm-btn:hover:not(:disabled) {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 38px -6px #ff5e8a;
+        }
+        .about-confirm-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .about-back-btn {
             flex: 1 1 140px;
-            padding: clamp(14px, 2.8vw, 20px);
-            font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+            padding: clamp(14px, 2.8vw, 18px);
+            font-size: clamp(0.9rem, 2.3vw, 1.1rem);
             font-weight: 700;
             border: 2px solid #ff8eb5;
             border-radius: 60px;
             background: white;
             color: #b34167;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-        .back-btn:hover { background: #fff0f5; transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 28px -8px rgba(255, 94, 138, 0.5); }
-        .back-btn:active { transform: translateY(-1px) scale(0.99); }
-        .back-btn.hidden { display: none; }
-        .summary-box {
-            margin-top: clamp(18px, 3vw, 26px);
+        .about-back-btn:hover {
+            background: #fff0f5;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 26px -8px rgba(255, 94, 138, 0.5);
+        }
+
+        /* Summary */
+        .about-summary {
+            margin-top: clamp(20px, 4vw, 30px);
             background: #fff0f5;
             border-radius: clamp(16px, 3vw, 24px);
-            padding: clamp(14px, 3vw, 20px) clamp(16px, 3vw, 24px);
+            padding: clamp(16px, 3vw, 22px) clamp(18px, 3vw, 26px);
             color: #7a3e55;
-            font-size: clamp(0.9rem, 2.2vw, 1.05rem);
             display: none;
             border: 2px dashed #ffb6c1;
         }
-        .summary-box.show { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .about-summary.show { display: block; animation: fadeIn 0.5s ease; }
+        .about-summary h3 {
+            color: #b34167;
+            margin-bottom: 12px;
+            font-size: clamp(1.05rem, 2.8vw, 1.3rem);
         }
-        .summary-box h3 { color: #b34167; margin-bottom: 10px; font-size: clamp(1.05rem, 2.8vw, 1.4rem); }
-        .summary-box ul { list-style: none; padding-left: 0; }
-        .summary-box li {
-            padding: 4px 0;
+        .about-summary ul { list-style: none; padding-left: 0; }
+        .about-summary li {
+            padding: 8px 0;
             display: flex;
             align-items: flex-start;
             gap: 8px;
-            line-height: 1.35;
+            line-height: 1.4;
             word-break: break-word;
+            border-bottom: 1px dashed rgba(255, 182, 193, 0.6);
+            font-size: clamp(0.88rem, 2.2vw, 1rem);
         }
-        .summary-box li i { flex-shrink: 0; margin-top: 4px; }
-        .summary-box .total {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 2px dashed #ffb6c1;
-            font-weight: 700;
-            color: #b34167;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            display: flex;
-            justify-content: space-between;
-        }
-        .summary-box .note {
+        .about-summary li:last-child { border-bottom: none; }
+        .about-summary li strong { color: #b34167; }
+        .about-summary .note {
             margin-top: 12px;
             font-size: clamp(0.75rem, 2vw, 0.9rem);
             color: #a06b80;
             font-style: italic;
+            text-align: center;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 640px) {
             body { padding: 10px; align-items: flex-start; padding-top: max(16px, env(safe-area-inset-top)); }
             .container { padding: 30px 18px; margin-top: 10px; }
             .btn-group { gap: 16px; }
-            .section-hint { width: 100%; margin-left: 0; text-align: left; }
-            .options-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-            .action-row { flex-direction: column; }
-            .confirm-btn, .back-btn { flex: 1 1 auto; width: 100%; }
+            .about-action-row { flex-direction: column; }
+            .about-confirm-btn, .about-back-btn { flex: 1 1 auto; width: 100%; }
             .tease-bubble { font-size: 0.85rem; padding: 10px 16px; max-width: 220px; }
         }
         @media (max-width: 400px) {
@@ -587,23 +588,10 @@
             .btn { width: 100%; max-width: 260px; }
             .btn-yes { padding: 14px 30px; }
             .btn-no { padding: 12px 30px; }
-            .options-grid { grid-template-columns: repeat(2, 1fr); }
-            .option-image { height: 80px; }
-        }
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .options-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-        }
-        @media (max-height: 500px) and (orientation: landscape) {
-            body { align-items: flex-start; overflow-y: auto; padding: 20px 16px; }
-            .container { margin-top: 0; padding: 20px 24px; }
-            .btn-group { margin-top: 16px; min-height: auto; }
-            .sub-message { margin: 10px 0 16px; }
-            h1 { margin-bottom: 6px; }
         }
         @media (prefers-reduced-motion: reduce) {
             .heart-bg, h1 i, .btn-yes { animation: none !important; }
-            .btn, .option-card, .confirm-btn, .btn-no, .back-btn { transition-duration: 0.2s !important; }
-            .tease-bubble { transition: opacity 0.1s; }
+            .btn, .btn-no { transition-duration: 0.2s !important; }
         }
         @supports (padding: max(0px)) {
             body {
@@ -642,160 +630,158 @@
         </div>
     </div>
 
-    <!-- Tease bubble (fixed) -->
+    <!-- Tease bubble -->
     <div class="tease-bubble" id="teaseBubble"></div>
 
-    <div class="date-page" id="datePage">
-        <div class="date-container">
-            <h2>💕 Yay! Let's plan our date 💕</h2>
-            <p>Pick one of each — or tell me what you'd love instead 💌</p>
+    <!-- ============ GET-TO-KNOW-HER PAGE ============ -->
+    <div class="about-page" id="aboutPage">
+        <div class="about-container">
+            <h2>💕 Now tell me about you 💕</h2>
+            <p class="about-intro">Tell me what makes you, you 🌸<br>Take your time, every answer means something to me 💖</p>
 
-            <div class="section-title"><i class="fas fa-fan"></i> Your flower <span class="section-hint">pick one</span></div>
-            <div class="options-grid" id="flowersGrid">
-                <div class="option-card" data-category="flowers" data-value="Roses 🌹" data-price="Rs 350">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400&auto=format&fit=crop" alt="Roses" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Roses 🌹</span><span class="price">Rs 350</span></div>
+            <!-- Progress -->
+            <div class="about-progress-wrap">
+                <div class="about-progress-info">
+                    <span id="aboutProgressLabel">Answered 0 of 10</span>
+                    <span id="aboutProgressPercent">0%</span>
                 </div>
-                <div class="option-card" data-category="flowers" data-value="Tulips 🌷" data-price="Rs 420">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?w=400&auto=format&fit=crop" alt="Tulips" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Tulips 🌷</span><span class="price">Rs 420</span></div>
-                </div>
-                <div class="option-card" data-category="flowers" data-value="Sunflowers 🌻" data-price="Rs 300">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=400&auto=format&fit=crop" alt="Sunflowers" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Sunflowers 🌻</span><span class="price">Rs 300</span></div>
-                </div>
-                <div class="option-card" data-category="flowers" data-value="Lilies 🌸" data-price="Rs 480">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=400&auto=format&fit=crop" alt="Lilies" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Lilies 🌸</span><span class="price">Rs 480</span></div>
-                </div>
-                <div class="option-card" data-category="flowers" data-value="Orchids 🪷" data-price="Rs 650">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1567748157439-651aca2ff064?w=400&auto=format&fit=crop" alt="Orchids" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Orchids 🪷</span><span class="price">Rs 650</span></div>
-                </div>
-                <div class="option-card" data-category="flowers" data-value="Daisies 🌼" data-price="Rs 250">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400&auto=format&fit=crop" alt="Daisies" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Daisies 🌼</span><span class="price">Rs 250</span></div>
-                </div>
-                <div class="option-card custom-card" data-category="flowers" data-value="__custom__" data-price="custom">
-                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
-                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+                <div class="about-progress-track">
+                    <div class="about-progress-fill" id="aboutProgressFill"></div>
                 </div>
             </div>
-            <div class="custom-text-wrap" id="flowersCustomWrap"><textarea id="flowersCustomText" placeholder="Tell me which flower you'd love instead… 🌷"></textarea></div>
 
-            <div class="section-title"><i class="fas fa-cake-candles"></i> Your treat <span class="section-hint">pick one</span></div>
-            <div class="options-grid" id="treatsGrid">
-                <div class="option-card" data-category="treats" data-value="Chocolate Cake 🍫" data-price="Rs 550">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&auto=format&fit=crop" alt="Chocolate Cake" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Chocolate Cake</span><span class="price">Rs 550</span></div>
+            <!-- ===== QUESTION BLOCKS ===== -->
+            <div id="aboutQuestions">
+
+                <!-- 1. Favourite colour -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">🎨</span><span>What's your favourite colour?</span></div>
+                    <div class="q-block-hint">The one that always makes you smile.</div>
+                    <div class="choice-list" data-qid="color">
+                        <div class="choice-chip" data-value="Pink">Pink 🌸</div>
+                        <div class="choice-chip" data-value="Purple">Purple 💜</div>
+                        <div class="choice-chip" data-value="Blue">Blue 💙</div>
+                        <div class="choice-chip" data-value="Green">Green 💚</div>
+                        <div class="choice-chip" data-value="Yellow">Yellow 💛</div>
+                        <div class="choice-chip" data-value="Red">Red ❤️</div>
+                        <div class="choice-chip" data-value="Black">Black 🖤</div>
+                        <div class="choice-chip" data-value="White">White 🤍</div>
+                    </div>
                 </div>
-                <div class="option-card" data-category="treats" data-value="Strawberry Cake 🍓" data-price="Rs 600">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&auto=format&fit=crop" alt="Strawberry Cake" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Strawberry Cake</span><span class="price">Rs 600</span></div>
+
+                <!-- 2. Favourite food -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">🍽️</span><span>What food could you eat forever?</span></div>
+                    <div class="q-block-hint">Your ultimate comfort meal.</div>
+                    <div class="choice-list" data-qid="food">
+                        <div class="choice-chip" data-value="Pizza">Pizza 🍕</div>
+                        <div class="choice-chip" data-value="Pasta">Pasta 🍝</div>
+                        <div class="choice-chip" data-value="Sushi">Sushi 🍣</div>
+                        <div class="choice-chip" data-value="Biryani">Biryani 🍛</div>
+                        <div class="choice-chip" data-value="Burgers">Burgers 🍔</div>
+                        <div class="choice-chip" data-value="Salad">Salad 🥗</div>
+                        <div class="choice-chip" data-value="Chocolate">Chocolate 🍫</div>
+                    </div>
                 </div>
-                <div class="option-card" data-category="treats" data-value="Red Velvet 🍰" data-price="Rs 650">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1586985289906-406988974504?w=400&auto=format&fit=crop" alt="Red Velvet" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Red Velvet</span><span class="price">Rs 650</span></div>
+
+                <!-- 3. Music -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">🎵</span><span>What kind of music moves your heart?</span></div>
+                    <div class="q-block-hint">The songs you play on repeat.</div>
+                    <div class="choice-list" data-qid="music">
+                        <div class="choice-chip" data-value="Pop">Pop 🎤</div>
+                        <div class="choice-chip" data-value="R&B / Soul">R&B / Soul 🎧</div>
+                        <div class="choice-chip" data-value="Hip-Hop">Hip-Hop 🎤</div>
+                        <div class="choice-chip" data-value="Bollywood">Bollywood 🎬</div>
+                        <div class="choice-chip" data-value="Classical">Classical 🎻</div>
+                        <div class="choice-chip" data-value="Rock">Rock 🎸</div>
+                        <div class="choice-chip" data-value="Lo-fi / Chill">Lo-fi / Chill ☕</div>
+                        <div class="choice-chip" data-value="A bit of everything">A bit of everything 🎶</div>
+                    </div>
                 </div>
-                <div class="option-card" data-category="treats" data-value="Ice Cream 🍦" data-price="Rs 200">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=400&auto=format&fit=crop" alt="Ice Cream" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Ice Cream</span><span class="price">Rs 200</span></div>
+
+                <!-- 4. Perfect weekend -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">🌿</span><span>What does your perfect weekend look like?</span></div>
+                    <div class="q-block-hint">Be honest — I want to know the real you.</div>
+                    <div class="choice-list" data-qid="weekend">
+                        <div class="choice-chip" data-value="Cozy at home with a book">Cozy at home with a book 📖</div>
+                        <div class="choice-chip" data-value="Out with friends">Out with friends 🥂</div>
+                        <div class="choice-chip" data-value="Nature walk or hike">Nature walk or hike 🌲</div>
+                        <div class="choice-chip" data-value="Beach & sun">Beach & sun ☀️</div>
+                        <div class="choice-chip" data-value="Shopping & cafe hopping">Shopping & café hopping 🛍️</div>
+                        <div class="choice-chip" data-value="Netflix marathon">Netflix marathon 📺</div>
+                        <div class="choice-chip" data-value="Travel somewhere new">Travel somewhere new ✈️</div>
+                    </div>
                 </div>
-                <div class="option-card" data-category="treats" data-value="Donuts 🍩" data-price="Rs 250">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&auto=format&fit=crop" alt="Donuts" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Donuts</span><span class="price">Rs 250</span></div>
+
+                <!-- 5. Love language -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">💝</span><span>How do you feel most loved?</span></div>
+                    <div class="q-block-hint">There is no wrong answer.</div>
+                    <div class="choice-list" data-qid="loveLanguage">
+                        <div class="choice-chip" data-value="Kind words & compliments">Kind words 💬</div>
+                        <div class="choice-chip" data-value="Hugs & cuddles">Hugs & cuddles 🤗</div>
+                        <div class="choice-chip" data-value="Thoughtful gifts">Thoughtful gifts 🎁</div>
+                        <div class="choice-chip" data-value="Quality time together">Quality time ⏰</div>
+                        <div class="choice-chip" data-value="Little acts of service">Little acts of service 🤍</div>
+                    </div>
                 </div>
-                <div class="option-card" data-category="treats" data-value="Macarons 🧁" data-price="Rs 450">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=400&auto=format&fit=crop" alt="Macarons" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Macarons</span><span class="price">Rs 450</span></div>
+
+                <!-- 6. Dream -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">✨</span><span>What is one dream you want to live one day?</span></div>
+                    <div class="q-block-hint">Big or small — I want to hear it.</div>
+                    <textarea data-qid="dream" placeholder="Tell me your dream… ✨"></textarea>
                 </div>
-                <div class="option-card custom-card" data-category="treats" data-value="__custom__" data-price="custom">
-                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
-                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+
+                <!-- 7. Pet peeve -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">🙈</span><span>What's a tiny thing that instantly annoys you?</span></div>
+                    <div class="q-block-hint">Your little pet peeve.</div>
+                    <textarea data-qid="petPeeve" placeholder="Something that always bothers you… 🙈"></textarea>
                 </div>
+
+                
+
+                <!-- 9. Perfect date -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">💖</span><span>What's your idea of a perfect date?</span></div>
+                    <div class="q-block-hint">Painting me a picture helps me plan.</div>
+                    <textarea data-qid="perfectDate" placeholder="Describe our perfect day together… 💖"></textarea>
+                </div>
+
+                <!-- 10. Hidden talent / proud -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">⭐</span><span>What's a talent or small thing you're proud of?</span></div>
+                    <div class="q-block-hint">Time to brag a little.</div>
+                    <textarea data-qid="proudOf" placeholder="Something you're proud of… ⭐"></textarea>
+                </div>
+
+                <!-- 11. Anything to tell -->
+                <div class="q-block">
+                    <div class="q-block-label"><span class="q-emoji">💌</span><span>Anything you want to tell me?</span></div>
+                    <div class="q-block-hint">A secret, a thought, a wish — anything at all.</div>
+                    <textarea data-qid="anythingElse" placeholder="Write freely… 💌"></textarea>
+                </div>
+
             </div>
-            <div class="custom-text-wrap" id="treatsCustomWrap"><textarea id="treatsCustomText" placeholder="Tell me what sweet treat you'd love instead… 🍰"></textarea></div>
 
-            <div class="section-title"><i class="fas fa-mug-hot"></i> Your drink <span class="section-hint">pick one</span></div>
-            <div class="options-grid" id="drinksGrid">
-                <div class="option-card" data-category="drinks" data-value="Coffee ☕" data-price="Rs 180">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&auto=format&fit=crop" alt="Coffee" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Coffee</span><span class="price">Rs 180</span></div>
-                </div>
-                <div class="option-card" data-category="drinks" data-value="Bubble Tea 🧋" data-price="Rs 250">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1558857563-b371033873b8?w=400&auto=format&fit=crop" alt="Bubble Tea" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Bubble Tea</span><span class="price">Rs 250</span></div>
-                </div>
-                <div class="option-card" data-category="drinks" data-value="Smoothie 🥤" data-price="Rs 220">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&auto=format&fit=crop" alt="Smoothie" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Smoothie</span><span class="price">Rs 220</span></div>
-                </div>
-                <div class="option-card" data-category="drinks" data-value="Wine 🍷" data-price="Rs 750">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&auto=format&fit=crop" alt="Wine" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Wine</span><span class="price">Rs 750</span></div>
-                </div>
-                <div class="option-card" data-category="drinks" data-value="Lemonade 🍋" data-price="Rs 150">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&auto=format&fit=crop" alt="Lemonade" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Lemonade</span><span class="price">Rs 150</span></div>
-                </div>
-                <div class="option-card" data-category="drinks" data-value="Hot Chocolate 🍫" data-price="Rs 200">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1542990253-a781e04c0082?w=400&auto=format&fit=crop" alt="Hot Chocolate" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Hot Chocolate</span><span class="price">Rs 200</span></div>
-                </div>
-                <div class="option-card custom-card" data-category="drinks" data-value="__custom__" data-price="custom">
-                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
-                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
-                </div>
-            </div>
-            <div class="custom-text-wrap" id="drinksCustomWrap"><textarea id="drinksCustomText" placeholder="Tell me what drink you'd love instead… ☕"></textarea></div>
-
-            <div class="section-title"><i class="fas fa-heart"></i> Your activity <span class="section-hint">pick one</span></div>
-            <div class="options-grid" id="activitiesGrid">
-                <div class="option-card" data-category="activities" data-value="Movie Night 🎬" data-price="Rs 500">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&auto=format&fit=crop" alt="Movie Night" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Movie Night</span><span class="price">Rs 500</span></div>
-                </div>
-                <div class="option-card" data-category="activities" data-value="Picnic 🧺" data-price="Rs 400">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&auto=format&fit=crop" alt="Picnic" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Picnic</span><span class="price">Rs 400</span></div>
-                </div>
-                <div class="option-card" data-category="activities" data-value="Beach Walk 🏖️" data-price="Rs 0">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop" alt="Beach Walk" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Beach Walk</span><span class="price">Rs 0</span></div>
-                </div>
-                <div class="option-card" data-category="activities" data-value="Dinner 🍽️" data-price="Rs 1200">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&auto=format&fit=crop" alt="Dinner" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Dinner</span><span class="price">Rs 1200</span></div>
-                </div>
-                <div class="option-card" data-category="activities" data-value="Stargazing 🌟" data-price="Rs 100">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1532978379173-523e16f371f9?w=400&auto=format&fit=crop" alt="Stargazing" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Stargazing</span><span class="price">Rs 100</span></div>
-                </div>
-                <div class="option-card" data-category="activities" data-value="Arcade 🕹️" data-price="Rs 350">
-                    <div class="option-image"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop" alt="Arcade" loading="lazy"></div>
-                    <div class="option-info"><span class="label">Arcade</span><span class="price">Rs 350</span></div>
-                </div>
-                <div class="option-card custom-card" data-category="activities" data-value="__custom__" data-price="custom">
-                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
-                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
-                </div>
-            </div>
-            <div class="custom-text-wrap" id="activitiesCustomWrap"><textarea id="activitiesCustomText" placeholder="Tell me what activity you'd love instead… 💫"></textarea></div>
-
-            <div class="section-title"><i class="fas fa-calendar-heart"></i> When are you free?</div>
-            <input type="datetime-local" class="date-input" id="dateTimeInput">
-
-            <div class="action-row">
-                <button class="confirm-btn" id="confirmBtn" disabled>Confirm & Send 💖</button>
-                <button class="back-btn hidden" id="backBtn" type="button"><i class="fas fa-arrow-left"></i> <span>Change my choices</span></button>
+            <!-- Action row -->
+            <div class="about-action-row">
+                <button class="about-confirm-btn" id="aboutConfirmBtn" disabled>Send to him 💖</button>
+                <button class="about-back-btn" id="aboutBackBtn" type="button">
+                    <i class="fas fa-arrow-left"></i> <span>Go back</span>
+                </button>
             </div>
 
-            <div class="summary-box" id="summaryBox">
-                <h3>💌 Your perfect date plan</h3>
-                <ul id="summaryList"></ul>
-                <div class="total" id="totalRow" style="display:none;"><span>Total 💰</span><span id="totalAmount">Rs 0</span></div>
+            <!-- Summary -->
+            <div class="about-summary" id="aboutSummary">
+                <h3>💌 Everything you told me</h3>
+                <ul id="aboutSummaryList"></ul>
                 <div class="note">Your WhatsApp should open — just press send 💕</div>
             </div>
+
         </div>
     </div>
 
@@ -819,9 +805,7 @@
             }
 
             function saveTracking(data) {
-                try {
-                    localStorage.setItem(TRACKING_KEY, JSON.stringify(data));
-                } catch (e) {}
+                try { localStorage.setItem(TRACKING_KEY, JSON.stringify(data)); } catch (e) {}
             }
 
             function trackVisit() {
@@ -846,12 +830,12 @@
                 saveTracking(data);
             }
 
-            function trackDatePlan(plan) {
+            function trackAboutHer(about) {
                 const data = loadTracking();
                 if (data.answers.length > 0) {
                     const last = data.answers[data.answers.length - 1];
-                    if (last.answer === 'yes' && !last.plan) {
-                        last.plan = plan;
+                    if (last.answer === 'yes' && !last.about) {
+                        last.about = about;
                     }
                 }
                 saveTracking(data);
@@ -866,9 +850,7 @@
             const nameInput = document.getElementById('nameInput');
             const gateError = document.getElementById('gateError');
 
-            function normalize(str) {
-                return (str || '').trim().toLowerCase();
-            }
+            function normalize(str) { return (str || '').trim().toLowerCase(); }
 
             function tryEnter() {
                 const entered = normalize(nameInput.value);
@@ -905,14 +887,12 @@
             const noBtn = document.getElementById('noBtn');
             const yesBtn = document.getElementById('yesBtn');
             const mainContainer = document.getElementById('mainContainer');
-            const datePage = document.getElementById('datePage');
+            const aboutPage = document.getElementById('aboutPage');
             const subMessage = document.getElementById('subMessage');
             const teaseBubble = document.getElementById('teaseBubble');
 
             const WHATSAPP_NUMBER = '23058226850';
 
-            // ============ FUNNY TEASE MESSAGES ============
-            // She'll get these one by one, in order, each time she tries to catch the No button
             const TEASE_MESSAGES = [
                 "Nope, that button doesn't like you 😏",
                 "Try again... if you can catch it 😜",
@@ -940,40 +920,26 @@
             let lastMove = 0;
             let isFixed = false;
 
-            function clamp(val, min, max) {
-                return Math.min(Math.max(val, min), max);
-            }
+            function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
 
-            // ---- Show a random tease bubble near the No button ----
             function showTeaseBubble() {
                 const msg = TEASE_MESSAGES[teaseIndex % TEASE_MESSAGES.length];
                 teaseIndex++;
-
                 teaseBubble.textContent = msg;
 
-                // Position the bubble near the No button (top-left of it)
                 const rect = noBtn.getBoundingClientRect();
                 let bubbleX = rect.left;
                 let bubbleY = rect.top - 70;
 
-                // Keep the bubble on screen
                 const bubbleW = 260;
-                const bubbleH = 70;
-                if (bubbleX + bubbleW > window.innerWidth - 10) {
-                    bubbleX = window.innerWidth - bubbleW - 10;
-                }
+                if (bubbleX + bubbleW > window.innerWidth - 10) bubbleX = window.innerWidth - bubbleW - 10;
                 if (bubbleX < 10) bubbleX = 10;
-                if (bubbleY < 10) {
-                    // Place below the button instead
-                    bubbleY = rect.bottom + 14;
-                }
+                if (bubbleY < 10) bubbleY = rect.bottom + 14;
 
                 teaseBubble.style.left = bubbleX + 'px';
                 teaseBubble.style.top = bubbleY + 'px';
-
                 teaseBubble.classList.add('show');
 
-                // Also change the sub-message on the main card to tease her
                 subMessage.textContent = msg;
                 subMessage.style.transform = 'scale(1.05)';
                 subMessage.style.background = 'rgba(255, 220, 235, 0.95)';
@@ -982,24 +948,21 @@
                     subMessage.style.background = '';
                 }, 400);
 
-                // Hide the bubble after 2 seconds
                 clearTimeout(showTeaseBubble._t);
                 showTeaseBubble._t = setTimeout(() => {
                     teaseBubble.classList.remove('show');
                 }, 2200);
             }
 
-            // ---- Make the No button shrink each time it evades ----
             function shrinkNoButton() {
                 const currentFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
-                const minFontSize = 12; // stop shrinking at ~12px
+                const minFontSize = 12;
                 if (currentFontSize > minFontSize) {
                     const newSize = Math.max(minFontSize, currentFontSize * 0.92);
                     noBtn.style.fontSize = newSize + 'px';
                 }
             }
 
-            // ---- Move the No button far away ----
             function moveNoButton() {
                 const isSmall = window.innerWidth < 640;
                 const margin = isSmall ? 10 : 14;
@@ -1049,17 +1012,13 @@
                 noBtn.style.top = newY + 'px';
                 noBtn.style.transform = `rotate(${(Math.random() * 14 - 7).toFixed(1)}deg)`;
 
-                setTimeout(() => {
-                    noBtn.style.transform = 'rotate(0deg)';
-                }, 700);
+                setTimeout(() => { noBtn.style.transform = 'rotate(0deg)'; }, 700);
 
-                // Add a pulse ring animation
                 noBtn.classList.remove('pulse-ring');
                 void noBtn.offsetWidth;
                 noBtn.classList.add('pulse-ring');
                 setTimeout(() => noBtn.classList.remove('pulse-ring'), 650);
 
-                // Shrink it a little
                 shrinkNoButton();
             }
 
@@ -1072,7 +1031,6 @@
                 showTeaseBubble();
             }
 
-            // ============ ATTACH EVASIVE LISTENERS ============
             noBtn.addEventListener('mouseenter', (e) => { e.preventDefault(); tryMove(); });
             noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); tryMove(); }, { passive: false });
             noBtn.addEventListener('mousedown', (e) => { e.preventDefault(); tryMove(); });
@@ -1080,7 +1038,6 @@
             noBtn.addEventListener('click', (e) => { e.preventDefault(); tryMove(); });
             noBtn.addEventListener('contextmenu', (e) => e.preventDefault());
 
-            // Pointer gets too close → jump away
             document.addEventListener('pointermove', (e) => {
                 if (!isFixed) return;
                 const rect = noBtn.getBoundingClientRect();
@@ -1117,7 +1074,7 @@
                 noBtn.style.top = top + 'px';
             });
 
-            // ============ YES → DATE PLANNER ============
+            // ============ YES → ABOUT HER PAGE ============
             yesBtn.addEventListener('click', () => {
                 trackAnswer('yes');
                 mainContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
@@ -1126,202 +1083,135 @@
 
                 setTimeout(() => {
                     mainContainer.style.display = 'none';
-                    datePage.classList.add('show');
+                    aboutPage.classList.add('show');
                     document.body.style.overflowY = 'auto';
                 }, 350);
             });
 
-            // ============ DATE PLANNER LOGIC ============
-            const optionCards = document.querySelectorAll('.option-card');
-            const dateTimeInput = document.getElementById('dateTimeInput');
-            const confirmBtn = document.getElementById('confirmBtn');
-            const backBtn = document.getElementById('backBtn');
-            const summaryBox = document.getElementById('summaryBox');
-            const summaryList = document.getElementById('summaryList');
-            const totalRow = document.getElementById('totalRow');
-            const totalAmount = document.getElementById('totalAmount');
+            // ============ GET-TO-KNOW-HER LOGIC ============
+            const aboutConfirmBtn = document.getElementById('aboutConfirmBtn');
+            const aboutBackBtn = document.getElementById('aboutBackBtn');
+            const aboutSummary = document.getElementById('aboutSummary');
+            const aboutSummaryList = document.getElementById('aboutSummaryList');
+            const aboutProgressFill = document.getElementById('aboutProgressFill');
+            const aboutProgressLabel = document.getElementById('aboutProgressLabel');
+            const aboutProgressPercent = document.getElementById('aboutProgressPercent');
 
-            const customWraps = {
-                flowers: document.getElementById('flowersCustomWrap'),
-                treats: document.getElementById('treatsCustomWrap'),
-                drinks: document.getElementById('drinksCustomWrap'),
-                activities: document.getElementById('activitiesCustomWrap')
-            };
-            const customTexts = {
-                flowers: document.getElementById('flowersCustomText'),
-                treats: document.getElementById('treatsCustomText'),
-                drinks: document.getElementById('drinksCustomText'),
-                activities: document.getElementById('activitiesCustomText')
-            };
+            // Each question definition (for summary + WhatsApp)
+            const ABOUT_QUESTIONS = [
+                { id: 'color', emoji: '🎨', question: 'Favourite colour' },
+                { id: 'food', emoji: '🍽️', question: 'Favourite food' },
+                { id: 'music', emoji: '🎵', question: 'Favourite music' },
+                { id: 'weekend', emoji: '🌿', question: 'Perfect weekend' },
+                { id: 'loveLanguage', emoji: '💝', question: 'How she feels loved' },
+                { id: 'dream', emoji: '✨', question: 'One dream' },
+                { id: 'petPeeve', emoji: '🙈', question: 'Pet peeve' },
+                { id: 'sadComfort', emoji: '🧸', question: 'Comfort when sad' },
+                { id: 'perfectDate', emoji: '💖', question: 'Perfect date idea' },
+                { id: 'proudOf', emoji: '⭐', question: 'Proud of' },
+                { id: 'anythingElse', emoji: '💌', question: 'Anything else' }
+            ];
 
-            const selections = { flowers: null, treats: null, drinks: null, activities: null };
+            const aboutAnswers = {}; // qid -> value
 
-            function parsePrice(str) {
-                if (!str || str === 'custom') return 0;
-                const n = parseInt(str.replace(/[^0-9]/g, ''), 10);
-                return isNaN(n) ? 0 : n;
-            }
-
-            optionCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const category = card.dataset.category;
-                    const value = card.dataset.value;
-                    const price = card.dataset.price;
-
-                    document.querySelectorAll(`.option-card[data-category="${category}"]`).forEach(c => {
-                        c.classList.remove('selected');
+            // ---- Choice chips ----
+            document.querySelectorAll('.choice-list').forEach(list => {
+                const qid = list.dataset.qid;
+                list.querySelectorAll('.choice-chip').forEach(chip => {
+                    chip.addEventListener('click', () => {
+                        list.querySelectorAll('.choice-chip').forEach(c => c.classList.remove('selected'));
+                        chip.classList.add('selected');
+                        aboutAnswers[qid] = chip.dataset.value;
+                        updateAboutProgress();
+                        updateAboutConfirmState();
                     });
-
-                    if (selections[category] && selections[category].value === value) {
-                        selections[category] = null;
-                        customWraps[category].classList.remove('show');
-                    } else {
-                        card.classList.add('selected');
-                        selections[category] = { value, price };
-                        if (value === '__custom__') {
-                            customWraps[category].classList.add('show');
-                            setTimeout(() => customTexts[category].focus(), 200);
-                        } else {
-                            customWraps[category].classList.remove('show');
-                        }
-                    }
-                    updateConfirmState();
                 });
             });
 
-            Object.keys(customTexts).forEach(cat => {
-                customTexts[cat].addEventListener('input', updateConfirmState);
+            // ---- Text inputs ----
+            document.querySelectorAll('.q-block textarea, .q-block input[type="text"]').forEach(input => {
+                const qid = input.dataset.qid;
+                input.addEventListener('input', () => {
+                    aboutAnswers[qid] = input.value.trim();
+                    updateAboutProgress();
+                    updateAboutConfirmState();
+                });
             });
 
-            function getCustomText(cat) {
-                return customTexts[cat].value.trim();
+            function countAnswered() {
+                let count = 0;
+                ABOUT_QUESTIONS.forEach(q => {
+                    const v = aboutAnswers[q.id];
+                    if (v && String(v).trim().length > 0) count++;
+                });
+                return count;
             }
 
-            function updateConfirmState() {
-                const allChosen =
-                    selections.flowers &&
-                    selections.treats &&
-                    selections.drinks &&
-                    selections.activities;
-                if (!allChosen) { confirmBtn.disabled = true; return; }
-
-                let customOk = true;
-                ['flowers', 'treats', 'drinks', 'activities'].forEach(cat => {
-                    if (selections[cat] && selections[cat].value === '__custom__') {
-                        if (!getCustomText(cat)) customOk = false;
-                    }
-                });
-                const hasDate = dateTimeInput.value !== '';
-                confirmBtn.disabled = !(customOk && hasDate);
+            function updateAboutProgress() {
+                const total = ABOUT_QUESTIONS.length;
+                const answered = countAnswered();
+                const percent = Math.round((answered / total) * 100);
+                aboutProgressFill.style.width = percent + '%';
+                aboutProgressLabel.textContent = `Answered ${answered} of ${total}`;
+                aboutProgressPercent.textContent = percent + '%';
             }
 
-            dateTimeInput.addEventListener('change', updateConfirmState);
-            dateTimeInput.addEventListener('input', updateConfirmState);
+            function updateAboutConfirmState() {
+                // Require at least the 5 chip questions + all required text fields
+                const requiredIds = ['color', 'food', 'music', 'weekend', 'loveLanguage', 'dream', 'petPeeve', 'sadComfort', 'perfectDate', 'proudOf'];
+                const allRequiredFilled = requiredIds.every(id => {
+                    const v = aboutAnswers[id];
+                    return v && String(v).trim().length > 0;
+                });
+                aboutConfirmBtn.disabled = !allRequiredFilled;
+            }
 
-            backBtn.addEventListener('click', () => {
-                summaryBox.classList.remove('show');
-                totalRow.style.display = 'none';
-                confirmBtn.textContent = 'Confirm & Send 💖';
-                confirmBtn.disabled = false;
-                backBtn.classList.add('hidden');
-                updateConfirmState();
-                datePage.scrollTo({ top: 0, behavior: 'smooth' });
-                const firstSection = document.querySelector('.section-title');
-                if (firstSection) {
-                    firstSection.style.transition = 'color 0.4s ease';
-                    firstSection.style.color = '#ff3d71';
-                    setTimeout(() => { firstSection.style.color = ''; }, 900);
-                }
+            // ---- Back button ----
+            aboutBackBtn.addEventListener('click', () => {
+                // Go back to main question
+                aboutPage.classList.remove('show');
+                mainContainer.style.display = 'block';
+                setTimeout(() => {
+                    mainContainer.style.opacity = '1';
+                    mainContainer.style.transform = 'scale(1)';
+                }, 20);
+                document.body.style.overflowY = 'hidden';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // ============ CONFIRM & WHATSAPP ============
-            confirmBtn.addEventListener('click', () => {
-                summaryList.innerHTML = '';
+            // ---- Confirm & Send ----
+            aboutConfirmBtn.addEventListener('click', () => {
+                aboutSummaryList.innerHTML = '';
 
-                let dateFormatted = 'Not set';
-                if (dateTimeInput.value) {
-                    const dt = new Date(dateTimeInput.value);
-                    dateFormatted = dt.toLocaleString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                }
+                let waMessage = `💖 She said YES! 💖\n\n` +
+                                `And here's everything she told me:\n\n`;
 
-                function displayValue(cat) {
-                    const sel = selections[cat];
-                    if (!sel) return { value: '-', price: '-' };
-                    if (sel.value === '__custom__') {
-                        return { value: getCustomText(cat) || '(no message)', price: null };
-                    }
-                    return { value: sel.value, price: sel.price };
-                }
+                ABOUT_QUESTIONS.forEach(q => {
+                    const v = aboutAnswers[q.id];
+                    const display = (v && String(v).trim().length > 0) ? String(v).trim() : '(skipped)';
 
-                const flowersD = displayValue('flowers');
-                const treatsD = displayValue('treats');
-                const drinksD = displayValue('drinks');
-                const activitiesD = displayValue('activities');
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-heart" style="color:#ff5e8a; flex-shrink:0;"></i> <span><strong>${q.emoji} ${q.question}:</strong> ${escapeHtml(display)}</span>`;
+                    aboutSummaryList.appendChild(li);
 
-                const lines = [
-                    { icon: 'fa-calendar-check', label: 'Date & Time', value: dateFormatted, price: null },
-                    { icon: 'fa-fan', label: 'Flower', value: flowersD.value, price: flowersD.price },
-                    { icon: 'fa-cake-candles', label: 'Treat', value: treatsD.value, price: treatsD.price },
-                    { icon: 'fa-mug-hot', label: 'Drink', value: drinksD.value, price: drinksD.price },
-                    { icon: 'fa-heart', label: 'Activity', value: activitiesD.value, price: activitiesD.price }
-                ];
-
-                let total = 0;
-                lines.forEach(line => {
-                    if (line.value) {
-                        const li = document.createElement('li');
-                        const priceText = line.price ? ` — <strong>${line.price}</strong>` : '';
-                        li.innerHTML = `<i class="fas ${line.icon}" style="color:#ff5e8a;"></i> <span><strong>${line.label}:</strong> ${line.value}${priceText}</span>`;
-                        summaryList.appendChild(li);
-                        if (line.price) total += parsePrice(line.price);
-                    }
+                    waMessage += `${q.emoji} ${q.question}: ${display}\n`;
                 });
 
-                totalRow.style.display = 'flex';
-                totalAmount.textContent = `Rs ${total}`;
-                summaryBox.classList.add('show');
-                confirmBtn.textContent = '💖 Sent to WhatsApp! 💖';
-                confirmBtn.disabled = true;
-                backBtn.classList.remove('hidden');
-                summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                aboutSummary.classList.add('show');
+                aboutConfirmBtn.textContent = '💖 Sent to WhatsApp! 💖';
+                aboutConfirmBtn.disabled = true;
+                aboutSummary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                const plan = {
-                    dateFormatted,
-                    flowers: flowersD.value,
-                    flowersPrice: flowersD.price,
-                    treats: treatsD.value,
-                    treatsPrice: treatsD.price,
-                    drinks: drinksD.value,
-                    drinksPrice: drinksD.price,
-                    activities: activitiesD.value,
-                    activitiesPrice: activitiesD.price,
-                    total: `Rs ${total}`
-                };
-                trackDatePlan(plan);
+                // Save to tracking
+                trackAboutHer(JSON.parse(JSON.stringify(aboutAnswers)));
 
-                const message =
-                    `💖 I said YES! 💖\n\n` +
-                    `Here's our date plan:\n\n` +
-                    `📅 Date & Time: ${dateFormatted}\n` +
-                    `🌹 Flower: ${flowersD.value}${flowersD.price ? ` (${flowersD.price})` : ''}\n` +
-                    `🍰 Treat: ${treatsD.value}${treatsD.price ? ` (${treatsD.price})` : ''}\n` +
-                    `☕ Drink: ${drinksD.value}${drinksD.price ? ` (${drinksD.price})` : ''}\n` +
-                    `💕 Activity: ${activitiesD.value}${activitiesD.price ? ` (${activitiesD.price})` : ''}\n\n` +
-                    `💰 Total: Rs ${total}`;
-
-                const encoded = encodeURIComponent(message);
+                // Open WhatsApp
+                const encoded = encodeURIComponent(waMessage);
                 const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
-
                 setTimeout(() => { window.open(waUrl, '_blank'); }, 700);
 
-                const confettiCount = window.innerWidth < 640 ? 18 : 25;
+                // Confetti
+                const confettiCount = window.innerWidth < 640 ? 18 : 30;
                 for (let i = 0; i < confettiCount; i++) {
                     const conf = document.createElement('div');
                     conf.textContent = ['❤️', '💖', '💕', '🌸', '✨'][Math.floor(Math.random() * 5)];
@@ -1341,6 +1231,19 @@
                     setTimeout(() => conf.remove(), 4500);
                 }
             });
+
+            function escapeHtml(str) {
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
+            // Initial progress
+            updateAboutProgress();
+            updateAboutConfirmState();
 
         })();
     </script>
