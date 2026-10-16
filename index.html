@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>💖 A question for you 💖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html, body { width: 100%; overflow-x: hidden; }
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 200, 220, 0.5);
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            user-select: none;
+            pointer-events: none;
+            animation: floatHeart 10s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes floatHeart {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(15deg); opacity: 0.7; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+        }
+        .gate-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.6s ease, visibility 0s 0.6s;
+        }
+        .gate-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .gate-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: clamp(24px, 5vw, 40px);
+            padding: clamp(28px, 5vw, 48px) clamp(22px, 4vw, 40px);
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 35px 65px rgba(220, 120, 150, 0.35), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
+            border: 1px solid #ffe4ed;
+        }
+        .gate-card h2 {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: #b34167;
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+        .gate-card p {
+            color: #7a3e55;
+            font-size: clamp(0.9rem, 2.4vw, 1.1rem);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        .gate-input {
+            width: 100%;
+            padding: clamp(14px, 2.8vw, 18px) clamp(16px, 3vw, 22px);
+            border-radius: 60px;
+            border: 2px solid #ffb6c1;
+            font-size: clamp(1rem, 2.6vw, 1.15rem);
+            font-family: inherit;
+            color: #7a3e55;
+            background: white;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .gate-input:focus { border-color: #ff5e8a; box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.18); }
+        .gate-btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: clamp(14px, 2.8vw, 18px);
+            font-size: clamp(1rem, 2.8vw, 1.3rem);
+            font-weight: 700;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 14px 30px -6px #ff8eb5;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 1px;
+        }
+        .gate-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 38px -6px #ff5e8a; }
+        .gate-error {
+            margin-top: 16px;
+            padding: 14px 18px;
+            background: #ffe0e9;
+            color: #b34167;
+            border-radius: 20px;
+            font-size: clamp(0.9rem, 2.3vw, 1rem);
+            font-weight: 600;
+            display: none;
+            border: 2px dashed #ff8eb5;
+            animation: shake 0.5s;
+        }
+        .gate-error.show { display: block; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-6px); }
+            80% { transform: translateX(6px); }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: clamp(24px, 5vw, 48px);
+            padding: clamp(28px, 5vw, 48px) clamp(20px, 4vw, 36px);
+            max-width: 750px;
+            width: 100%;
+            box-shadow: 0 35px 65px rgba(220, 120, 150, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #ffe4ed;
+            z-index: 10;
+            position: relative;
+        }
+        h1 {
+            font-size: clamp(1.8rem, 6vw, 3.2rem);
+            font-weight: 700;
+            color: #b34167;
+            text-shadow: 0 4px 10px rgba(255, 170, 200, 0.6);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(6px, 1.5vw, 12px);
+            flex-wrap: wrap;
+        }
+        h1 i {
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            color: #ff5e8a;
+            animation: pulse 1.8s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .sub-message {
+            font-size: clamp(0.95rem, 2.6vw, 1.45rem);
+            color: #7a3e55;
+            margin: clamp(14px, 3vw, 20px) 0 clamp(20px, 4vw, 30px);
+            font-weight: 400;
+            font-style: italic;
+            background: rgba(255, 240, 245, 0.7);
+            padding: clamp(10px, 2.5vw, 16px) clamp(14px, 3vw, 22px);
+            border-radius: 120px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 6px 16px rgba(255, 180, 200, 0.4);
+            max-width: 100%;
+            line-height: 1.4;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(14px, 3vw, 30px);
+            justify-content: center;
+            align-items: center;
+            margin-top: clamp(24px, 5vw, 40px);
+            position: relative;
+            min-height: clamp(80px, 15vw, 120px);
+        }
+        .btn {
+            border: none;
+            font-size: clamp(1.1rem, 3vw, 2rem);
+            font-weight: 600;
+            padding: clamp(12px, 2.5vw, 18px) clamp(24px, 6vw, 54px);
+            border-radius: 200px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 20;
+            transition:
+                transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.35s ease,
+                background 0.35s ease,
+                color 0.35s ease;
+        }
+        .btn-yes {
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            color: white;
+            border: none;
+            box-shadow: 0 18px 30px -6px #ff8eb5, 0 0 0 2px #fff0f5 inset;
+            padding: clamp(14px, 3vw, 20px) clamp(34px, 8vw, 70px);
+            font-size: clamp(1.15rem, 3.2vw, 2.3rem);
+            animation: yesFloat 2.8s ease-in-out infinite;
+        }
+        @keyframes yesFloat {
+            0% { transform: translateY(0) scale(1); box-shadow: 0 18px 30px -6px #ff8eb5, 0 0 0 2px #fff0f5 inset; }
+            50% { transform: translateY(-8px) scale(1.03); box-shadow: 0 26px 40px -6px #ff5e8a, 0 0 0 2px #fff0f5 inset; }
+            100% { transform: translateY(0) scale(1); box-shadow: 0 18px 30px -6px #ff8eb5, 0 0 0 2px #fff0f5 inset; }
+        }
+        .btn-yes:hover {
+            animation-play-state: paused;
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 26px 40px -6px #ff5e8a;
+            background: linear-gradient(135deg, #ff7aa8, #ff3d71);
+        }
+        .btn-no {
+            background: #ffeef2;
+            color: #b34167;
+            border: 2px solid #ffb6c1;
+            font-size: clamp(1rem, 2.7vw, 1.9rem);
+            padding: clamp(11px, 2.3vw, 16px) clamp(22px, 5vw, 48px);
+            transition:
+                left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+            will-change: left, top, transform;
+        }
+        .btn-no:hover { background: #ffe0e9; box-shadow: 0 12px 24px -6px rgba(255, 94, 138, 0.35); }
+        .date-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #fff0f5, #ffe4ed);
+            z-index: 2000;
+            display: none;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: clamp(16px, 4vw, 30px) clamp(12px, 3vw, 20px) clamp(40px, 8vw, 60px);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .date-page.show { display: block; opacity: 1; }
+        .date-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: clamp(24px, 4vw, 40px);
+            padding: clamp(20px, 4vw, 40px) clamp(16px, 3vw, 30px);
+            box-shadow: 0 30px 60px rgba(200, 100, 130, 0.25);
+            border: 1px solid #fff;
+        }
+        .date-container h2 {
+            font-size: clamp(1.4rem, 5vw, 2.8rem);
+            color: #b34167;
+            text-align: center;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+        .date-container > p {
+            text-align: center;
+            color: #7a3e55;
+            font-size: clamp(0.9rem, 2.3vw, 1.2rem);
+            margin-bottom: clamp(18px, 3vw, 30px);
+            font-style: italic;
+        }
+        .section-title {
+            font-size: clamp(1.05rem, 3vw, 1.6rem);
+            color: #b34167;
+            margin: clamp(18px, 3.5vw, 28px) 0 clamp(10px, 2vw, 16px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        .section-hint {
+            font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+            color: #a06b80;
+            font-weight: 400;
+            font-style: italic;
+            margin-left: auto;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(140px, 26vw, 200px), 1fr));
+            gap: clamp(10px, 2vw, 16px);
+        }
+        .option-card {
+            background: white;
+            border-radius: clamp(14px, 2.5vw, 20px);
+            padding: 0;
+            text-align: center;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 6px 16px rgba(200, 120, 150, 0.15);
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .option-card:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 22px rgba(200, 120, 150, 0.28); }
+        .option-card.selected {
+            border-color: #ff5e8a;
+            background: #fff0f5;
+            box-shadow: 0 8px 20px rgba(255, 94, 138, 0.4);
+            transform: scale(1.04);
+        }
+        .option-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ff5e8a;
+            color: white;
+            width: clamp(22px, 4vw, 28px);
+            height: clamp(22px, 4vw, 28px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(0.7rem, 1.8vw, 1rem);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 94, 138, 0.5);
+            animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 3;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .option-image {
+            width: 100%;
+            height: clamp(90px, 18vw, 130px);
+            overflow: hidden;
+            position: relative;
+            background: #ffeef2;
+        }
+        .option-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .option-card:hover .option-image img { transform: scale(1.08); }
+        .option-info {
+            padding: clamp(8px, 1.8vw, 12px) clamp(6px, 1.5vw, 10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+        }
+        .option-card .label {
+            font-size: clamp(0.75rem, 1.9vw, 0.95rem);
+            color: #7a3e55;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .option-card .price {
+            font-size: clamp(0.7rem, 1.7vw, 0.85rem);
+            color: #ff5e8a;
+            font-weight: 700;
+            background: #fff0f5;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+        .option-card.selected .price { background: #ff5e8a; color: white; }
+        .option-card.custom-card .option-image {
+            background: linear-gradient(135deg, #fff0f5, #ffe4ed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .option-card.custom-card .option-image .custom-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ff5e8a;
+            transition: transform 0.4s ease;
+        }
+        .option-card.custom-card:hover .option-image .custom-icon { transform: scale(1.15) rotate(-8deg); }
+        .option-card.custom-card.selected .option-image .custom-icon { animation: pulse 1.2s infinite; }
+        .custom-text-wrap { display: none; margin-top: 14px; animation: fadeIn 0.4s ease; }
+        .custom-text-wrap.show { display: block; }
+        .custom-text-wrap textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 14px 18px;
+            border-radius: 22px;
+            border: 2px solid #ffb6c1;
+            font-size: clamp(0.9rem, 2.3vw, 1.05rem);
+            font-family: inherit;
+            color: #7a3e55;
+            background: white;
+            outline: none;
+            resize: vertical;
+            transition: border 0.2s, box-shadow 0.2s;
+            line-height: 1.4;
+        }
+        .custom-text-wrap textarea:focus { border-color: #ff5e8a; box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.15); }
+        .custom-text-wrap textarea::placeholder { color: #c99aae; font-style: italic; }
+        .date-input {
+            width: 100%;
+            padding: clamp(12px, 2.4vw, 16px) clamp(14px, 3vw, 20px);
+            border-radius: 60px;
+            border: 2px solid #ffb6c1;
+            font-size: clamp(0.9rem, 2.3vw, 1.1rem);
+            font-family: inherit;
+            color: #7a3e55;
+            background: white;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .date-input:focus { border-color: #ff5e8a; box-shadow: 0 0 0 4px rgba(255, 94, 138, 0.15); }
+        .action-row { display: flex; flex-wrap: wrap; gap: clamp(10px, 2vw, 16px); margin-top: clamp(24px, 4vw, 36px); }
+        .confirm-btn {
+            flex: 2 1 220px;
+            padding: clamp(14px, 2.8vw, 20px);
+            font-size: clamp(1rem, 2.8vw, 1.6rem);
+            font-weight: 700;
+            border: none;
+            border-radius: 60px;
+            background: linear-gradient(135deg, #ff8eb5, #ff5e8a);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 14px 30px -6px #ff8eb5;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 1px;
+        }
+        .confirm-btn:hover:not(:disabled) { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 38px -6px #ff5e8a; }
+        .confirm-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .back-btn {
+            flex: 1 1 140px;
+            padding: clamp(14px, 2.8vw, 20px);
+            font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+            font-weight: 700;
+            border: 2px solid #ff8eb5;
+            border-radius: 60px;
+            background: white;
+            color: #b34167;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .back-btn:hover { background: #fff0f5; transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 28px -8px rgba(255, 94, 138, 0.5); }
+        .back-btn:active { transform: translateY(-1px) scale(0.99); }
+        .back-btn.hidden { display: none; }
+        .summary-box {
+            margin-top: clamp(18px, 3vw, 26px);
+            background: #fff0f5;
+            border-radius: clamp(16px, 3vw, 24px);
+            padding: clamp(14px, 3vw, 20px) clamp(16px, 3vw, 24px);
+            color: #7a3e55;
+            font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+            display: none;
+            border: 2px dashed #ffb6c1;
+        }
+        .summary-box.show { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .summary-box h3 { color: #b34167; margin-bottom: 10px; font-size: clamp(1.05rem, 2.8vw, 1.4rem); }
+        .summary-box ul { list-style: none; padding-left: 0; }
+        .summary-box li {
+            padding: 4px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.35;
+            word-break: break-word;
+        }
+        .summary-box li i { flex-shrink: 0; margin-top: 4px; }
+        .summary-box .total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px dashed #ffb6c1;
+            font-weight: 700;
+            color: #b34167;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            display: flex;
+            justify-content: space-between;
+        }
+        .summary-box .note {
+            margin-top: 12px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            color: #a06b80;
+            font-style: italic;
+        }
+        @media (max-width: 640px) {
+            body { padding: 10px; align-items: flex-start; padding-top: max(16px, env(safe-area-inset-top)); }
+            .container { padding: 30px 18px; margin-top: 10px; }
+            .btn-group { gap: 16px; }
+            .section-hint { width: 100%; margin-left: 0; text-align: left; }
+            .options-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .action-row { flex-direction: column; }
+            .confirm-btn, .back-btn { flex: 1 1 auto; width: 100%; }
+        }
+        @media (max-width: 400px) {
+            .container { padding: 24px 14px; border-radius: 24px; }
+            .sub-message { border-radius: 20px; }
+            .btn { width: 100%; max-width: 260px; }
+            .btn-yes { padding: 14px 30px; }
+            .btn-no { padding: 12px 30px; }
+            .options-grid { grid-template-columns: repeat(2, 1fr); }
+            .option-image { height: 80px; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .options-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+        }
+        @media (max-height: 500px) and (orientation: landscape) {
+            body { align-items: flex-start; overflow-y: auto; padding: 20px 16px; }
+            .container { margin-top: 0; padding: 20px 24px; }
+            .btn-group { margin-top: 16px; min-height: auto; }
+            .sub-message { margin: 10px 0 16px; }
+            h1 { margin-bottom: 6px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .heart-bg, h1 i, .btn-yes { animation: none !important; }
+            .btn, .option-card, .confirm-btn, .btn-no, .back-btn { transition-duration: 0.2s !important; }
+        }
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(16px, env(safe-area-inset-left));
+                padding-right: max(16px, env(safe-area-inset-right));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ NAME GATE ============ -->
+    <div class="gate-screen" id="gateScreen">
+        <div class="gate-card">
+            <h2>💖 Before we begin… 💖</h2>
+            <p>Please tell me your name</p>
+            <input type="text" class="gate-input" id="nameInput" placeholder="Type your name here…" autocomplete="off" autocapitalize="words" spellcheck="false">
+            <button class="gate-btn" id="gateBtn">Enter 💕</button>
+            <div class="gate-error" id="gateError">You don't have the authorisation to enter here</div>
+        </div>
+    </div>
+
+    <div class="heart-bg" style="top: 10%; left: 5%; animation-delay: 0s;">❤️</div>
+    <div class="heart-bg" style="top: 70%; left: 12%; animation-delay: 1.5s;">🌸</div>
+    <div class="heart-bg" style="top: 20%; right: 8%; animation-delay: 0.8s;">💗</div>
+    <div class="heart-bg" style="top: 85%; right: 18%; animation-delay: 2.2s;">✨</div>
+    <div class="heart-bg" style="top: 45%; left: 85%; animation-delay: 1s;">💖</div>
+    <div class="heart-bg" style="top: 10%; right: 25%; animation-delay: 3s;">🌹</div>
+
+    <div class="container" id="mainContainer">
+        <h1><i class="fas fa-heart"></i> Will you date me? <i class="fas fa-heart"></i></h1>
+        <div class="sub-message">I've been wanting to ask you something special… 💌</div>
+        <div class="btn-group" id="btnGroup">
+            <button class="btn btn-yes" id="yesBtn">Yes 💖</button>
+            <button class="btn btn-no" id="noBtn">No 🙈</button>
+        </div>
+    </div>
+
+    <div class="date-page" id="datePage">
+        <div class="date-container">
+            <h2>💕 Yay! Let's plan our date 💕</h2>
+            <p>Pick one of each — or tell me what you'd love instead 💌</p>
+
+            <div class="section-title"><i class="fas fa-fan"></i> Your flower <span class="section-hint">pick one</span></div>
+            <div class="options-grid" id="flowersGrid">
+                <div class="option-card" data-category="flowers" data-value="Roses 🌹" data-price="Rs 350">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=400&auto=format&fit=crop" alt="Roses" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Roses 🌹</span><span class="price">Rs 350</span></div>
+                </div>
+                <div class="option-card" data-category="flowers" data-value="Tulips 🌷" data-price="Rs 420">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?w=400&auto=format&fit=crop" alt="Tulips" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Tulips 🌷</span><span class="price">Rs 420</span></div>
+                </div>
+                <div class="option-card" data-category="flowers" data-value="Sunflowers 🌻" data-price="Rs 300">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=400&auto=format&fit=crop" alt="Sunflowers" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Sunflowers 🌻</span><span class="price">Rs 300</span></div>
+                </div>
+                <div class="option-card" data-category="flowers" data-value="Lilies 🌸" data-price="Rs 480">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=400&auto=format&fit=crop" alt="Lilies" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Lilies 🌸</span><span class="price">Rs 480</span></div>
+                </div>
+                <div class="option-card" data-category="flowers" data-value="Orchids 🪷" data-price="Rs 650">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1567748157439-651aca2ff064?w=400&auto=format&fit=crop" alt="Orchids" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Orchids 🪷</span><span class="price">Rs 650</span></div>
+                </div>
+                <div class="option-card" data-category="flowers" data-value="Daisies 🌼" data-price="Rs 250">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?w=400&auto=format&fit=crop" alt="Daisies" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Daisies 🌼</span><span class="price">Rs 250</span></div>
+                </div>
+                <div class="option-card custom-card" data-category="flowers" data-value="__custom__" data-price="custom">
+                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
+                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+                </div>
+            </div>
+            <div class="custom-text-wrap" id="flowersCustomWrap"><textarea id="flowersCustomText" placeholder="Tell me which flower you'd love instead… 🌷"></textarea></div>
+
+            <div class="section-title"><i class="fas fa-cake-candles"></i> Your treat <span class="section-hint">pick one</span></div>
+            <div class="options-grid" id="treatsGrid">
+                <div class="option-card" data-category="treats" data-value="Chocolate Cake 🍫" data-price="Rs 550">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&auto=format&fit=crop" alt="Chocolate Cake" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Chocolate Cake</span><span class="price">Rs 550</span></div>
+                </div>
+                <div class="option-card" data-category="treats" data-value="Strawberry Cake 🍓" data-price="Rs 600">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&auto=format&fit=crop" alt="Strawberry Cake" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Strawberry Cake</span><span class="price">Rs 600</span></div>
+                </div>
+                <div class="option-card" data-category="treats" data-value="Red Velvet 🍰" data-price="Rs 650">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1586985289906-406988974504?w=400&auto=format&fit=crop" alt="Red Velvet" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Red Velvet</span><span class="price">Rs 650</span></div>
+                </div>
+                <div class="option-card" data-category="treats" data-value="Ice Cream 🍦" data-price="Rs 200">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=400&auto=format&fit=crop" alt="Ice Cream" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Ice Cream</span><span class="price">Rs 200</span></div>
+                </div>
+                <div class="option-card" data-category="treats" data-value="Donuts 🍩" data-price="Rs 250">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&auto=format&fit=crop" alt="Donuts" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Donuts</span><span class="price">Rs 250</span></div>
+                </div>
+                <div class="option-card" data-category="treats" data-value="Macarons 🧁" data-price="Rs 450">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=400&auto=format&fit=crop" alt="Macarons" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Macarons</span><span class="price">Rs 450</span></div>
+                </div>
+                <div class="option-card custom-card" data-category="treats" data-value="__custom__" data-price="custom">
+                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
+                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+                </div>
+            </div>
+            <div class="custom-text-wrap" id="treatsCustomWrap"><textarea id="treatsCustomText" placeholder="Tell me what sweet treat you'd love instead… 🍰"></textarea></div>
+
+            <div class="section-title"><i class="fas fa-mug-hot"></i> Your drink <span class="section-hint">pick one</span></div>
+            <div class="options-grid" id="drinksGrid">
+                <div class="option-card" data-category="drinks" data-value="Coffee ☕" data-price="Rs 180">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&auto=format&fit=crop" alt="Coffee" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Coffee</span><span class="price">Rs 180</span></div>
+                </div>
+                <div class="option-card" data-category="drinks" data-value="Bubble Tea 🧋" data-price="Rs 250">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1558857563-b371033873b8?w=400&auto=format&fit=crop" alt="Bubble Tea" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Bubble Tea</span><span class="price">Rs 250</span></div>
+                </div>
+                <div class="option-card" data-category="drinks" data-value="Smoothie 🥤" data-price="Rs 220">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&auto=format&fit=crop" alt="Smoothie" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Smoothie</span><span class="price">Rs 220</span></div>
+                </div>
+                <div class="option-card" data-category="drinks" data-value="Wine 🍷" data-price="Rs 750">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&auto=format&fit=crop" alt="Wine" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Wine</span><span class="price">Rs 750</span></div>
+                </div>
+                <div class="option-card" data-category="drinks" data-value="Lemonade 🍋" data-price="Rs 150">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&auto=format&fit=crop" alt="Lemonade" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Lemonade</span><span class="price">Rs 150</span></div>
+                </div>
+                <div class="option-card" data-category="drinks" data-value="Hot Chocolate 🍫" data-price="Rs 200">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1542990253-a781e04c0082?w=400&auto=format&fit=crop" alt="Hot Chocolate" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Hot Chocolate</span><span class="price">Rs 200</span></div>
+                </div>
+                <div class="option-card custom-card" data-category="drinks" data-value="__custom__" data-price="custom">
+                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
+                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+                </div>
+            </div>
+            <div class="custom-text-wrap" id="drinksCustomWrap"><textarea id="drinksCustomText" placeholder="Tell me what drink you'd love instead… ☕"></textarea></div>
+
+            <div class="section-title"><i class="fas fa-heart"></i> Your activity <span class="section-hint">pick one</span></div>
+            <div class="options-grid" id="activitiesGrid">
+                <div class="option-card" data-category="activities" data-value="Movie Night 🎬" data-price="Rs 500">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&auto=format&fit=crop" alt="Movie Night" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Movie Night</span><span class="price">Rs 500</span></div>
+                </div>
+                <div class="option-card" data-category="activities" data-value="Picnic 🧺" data-price="Rs 400">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&auto=format&fit=crop" alt="Picnic" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Picnic</span><span class="price">Rs 400</span></div>
+                </div>
+                <div class="option-card" data-category="activities" data-value="Beach Walk 🏖️" data-price="Rs 0">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop" alt="Beach Walk" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Beach Walk</span><span class="price">Rs 0</span></div>
+                </div>
+                <div class="option-card" data-category="activities" data-value="Dinner 🍽️" data-price="Rs 1200">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&auto=format&fit=crop" alt="Dinner" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Dinner</span><span class="price">Rs 1200</span></div>
+                </div>
+                <div class="option-card" data-category="activities" data-value="Stargazing 🌟" data-price="Rs 100">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1532978379173-523e16f371f9?w=400&auto=format&fit=crop" alt="Stargazing" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Stargazing</span><span class="price">Rs 100</span></div>
+                </div>
+                <div class="option-card" data-category="activities" data-value="Arcade 🕹️" data-price="Rs 350">
+                    <div class="option-image"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&auto=format&fit=crop" alt="Arcade" loading="lazy"></div>
+                    <div class="option-info"><span class="label">Arcade</span><span class="price">Rs 350</span></div>
+                </div>
+                <div class="option-card custom-card" data-category="activities" data-value="__custom__" data-price="custom">
+                    <div class="option-image"><i class="fas fa-pen-fancy custom-icon"></i></div>
+                    <div class="option-info"><span class="label">None of these</span><span class="price">Tell me 💌</span></div>
+                </div>
+            </div>
+            <div class="custom-text-wrap" id="activitiesCustomWrap"><textarea id="activitiesCustomText" placeholder="Tell me what activity you'd love instead… 💫"></textarea></div>
+
+            <div class="section-title"><i class="fas fa-calendar-heart"></i> When are you free?</div>
+            <input type="datetime-local" class="date-input" id="dateTimeInput">
+
+            <div class="action-row">
+                <button class="confirm-btn" id="confirmBtn" disabled>Confirm & Send 💖</button>
+                <button class="back-btn hidden" id="backBtn" type="button"><i class="fas fa-arrow-left"></i> <span>Change my choices</span></button>
+            </div>
+
+            <div class="summary-box" id="summaryBox">
+                <h3>💌 Your perfect date plan</h3>
+                <ul id="summaryList"></ul>
+                <div class="total" id="totalRow" style="display:none;"><span>Total 💰</span><span id="totalAmount">Rs 0</span></div>
+                <div class="note">Your WhatsApp should open — just press send 💕</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ============ TRACKING HELPERS ============
+            // Every important event is stored in localStorage under 'sparkRomanticTracking'
+            // The dashboard reads this key to display live data.
+            const TRACKING_KEY = 'sparkRomanticTracking';
+
+            function loadTracking() {
+                try {
+                    const raw = localStorage.getItem(TRACKING_KEY);
+                    if (!raw) return { visits: [], answers: [] };
+                    const data = JSON.parse(raw);
+                    return {
+                        visits: Array.isArray(data.visits) ? data.visits : [],
+                        answers: Array.isArray(data.answers) ? data.answers : []
+                    };
+                } catch (e) {
+                    return { visits: [], answers: [] };
+                }
+            }
+
+            function saveTracking(data) {
+                try {
+                    localStorage.setItem(TRACKING_KEY, JSON.stringify(data));
+                } catch (e) { /* quota or private mode - silently ignore */ }
+            }
+
+            function trackVisit() {
+                const data = loadTracking();
+                data.visits.push({
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer || 'direct'
+                });
+                // keep last 200 visits
+                if (data.visits.length > 200) data.visits = data.visits.slice(-200);
+                saveTracking(data);
+            }
+
+            function trackAnswer(answer) {
+                const data = loadTracking();
+                data.answers.push({
+                    timestamp: new Date().toISOString(),
+                    answer: answer, // 'yes' or 'no'
+                    userAgent: navigator.userAgent
+                });
+                if (data.answers.length > 200) data.answers = data.answers.slice(-200);
+                saveTracking(data);
+            }
+
+            function trackDatePlan(plan) {
+                const data = loadTracking();
+                // Replace the last 'yes' answer with the full plan if one exists
+                if (data.answers.length > 0) {
+                    const last = data.answers[data.answers.length - 1];
+                    if (last.answer === 'yes' && !last.plan) {
+                        last.plan = plan;
+                    }
+                }
+                saveTracking(data);
+            }
+
+            // Track a visit right away
+            trackVisit();
+
+            // ============ NAME GATE ============
+            const AUTHORIZED_NAME = 'Ravika';
+            const gateScreen = document.getElementById('gateScreen');
+            const gateBtn = document.getElementById('gateBtn');
+            const nameInput = document.getElementById('nameInput');
+            const gateError = document.getElementById('gateError');
+
+            function normalize(str) {
+                return (str || '').trim().toLowerCase();
+            }
+
+            function tryEnter() {
+                const entered = normalize(nameInput.value);
+                const allowed = normalize(AUTHORIZED_NAME);
+
+                if (entered === allowed && entered.length > 0) {
+                    gateError.classList.remove('show');
+                    gateScreen.classList.add('hidden');
+                    document.body.focus();
+                    // Track that she entered her name correctly
+                    const data = loadTracking();
+                    data.lastAccess = new Date().toISOString();
+                    saveTracking(data);
+                } else {
+                    gateError.classList.add('show');
+                    nameInput.style.borderColor = '#ff5e8a';
+                    nameInput.style.boxShadow = '0 0 0 4px rgba(255,94,138,0.2)';
+                    setTimeout(() => {
+                        nameInput.style.borderColor = '';
+                        nameInput.style.boxShadow = '';
+                    }, 700);
+                }
+            }
+
+            gateBtn.addEventListener('click', tryEnter);
+            nameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') tryEnter();
+            });
+
+            document.addEventListener('contextmenu', (e) => {
+                if (!gateScreen.classList.contains('hidden')) e.preventDefault();
+            });
+
+            // ============ MAIN APP LOGIC ============
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            const mainContainer = document.getElementById('mainContainer');
+            const datePage = document.getElementById('datePage');
+
+            const WHATSAPP_NUMBER = '23058226850';
+
+            let isFixed = false;
+
+            function clamp(val, min, max) {
+                return Math.min(Math.max(val, min), max);
+            }
+
+            function moveNoButton() {
+                const isSmall = window.innerWidth < 640;
+                const margin = isSmall ? 10 : 14;
+
+                if (!isFixed) {
+                    const rect = noBtn.getBoundingClientRect();
+                    noBtn.style.position = 'fixed';
+                    noBtn.style.left = rect.left + 'px';
+                    noBtn.style.top = rect.top + 'px';
+                    noBtn.style.margin = '0';
+                    noBtn.style.zIndex = '1000';
+                    noBtn.style.width = rect.width + 'px';
+                    isFixed = true;
+                    void noBtn.offsetWidth;
+                }
+
+                const btnW = noBtn.offsetWidth;
+                const btnH = noBtn.offsetHeight;
+                const maxX = window.innerWidth - btnW - margin;
+                const maxY = window.innerHeight - btnH - margin;
+                const minX = margin;
+                const minY = margin;
+
+                if (maxX < minX || maxY < minY) {
+                    noBtn.style.left = '50%';
+                    noBtn.style.top = '50%';
+                    noBtn.style.transform = 'translate(-50%, -50%)';
+                    return;
+                }
+
+                let curX = parseFloat(noBtn.style.left);
+                let curY = parseFloat(noBtn.style.top);
+                if (isNaN(curX)) curX = minX;
+                if (isNaN(curY)) curY = minY;
+
+                const screenDiag = Math.hypot(window.innerWidth, window.innerHeight);
+                const minDistance = Math.min(250, screenDiag * 0.4);
+
+                let newX, newY, attempts = 0;
+                do {
+                    newX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+                    newY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+                    attempts++;
+                } while (Math.hypot(newX - curX, newY - curY) < minDistance && attempts < 50);
+
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+                noBtn.style.transform = `rotate(${(Math.random() * 14 - 7).toFixed(1)}deg)`;
+
+                setTimeout(() => {
+                    noBtn.style.transform = 'rotate(0deg)';
+                }, 700);
+            }
+
+            let lastMove = 0;
+            const MOVE_COOLDOWN = 380;
+            function tryMove() {
+                const now = Date.now();
+                if (now - lastMove < MOVE_COOLDOWN) return;
+                lastMove = now;
+                moveNoButton();
+            }
+
+            noBtn.addEventListener('mouseenter', (e) => { e.preventDefault(); tryMove(); });
+            noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); tryMove(); }, { passive: false });
+            noBtn.addEventListener('mousedown', (e) => { e.preventDefault(); tryMove(); });
+            noBtn.addEventListener('focus', (e) => { e.preventDefault(); tryMove(); });
+            noBtn.addEventListener('click', (e) => { e.preventDefault(); tryMove(); });
+            noBtn.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            document.addEventListener('pointermove', (e) => {
+                if (!isFixed) return;
+                const rect = noBtn.getBoundingClientRect();
+                const dist = Math.hypot(
+                    e.clientX - (rect.left + rect.width / 2),
+                    e.clientY - (rect.top + rect.height / 2)
+                );
+                const avoidRadius = window.innerWidth < 640 ? 90 : 110;
+                if (dist < avoidRadius) tryMove();
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isFixed) return;
+                const touch = e.touches[0];
+                if (!touch) return;
+                const rect = noBtn.getBoundingClientRect();
+                const dist = Math.hypot(
+                    touch.clientX - (rect.left + rect.width / 2),
+                    touch.clientY - (rect.top + rect.height / 2)
+                );
+                if (dist < 90) tryMove();
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                if (!isFixed) return;
+                const btnW = noBtn.offsetWidth;
+                const btnH = noBtn.offsetHeight;
+                const margin = window.innerWidth < 640 ? 10 : 14;
+                let left = parseFloat(noBtn.style.left) || margin;
+                let top = parseFloat(noBtn.style.top) || margin;
+                left = clamp(left, margin, window.innerWidth - btnW - margin);
+                top = clamp(top, margin, window.innerHeight - btnH - margin);
+                noBtn.style.left = left + 'px';
+                noBtn.style.top = top + 'px';
+            });
+
+            // ---------------- YES → DATE PLANNER ----------------
+            yesBtn.addEventListener('click', () => {
+                trackAnswer('yes');
+                mainContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                mainContainer.style.opacity = '0';
+                mainContainer.style.transform = 'scale(0.92)';
+
+                setTimeout(() => {
+                    mainContainer.style.display = 'none';
+                    datePage.classList.add('show');
+                    document.body.style.overflowY = 'auto';
+                }, 350);
+            });
+
+            // ---------------- DATE PLANNER LOGIC ----------------
+            const optionCards = document.querySelectorAll('.option-card');
+            const dateTimeInput = document.getElementById('dateTimeInput');
+            const confirmBtn = document.getElementById('confirmBtn');
+            const backBtn = document.getElementById('backBtn');
+            const summaryBox = document.getElementById('summaryBox');
+            const summaryList = document.getElementById('summaryList');
+            const totalRow = document.getElementById('totalRow');
+            const totalAmount = document.getElementById('totalAmount');
+
+            const customWraps = {
+                flowers: document.getElementById('flowersCustomWrap'),
+                treats: document.getElementById('treatsCustomWrap'),
+                drinks: document.getElementById('drinksCustomWrap'),
+                activities: document.getElementById('activitiesCustomWrap')
+            };
+            const customTexts = {
+                flowers: document.getElementById('flowersCustomText'),
+                treats: document.getElementById('treatsCustomText'),
+                drinks: document.getElementById('drinksCustomText'),
+                activities: document.getElementById('activitiesCustomText')
+            };
+
+            const selections = { flowers: null, treats: null, drinks: null, activities: null };
+
+            function parsePrice(str) {
+                if (!str || str === 'custom') return 0;
+                const n = parseInt(str.replace(/[^0-9]/g, ''), 10);
+                return isNaN(n) ? 0 : n;
+            }
+
+            optionCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const category = card.dataset.category;
+                    const value = card.dataset.value;
+                    const price = card.dataset.price;
+
+                    document.querySelectorAll(`.option-card[data-category="${category}"]`).forEach(c => {
+                        c.classList.remove('selected');
+                    });
+
+                    if (selections[category] && selections[category].value === value) {
+                        selections[category] = null;
+                        customWraps[category].classList.remove('show');
+                    } else {
+                        card.classList.add('selected');
+                        selections[category] = { value, price };
+                        if (value === '__custom__') {
+                            customWraps[category].classList.add('show');
+                            setTimeout(() => customTexts[category].focus(), 200);
+                        } else {
+                            customWraps[category].classList.remove('show');
+                        }
+                    }
+                    updateConfirmState();
+                });
+            });
+
+            Object.keys(customTexts).forEach(cat => {
+                customTexts[cat].addEventListener('input', updateConfirmState);
+            });
+
+            function getCustomText(cat) {
+                return customTexts[cat].value.trim();
+            }
+
+            function updateConfirmState() {
+                const allChosen =
+                    selections.flowers &&
+                    selections.treats &&
+                    selections.drinks &&
+                    selections.activities;
+                if (!allChosen) { confirmBtn.disabled = true; return; }
+
+                let customOk = true;
+                ['flowers', 'treats', 'drinks', 'activities'].forEach(cat => {
+                    if (selections[cat] && selections[cat].value === '__custom__') {
+                        if (!getCustomText(cat)) customOk = false;
+                    }
+                });
+                const hasDate = dateTimeInput.value !== '';
+                confirmBtn.disabled = !(customOk && hasDate);
+            }
+
+            dateTimeInput.addEventListener('change', updateConfirmState);
+            dateTimeInput.addEventListener('input', updateConfirmState);
+
+            backBtn.addEventListener('click', () => {
+                summaryBox.classList.remove('show');
+                totalRow.style.display = 'none';
+                confirmBtn.textContent = 'Confirm & Send 💖';
+                confirmBtn.disabled = false;
+                backBtn.classList.add('hidden');
+                updateConfirmState();
+                datePage.scrollTo({ top: 0, behavior: 'smooth' });
+                const firstSection = document.querySelector('.section-title');
+                if (firstSection) {
+                    firstSection.style.transition = 'color 0.4s ease';
+                    firstSection.style.color = '#ff3d71';
+                    setTimeout(() => { firstSection.style.color = ''; }, 900);
+                }
+            });
+
+            // ---------------- CONFIRM & WHATSAPP ----------------
+            confirmBtn.addEventListener('click', () => {
+                summaryList.innerHTML = '';
+
+                let dateFormatted = 'Not set';
+                if (dateTimeInput.value) {
+                    const dt = new Date(dateTimeInput.value);
+                    dateFormatted = dt.toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                }
+
+                function displayValue(cat) {
+                    const sel = selections[cat];
+                    if (!sel) return { value: '-', price: '-' };
+                    if (sel.value === '__custom__') {
+                        return { value: getCustomText(cat) || '(no message)', price: null };
+                    }
+                    return { value: sel.value, price: sel.price };
+                }
+
+                const flowersD = displayValue('flowers');
+                const treatsD = displayValue('treats');
+                const drinksD = displayValue('drinks');
+                const activitiesD = displayValue('activities');
+
+                const lines = [
+                    { icon: 'fa-calendar-check', label: 'Date & Time', value: dateFormatted, price: null },
+                    { icon: 'fa-fan', label: 'Flower', value: flowersD.value, price: flowersD.price },
+                    { icon: 'fa-cake-candles', label: 'Treat', value: treatsD.value, price: treatsD.price },
+                    { icon: 'fa-mug-hot', label: 'Drink', value: drinksD.value, price: drinksD.price },
+                    { icon: 'fa-heart', label: 'Activity', value: activitiesD.value, price: activitiesD.price }
+                ];
+
+                let total = 0;
+                lines.forEach(line => {
+                    if (line.value) {
+                        const li = document.createElement('li');
+                        const priceText = line.price ? ` — <strong>${line.price}</strong>` : '';
+                        li.innerHTML = `<i class="fas ${line.icon}" style="color:#ff5e8a;"></i> <span><strong>${line.label}:</strong> ${line.value}${priceText}</span>`;
+                        summaryList.appendChild(li);
+                        if (line.price) total += parsePrice(line.price);
+                    }
+                });
+
+                totalRow.style.display = 'flex';
+                totalAmount.textContent = `Rs ${total}`;
+                summaryBox.classList.add('show');
+                confirmBtn.textContent = '💖 Sent to WhatsApp! 💖';
+                confirmBtn.disabled = true;
+                backBtn.classList.remove('hidden');
+                summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                // -------- SAVE PLAN TO TRACKING --------
+                const plan = {
+                    dateFormatted,
+                    flowers: flowersD.value,
+                    flowersPrice: flowersD.price,
+                    treats: treatsD.value,
+                    treatsPrice: treatsD.price,
+                    drinks: drinksD.value,
+                    drinksPrice: drinksD.price,
+                    activities: activitiesD.value,
+                    activitiesPrice: activitiesD.price,
+                    total: `Rs ${total}`
+                };
+                trackDatePlan(plan);
+
+                const message =
+                    `💖 I said YES! 💖\n\n` +
+                    `Here's our date plan:\n\n` +
+                    `📅 Date & Time: ${dateFormatted}\n` +
+                    `🌹 Flower: ${flowersD.value}${flowersD.price ? ` (${flowersD.price})` : ''}\n` +
+                    `🍰 Treat: ${treatsD.value}${treatsD.price ? ` (${treatsD.price})` : ''}\n` +
+                    `☕ Drink: ${drinksD.value}${drinksD.price ? ` (${drinksD.price})` : ''}\n` +
+                    `💕 Activity: ${activitiesD.value}${activitiesD.price ? ` (${activitiesD.price})` : ''}\n\n` +
+                    `💰 Total: Rs ${total}`;
+
+                const encoded = encodeURIComponent(message);
+                const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+
+                setTimeout(() => { window.open(waUrl, '_blank'); }, 700);
+
+                const confettiCount = window.innerWidth < 640 ? 18 : 25;
+                for (let i = 0; i < confettiCount; i++) {
+                    const conf = document.createElement('div');
+                    conf.textContent = ['❤️', '💖', '💕', '🌸', '✨'][Math.floor(Math.random() * 5)];
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random() * 100 + 'vw';
+                    conf.style.top = '-40px';
+                    conf.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
+                    conf.style.zIndex = '9999';
+                    conf.style.pointerEvents = 'none';
+                    conf.style.transition = `transform ${2 + Math.random() * 2}s linear, opacity ${2 + Math.random() * 2}s ease`;
+                    document.body.appendChild(conf);
+
+                    requestAnimationFrame(() => {
+                        conf.style.transform = `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 720}deg)`;
+                        conf.style.opacity = '0';
+                    });
+                    setTimeout(() => conf.remove(), 4500);
+                }
+            });
+
+        })();
+    </script>
+</body>
+</html>
